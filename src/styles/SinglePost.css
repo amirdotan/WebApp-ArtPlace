@@ -1,0 +1,5 @@
+.singlepost {
+    position: fixed;
+    left: 25%;
+    transform: translateY(25%);
+}

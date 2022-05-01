@@ -1,0 +1,32 @@
+.backdrop {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000000e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.modal {
+    width: 100%;
+    height: min(100%, 900px);
+    margin: auto;
+    padding: 2 2 rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+/* 
+.PopUpPost{
+    background-size: cover;
+    width: 100%;
+    align-items: stretch;
+    transform: scaleX(1.3);
+} */
