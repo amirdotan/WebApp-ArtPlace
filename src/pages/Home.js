@@ -1,7 +1,6 @@
 import * as React from 'react';
 import AppBar from '../components/AppBar'
 import BottomNavigation from '../components/BottomNavigation.js';
-import SpeedDial from '../components/SpeedDial.js';
 import MasonryImageList from '../components/Posts.js'
 import '../styles/Home.css'
 
@@ -25,15 +24,9 @@ export default function Home() {
         <div className='HomeContainer' sx={{height:'100%'}}>
             <AppBar />
             <MasonryImageList />
-            <SpeedDial /> 
             <BottomNavigation />
         </div>
     )
 }
 
 
-
-                // {/* cycle threw posts array printing the post.title attribute */}
-                // {posts.map(post => (
-                //     <p key={post.id}> {post.title} </p>
-                // ))}
