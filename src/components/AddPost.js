@@ -18,32 +18,12 @@ import { Navigate } from 'react-router-dom';
 import {useNavigate} from "react-router-dom";
 import BottomNavigation from '../components/BottomNavigation'
 import { height } from '@mui/system';
+import { useState, useEffect } from 'react';
 
-/*function Copyright() {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center">
-            {'Copyright � '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-*/
+
 const steps = ['Create Post', 'Preview Post'];
 
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return <PostForm />;
-        case 1:
-            return <PostPreview />;
-        default:
-            throw new Error('Unknown step');
-    }
-}
+
 
 const theme = createTheme();
 
@@ -64,6 +44,28 @@ export default function AddPost() {
         event.preventDefault();
         navigate("/Home");
     }
+    const [images, setImages] = useState([]);
+    const [imageURLs, setImageURLs] = useState([]);
+    const [title, setTitle] = useState();
+    const [shortDescription, setShortDescription] = useState()
+    const [longDescription, setLongDescription] = useState()
+    const [skillList, setSkillList] = useState([])
+
+
+    function getStepContent(step) {
+        switch (step) {
+            case 0:
+                return <PostForm images={images} setImages={setImages} imageURLs={imageURLs} setImageURLs={setImageURLs}
+                    setTitle={setTitle} setShortDescription={setShortDescription} setLongDescription={setLongDescription}
+                    setSkillList={setSkillList} />;
+            case 1:
+                return <PostPreview imageURLs={imageURLs} title={title} shortDescription={shortDescription}
+                    longDescription={longDescription} skillList={skillList} />;
+            default:
+                throw new Error('Unknown step');
+        }
+    }
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -128,7 +130,6 @@ export default function AddPost() {
                     </React.Fragment>
                 </Paper>
             </Container>
-            <BottomNavigation />
         </ThemeProvider>
 
     );

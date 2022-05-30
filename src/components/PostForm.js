@@ -5,13 +5,18 @@ import TextField from '@mui/material/TextField';
 import { useState, useEffect, useRef, Fragment, onChange, onFileChange, classes, SvgIcon, UploadIcon } from 'react';
 import Button from '@mui/material/Button';
 import '../styles/AddPostImg.css';
+import Autocomplete from '@mui/material/Autocomplete';
 
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function PostForm() {
-    const [images, setImages] = useState([]);
-    const [imageURLs, setImageURLs] = useState([]);
+
+const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
+
+
+
+export default function PostForm({ images, setImages, imageURLs, setImageURLs,
+    setTitle, setShortDescription, setLongDescription, setSkillList}) {
 
     useEffect(() => {
         if (images.length < 1) return;
@@ -23,7 +28,6 @@ export default function PostForm() {
     function handleImageChange(e) {
         setImages([...e.target.files]);
     }
-    const uploadInputRef = useRef(null);
 
     return (
         <React.Fragment>
@@ -37,19 +41,60 @@ export default function PostForm() {
                         required
                         id="PostTitle"
                         name="PostTitle"
-                        label="Title"
+                        label="Project in one word"
                         fullWidth
                         variant="standard"
+                        onChange={event => setTitle(event.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        required
                         id="Short Description"
                         name="Short Description"
-                        label="Description"
+                        label="Brief Description"
                         fullWidth
                         variant="standard"
+                        onChange={event => setShortDescription(event.target.value)}
                     />
+                </Grid>
+
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        id="Long Description"
+                        name="Long Description"
+                        label="Extensive Description"
+                        multiline
+                        fullWidth
+                        rows={4}
+                        onChange={event => setLongDescription(event.target.value)}
+                    />
+                </Grid>
+
+                <Grid item xs={12}>
+                    <Autocomplete
+                        multiple
+                        id="SkillsList"
+                        name="Short Description"
+                        label="SkillsList"
+                        fullWidth
+                        variant="standard"
+                        options={SkillList}
+                        getOptionLabel={option => option}
+                        defaultValue={[]}
+                        filterSelectedOptions
+                        onChange={(event, value) => setSkillList(value)}
+
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label="Necessary Skills"
+                                placeholder="Skills"
+                            />
+                        )}
+                    />
+
                 </Grid>
 
                 <Grid item xs={12}>
