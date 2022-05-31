@@ -5,7 +5,7 @@ import Home from "./Home";
 import AddPost from "../components/AddPost";
 import AboutPage from "../pages/AboutPage"
 
-
+// whats up
 function Pages() {
     return (
       <Routes>
