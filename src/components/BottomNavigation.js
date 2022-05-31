@@ -7,7 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import HomeIcon from '@mui/icons-material/Home';
 import zIndex from '@mui/material/styles/zIndex';
 import { useNavigate } from 'react-router-dom';
-import InfoIcon from '@mui/icons-material/Info';
+import PersonIcon from '@mui/icons-material/Person';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // This is the bottom navigation bar, offering the user the ability to navigate between three main pages, Home, Favorites and locations
@@ -49,7 +49,7 @@ export default function SimpleBottomNavigation() {
         onChange= {(event, newvalue) => handleChange(event, newvalue)}
       >
         {/* TODO: organize the hrefs and  */}
-        <BottomNavigationAction label="About" icon={<InfoIcon />} onTouchStart={handleAboutClick}/>
+        <BottomNavigationAction label="Profile" icon={<PersonIcon />} onTouchStart={handleAboutClick}/>
         <BottomNavigationAction label="Home" icon={<HomeIcon />} onTouchStart={handleHomeClick}/>
         <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} onTouchStart={handleMapClick}/>
       </BottomNavigation>

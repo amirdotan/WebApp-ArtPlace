@@ -20,6 +20,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'; //import this
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Logout'];
 
+// hi
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
