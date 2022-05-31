@@ -4,6 +4,7 @@ import SignIn from "./SignIn"
 import Home from "./Home";
 import AddPost from "../components/AddPost";
 import AboutPage from "../pages/AboutPage"
+import ProfilePage from "../pages/ProfilePage"
 
 
 function Pages() {
@@ -14,6 +15,7 @@ function Pages() {
             <Route path="/Home" element={<Home />} />
             <Route path="/addpost" element={<AddPost />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     );
   }
