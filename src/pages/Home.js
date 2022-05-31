@@ -22,9 +22,7 @@ export default function Home() {
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
-            <AppBar />
-            <MasonryImageList />
-            <BottomNavigation />
+
         </div>
     )
 }

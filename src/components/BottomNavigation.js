@@ -13,17 +13,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // This is the bottom navigation bar, offering the user the ability to navigate between three main pages, Home, Favorites and locations
 // source: https://mui.com/material-ui/react-bottom-navigation/
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      // Purple and green play nicely together.
-      main: '#679E84',
-     }
-    }
-  });
-
 
 export default function SimpleBottomNavigation() {
+
+
   const [value, setValue] = React.useState(0);
   const navigate = useNavigate();
   const handleChange = (event, newvalue) =>{
@@ -40,10 +33,12 @@ export default function SimpleBottomNavigation() {
     const handleMapClick = (event) => {
       event.preventDefault();
       navigate('/map');} 
+
+
+    
   
 
   return (
-    <ThemeProvider theme={theme}>
     <Box sx={{ width: '100%', position: 'fixed',zIndex:2000,  bottom:0 }}>
       <BottomNavigation
         showLabels
@@ -59,7 +54,6 @@ export default function SimpleBottomNavigation() {
         <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} onTouchStart={handleMapClick}/>
       </BottomNavigation>
     </Box>
-    </ThemeProvider>
   );
 }
 // 

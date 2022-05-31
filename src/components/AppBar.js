@@ -39,20 +39,10 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  //This is how we define the color we want: 
-  const theme = createTheme({
-    palette: {
-      primary: {
-        // Purple and green play nicely together.
-        main: '#679E84',
-       }
-      }
-    });
 
   return (
     //By wrapping the AppBar with 'ThemeProvider' we can change the default color
-    <ThemeProvider theme={theme}> 
-    <AppBar position="static">
+    <AppBar position="static" sx={{ width : '100%'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -152,7 +142,6 @@ const ResponsiveAppBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
-    </ThemeProvider>
   );
 };
 export default ResponsiveAppBar;

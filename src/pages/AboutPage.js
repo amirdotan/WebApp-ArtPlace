@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 // import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Skeleton from '../components/AboutSkeleton'
-import BottomNavigation from '../components/BottomNavigation';
+
 
 
 
@@ -29,20 +29,11 @@ import BottomNavigation from '../components/BottomNavigation';
 
 const cards = [1,2,3];
 //  app bar position center
-const theme = createTheme({
-  palette: {
-    primary: {
-      // Purple and green play nicely together.
-      main: '#679E84',
-     }
-    }
-  });
+
 export default function Album() {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
-      <AppBar >
-      </AppBar>
       <main>
         {/* Hero unit */}
         <Box
@@ -80,11 +71,8 @@ export default function Album() {
             {/* <CardAbout></CardAbout> */}
           </Container>
         </Box>
-
       </main>
-
-      <BottomNavigation />
-    </ThemeProvider>
+    </>
   );
 }
 
