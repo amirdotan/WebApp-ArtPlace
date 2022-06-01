@@ -32,9 +32,9 @@ export default function SimpleBottomNavigation() {
     event.preventDefault();
     navigate('/Home');} 
 
-    const handleMapClick = (event) => {
+    const handleAddPostClick = (event) => {
       event.preventDefault();
-      navigate('/map');} 
+      navigate('/addpost');} 
 
 
     
@@ -53,7 +53,7 @@ export default function SimpleBottomNavigation() {
         {/* TODO: organize the hrefs and  */}
         <BottomNavigationAction label="Profile" icon={<PersonIcon />} onClick={handleProfileClick}/>
         <BottomNavigationAction label="Home" icon={<HomeIcon />} onClick={handleHomeClick}/>
-        <BottomNavigationAction label="Add Post" icon={<ControlPointIcon />} onClick={handleMapClick}/>
+        <BottomNavigationAction label="Add Post" icon={<ControlPointIcon />} onClick={handleAddPostClick}/>
       </BottomNavigation>
     </Box>
   );
