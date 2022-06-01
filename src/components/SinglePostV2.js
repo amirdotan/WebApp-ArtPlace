@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({user_name, field_of_study, project_title, short_description, full_description}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -46,28 +46,29 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title= {user_name}
+        subheader= {field_of_study}
       />
       <CardMedia
         component="img"
         height="194"
         image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
+        alt="We're having trouble loading the image"
       />
       <CardContent>
+      <Typography variant="title" >
+          {project_title}
+        </Typography>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+          {short_description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          {/* <FavoriteIcon /> */}
         </IconButton>
         <IconButton aria-label="share">
-          <ShareIcon />
+          {/* <ShareIcon /> */}
         </IconButton>
         <ExpandMore
           expand={expanded}
