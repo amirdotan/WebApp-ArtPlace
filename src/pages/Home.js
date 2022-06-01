@@ -25,7 +25,12 @@ export default function Home() {
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
-            <SinglePostV2 />
+            <SinglePostV2 
+            user_name={"ben"} 
+            field_of_study={"Industrial design @ Bezalell"}
+            project_title={"New chairs for campus"}
+            short_description="this is the palce foa a short description"
+            />
             <SwipeLeft />
             <SwipeRight />
 
