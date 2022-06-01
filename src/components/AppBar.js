@@ -12,33 +12,44 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { createTheme, ThemeProvider } from '@mui/material/styles'; //import this in order to override default color
+import { useNavigate } from 'react-router-dom';
+import zIndex from '@mui/material/styles/zIndex';
+
 
 
 // This is the upper navigation bar presenting our logo and offering the user the ability to enter his profile.
 // Source: https://mui.com/material-ui/react-app-bar/
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['About', 'Logout'];
+const settings = ['Logout'];
 
-// hi
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
-  const handleCloseUserMenu = () => {
+  const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
+  const handleChange = (event, newvalue) =>{
+    setValue(newvalue)
+  }
+
+  const handleCloseUserMenu = (event) => {
     setAnchorElUser(null);
-  };
+    event.preventDefault();
+    navigate('/');} 
+  
 
 
   return (
@@ -131,7 +142,7 @@ const ResponsiveAppBar = () => {
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              // onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
