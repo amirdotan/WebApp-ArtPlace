@@ -9,6 +9,8 @@ import zIndex from '@mui/material/styles/zIndex';
 import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
+
 
 // This is the bottom navigation bar, offering the user the ability to navigate between three main pages, Home, Favorites and locations
 // source: https://mui.com/material-ui/react-bottom-navigation/
@@ -30,9 +32,9 @@ export default function SimpleBottomNavigation() {
     event.preventDefault();
     navigate('/Home');} 
 
-    const handleMapClick = (event) => {
+    const handleAddPostClick = (event) => {
       event.preventDefault();
-      navigate('/map');} 
+      navigate('/addpost');} 
 
 
     
@@ -49,9 +51,9 @@ export default function SimpleBottomNavigation() {
         onChange= {(event, newvalue) => handleChange(event, newvalue)}
       >
         {/* TODO: organize the hrefs and  */}
-        <BottomNavigationAction label="Profile" icon={<PersonIcon />} onTouchStart={handleProfileClick}/>
-        <BottomNavigationAction label="Home" icon={<HomeIcon />} onTouchStart={handleHomeClick}/>
-        <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} onTouchStart={handleMapClick}/>
+        <BottomNavigationAction label="Profile" icon={<PersonIcon />} onClick={handleProfileClick}/>
+        <BottomNavigationAction label="Home" icon={<HomeIcon />} onClick={handleHomeClick}/>
+        <BottomNavigationAction label="Add Post" icon={<ControlPointIcon />} onClick={handleAddPostClick}/>
       </BottomNavigation>
     </Box>
   );
