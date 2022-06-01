@@ -32,7 +32,7 @@ export default function PostForm({ images, setImages, imageURLs, setImageURLs,
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
-                Contribute art to your local community
+                Your partners are righ around the corner
             </Typography>
             <Grid container spacing={3}>
 

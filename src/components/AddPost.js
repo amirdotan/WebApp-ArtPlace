@@ -96,7 +96,7 @@ export default function AddPost() {
                         {activeStep === steps.length ? (
                             <React.Fragment>
                                 <Typography variant="subtitle1">
-                                    Thank You for contributing to your community
+                                    Let's go! 
                                 </Typography>
                                 <Button
                                     variant="contained"
