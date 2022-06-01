@@ -3,6 +3,9 @@ import AppBar from '../components/AppBar'
 import BottomNavigation from '../components/BottomNavigation.js';
 import MasonryImageList from '../components/Posts.js'
 import '../styles/Home.css'
+import SwipeLeft from '../components/SwipeLeft'
+import SwipeRight from '../components/SwipeRight'
+import SinglePostV2 from '../components/SinglePostV2'
 
 // This is the Home page where there is a view of all the cards
 
@@ -22,6 +25,10 @@ export default function Home() {
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
+            <SinglePostV2 />
+            <SwipeLeft />
+            <SwipeRight />
+
 
         </div>
     )

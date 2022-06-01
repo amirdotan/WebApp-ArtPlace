@@ -1,5 +1,5 @@
-.singlepost {
-    position: fixed;
+.singlepostv2 {
     left: 25%;
     transform: translateY(25%);
+    margin: 0 auto;
 }
