@@ -96,15 +96,15 @@ export default function AddPost() {
                         {activeStep === steps.length ? (
                             <React.Fragment>
                                 <Typography variant="subtitle1">
-                                    Let's go! 
+                                    All done! 
                                 </Typography>
-                                <Button
+                                {/* <Button
                                     variant="contained"
                                     onClick={useHomeButton}
                                     sx={{ alignSelf: 'center' }}
                                 >
                                     {activeStep === steps.length - 1 ? 'Post' : 'Adios'}
-                                </Button>
+                                </Button> */}
                             </React.Fragment>
                         ) : (
                             <React.Fragment>

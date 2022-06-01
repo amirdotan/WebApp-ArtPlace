@@ -18,7 +18,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'; //import this
 // Source: https://mui.com/material-ui/react-app-bar/
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Logout'];
+const settings = ['About', 'Logout'];
 
 // hi
 const ResponsiveAppBar = () => {
@@ -135,7 +135,9 @@ const ResponsiveAppBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                    {setting}
+                    </Typography>
                 </MenuItem>
               ))}
             </Menu>
