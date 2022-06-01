@@ -38,17 +38,16 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card sx={{width: '100%' }}>
+    <Card sx={{ }}>
+      <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500], left: '500%'}} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             R
           </Avatar>
         }
-        <CardContent sx={{alignContent: 'left'}}>
-        <h1> title="Ayelet Kimchi"
-        subheader="Industrial Design at Bezalel"
-        </h1>
-        </CardContent>
+        title="Shrimp and Chorizo Paella"
+        subheader="September 14, 2016"
+      />
     </Card>
   );
 }

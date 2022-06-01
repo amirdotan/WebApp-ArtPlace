@@ -22,9 +22,9 @@ export default function SimpleBottomNavigation() {
   const handleChange = (event, newvalue) =>{
     setValue(newvalue)
   }
-  const handleAboutClick = (event) => {
+  const handleProfileClick = (event) => {
     event.preventDefault();
-    navigate('/about');}
+    navigate('/profile');}
 
   const handleHomeClick = (event) => {
     event.preventDefault();
@@ -49,7 +49,7 @@ export default function SimpleBottomNavigation() {
         onChange= {(event, newvalue) => handleChange(event, newvalue)}
       >
         {/* TODO: organize the hrefs and  */}
-        <BottomNavigationAction label="Profile" icon={<PersonIcon />} onTouchStart={handleAboutClick}/>
+        <BottomNavigationAction label="Profile" icon={<PersonIcon />} onTouchStart={handleProfileClick}/>
         <BottomNavigationAction label="Home" icon={<HomeIcon />} onTouchStart={handleHomeClick}/>
         <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} onTouchStart={handleMapClick}/>
       </BottomNavigation>
