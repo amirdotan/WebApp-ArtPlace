@@ -57,7 +57,6 @@ export default function MasonryImageList() {
                             onClick= {() => (modalOpen ? close() : open(item.title, item.img))}
                         /> 
                     </ImageListItem>
-
                 ))}
                 {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} title={tit} img={img} />}
             </ImageList>

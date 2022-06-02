@@ -1,9 +1,9 @@
-import { Button } from "@mui/material";
 import  {motion} from "framer-motion";
 import React, { useState } from "react";
 import '../styles/BackDrop.css'
 import SinglePost from './SinglePost'
 import BackDrop from "./BackDrop";
+import GetInTouch from "./GetInToch"
 
 const dropIn = {
     hidden: {
@@ -14,9 +14,9 @@ const dropIn = {
         y: "0",
         opacity: 1,
         transition: {
-            duration: 0.1,
+            duration:0.15,
             type: "spring",
-            damping: 25,
+            damping: 40,
             stiffness: 200,
         }
 
@@ -28,7 +28,7 @@ const dropIn = {
 
 }
 
-const modal = ({handleClose, title, img}) => {
+const modal = ({handleClose}) => {
     return(
         <BackDrop onClick = {handleClose}>
             <motion.div
@@ -39,7 +39,7 @@ const modal = ({handleClose, title, img}) => {
                 animate = "visible"
                 exit = "exit"
                 >
-                <SinglePost title={title} img={img} handleClose={handleClose}/>
+                <GetInTouch/>
             </motion.div>
         </BackDrop>
 

@@ -1,11 +1,18 @@
-import * as React from 'react';
 import AppBar from '../components/AppBar'
 import BottomNavigation from '../components/BottomNavigation.js';
 import MasonryImageList from '../components/Posts.js'
 import '../styles/Home.css'
 import SwipeLeft from '../components/SwipeLeft'
-import SwipeRight from '../components/SwipeRight'
+
 import SinglePostV2 from '../components/SinglePostV2'
+import GetInTouch from '../components/GetInToch'
+import * as React from 'react';
+import Modal from '../components/Modal'
+
+import { useState, useEffect } from 'react';
+
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 // This is the Home page where there is a view of all the cards
 
@@ -21,7 +28,13 @@ export default function Home() {
     //     // data is the array outputed from response.json(), we send that array to setHome
     //     .then(data => setHome(data))
     // }, [])
+
     
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const close = () => setModalOpen(false)
+    const open = () => setModalOpen(true);
+
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
@@ -32,9 +45,17 @@ export default function Home() {
             short_description="this is the palce foa a short description"
             />
             <SwipeLeft />
-            <SwipeRight />
+            <Fab
+                className='swiperight' 
+                color="primary" 
+                aria-label="add" 
+                sx={{ position: 'absolute', bottom : 200, right: 60 }}
+                onClick={() => (modalOpen ? close() : open())}
+                >
+                <AddIcon />
+            </Fab>
 
-
+            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
         </div>
     )
 }
