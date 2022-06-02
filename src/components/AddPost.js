@@ -115,8 +115,6 @@ export default function AddPost() {
                                             Back
                                         </Button>
                                     )}
-
-
                                 </Box>
                                 <Button
                                         variant="contained"

@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { Autocomplete } from '@mui/material';
 
 // This is the Home page where there is a view of all the cards
 
@@ -38,6 +39,29 @@ export default function Home() {
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
+            {/* Amir please help here <3 */}
+        {/* <Autocomplete
+                    multiple
+                    id="SkillsList"
+                    name="Short Description"
+                    label="SkillsList"
+                    fullWidth
+                    variant="standard"
+                    options={SkillList}
+                    getOptionLabel={option => option}
+                    defaultValue={[]}
+                    filterSelectedOptions
+                    onChange={(event, value) => setSkillList(value)}
+
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Necessary Skills"
+                            placeholder="Skills"
+                        />
+                    )}
+                /> */}
+
             <SinglePostV2 
             user_name={"ben"} 
             field_of_study={"Industrial design @ Bezalell"}
