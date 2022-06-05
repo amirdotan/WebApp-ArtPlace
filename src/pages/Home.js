@@ -31,6 +31,12 @@ export default function Home() {
     // }, [])
 
     
+    const user_info_lst = [["ben" , "Industrial design @ Bezalell", "New chairs for campus", "this is the palce foa a short description" ]]
+    const user_name="ben" 
+    const field_of_study="Industrial design @ Bezalell"
+    const project_title="New chairs for campus"
+    const short_description="this is the palce foa a short description"
+
     const [modalOpen, setModalOpen] = useState(false);
 
     const close = () => setModalOpen(false)
@@ -63,12 +69,13 @@ export default function Home() {
                 /> */}
 
             <SinglePostV2 
-            user_name={"ben"} 
-            field_of_study={"Industrial design @ Bezalell"}
-            project_title={"New chairs for campus"}
-            short_description="this is the palce foa a short description"
+            user_name={user_info_lst[0][0]}
+            field_of_study={field_of_study}
+            project_title={project_title}
+            short_description= {short_description}
             />
             <SwipeLeft />
+            
             <Fab
                 className='swiperight' 
                 color="primary" 
