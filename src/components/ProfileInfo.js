@@ -29,7 +29,7 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card sx={{ }}>
+    <Card variant="outlined" sx={{ }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'primary' }} aria-label="recipe">

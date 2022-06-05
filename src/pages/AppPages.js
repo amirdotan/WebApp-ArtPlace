@@ -5,7 +5,8 @@ import Home from "./Home";
 import AddPost from "../components/AddPost";
 import AboutPage from "../pages/AboutPage"
 import ProfilePage from "./ProfilePage"
-
+import SignUp2 from "./SignUPNEW"
+import EditProfile from "./EditProfile"
 
 
 
@@ -19,6 +20,8 @@ function Pages() {
             <Route path="/addpost" element={<AddPost />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/signup2" element={<SignUp2 />} />
+            <Route path="/EditProfile" element={<EditProfile />} />
       </Routes>
     );
   }
