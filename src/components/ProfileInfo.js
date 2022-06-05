@@ -14,9 +14,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function RecipeReviewCard() {
+  const user_name="Ayelet"
+  const field_of_study="Industrial Design"
+  const current_year = "second"
+  // const subheader = '${field_of_study}' + 'at' + '${current_year}' + 'year';
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -28,11 +33,11 @@ export default function RecipeReviewCard() {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'primary' }} aria-label="recipe">
-            R
+            M
           </Avatar>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={user_name}
+        subheader= {field_of_study}      
       />
     </Card>
   );
