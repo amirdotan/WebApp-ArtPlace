@@ -15,7 +15,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 export default function RecipeReviewCard() {
   const user_name="Ayelet"
@@ -29,16 +30,19 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card variant="outlined" sx={{ }}>
+    <>
+    <Card variant="outlined" color="primary" sx={{ }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'primary' }} aria-label="recipe">
             M
           </Avatar>
         }
-        title={user_name}
-        subheader= {field_of_study}      
+          title={user_name}
+          subheader= {field_of_study}      
       />
     </Card>
+    <Button color="primary" sx={{justifyContent: 'left'}}>Edit</Button>
+    </>
   );
 }
