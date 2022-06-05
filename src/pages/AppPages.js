@@ -4,7 +4,9 @@ import SignIn from "./SignIn"
 import Home from "./Home";
 import AddPost from "../components/AddPost";
 import AboutPage from "../pages/AboutPage"
-import ProfilePage from "../pages/ProfilePage"
+import ProfilePage from "./ProfilePage"
+import Trial from "./Trial.js"
+
 
 // whats up
 function Pages() {
@@ -16,6 +18,7 @@ function Pages() {
             <Route path="/addpost" element={<AddPost />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/trial" element={<Trial />} />
       </Routes>
     );
   }
