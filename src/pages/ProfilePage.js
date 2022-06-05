@@ -6,8 +6,9 @@ export default function Profile() {
 
     return(
         <div className='ProfileContainer' sx={{height:'100%'}}>
-            <ProfileInfo />
-            <ProfileSkills />
+            {/* <ProfileInfo />
+            <ProfileSkills /> */}
+            <ProfilePortfolio />
         </div>
     )
 }

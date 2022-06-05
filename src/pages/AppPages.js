@@ -6,6 +6,7 @@ import AddPost from "../components/AddPost";
 import AboutPage from "../pages/AboutPage"
 import ProfilePage from "../pages/ProfilePage"
 
+
 // whats up
 function Pages() {
     return (

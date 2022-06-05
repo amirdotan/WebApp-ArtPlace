@@ -67,7 +67,6 @@ export default function MasonryImageList() {
 // {() => (modalOpen ? close() : open())}
 
 
-
 const posts = [
     {
       id: 1, 
