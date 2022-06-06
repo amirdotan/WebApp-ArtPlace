@@ -1,22 +1,52 @@
 {
-    "posts" : [
+    "users" : [
         {
-            "title" : "example 1",
-            "likes" : 60,
-            "img": "https://images.unsplash.com/photo-1549388604-817d15aa0110",
+            "first_name" : "Ayelet",
+            "last_name" : "Kimchi",
+            "field_of_study": "Industrial Design",
+            "current_year": "second",
+            "skills": ["photograohing", "animating", "packages design"],
             "id" : 1
         },
         {
-            "title" : "example 2",
-            "likes" : 60,
-            "img": "src/images/Song.jpg",
+            "first_name" : "Benjamin",
+            "last_name" : "Abrahami",
+            "field_of_study": "Industrial Design",
+            "current_year": "second",
+            "skills": ["drawing", "packages design"],
             "id" : 2
         },
         {
-            "title" : "example 3",
-            "likes" : 60,
-            "img": "src/images/Song.jpg",
+            "first_name" : "Or",
+            "last_name" : "Segalovich",
+            "field_of_study": "Visual Communications",
+            "current_year": "third",
+            "skills": ["typogrphy", "animating", "packages design"],
             "id" : 3
+        },
+        {
+            "first_name" : "Amir",
+            "last_name" : "Dotan",
+            "field_of_study": "Architecture",
+            "current_year": "second",
+            "skills": ["photograohing", "animating", "packages design"],
+            "id" : 4
+        },
+        {
+            "first_name" : "Shir",
+            "last_name" : "Segev",
+            "field_of_study": "Industrial Design",
+            "current_year": "first",
+            "skills": ["photograohing", "animating", "packages design"],
+            "id" : 5
+        },
+        {
+            "first_name" : "Maya",
+            "last_name" : "Rokach",
+            "field_of_study": "Fashion Design",
+            "current_year": "second",
+            "skills": ["photograohing", "animating", "packages design"],
+            "id" : 6
         }
     ]
 }

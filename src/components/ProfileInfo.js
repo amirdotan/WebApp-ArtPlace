@@ -17,12 +17,13 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import data from '../data/db.json'
 
 export default function RecipeReviewCard() {
-  const user_name="Ayelet"
-  const field_of_study="Industrial Design"
-  const current_year = "second"
-  // const subheader = '${field_of_study}' + 'at' + '${current_year}' + 'year';
+  const user_name=data.users[0].first_name + " "+  data.users[0].last_name //this is the name of the firat object at db.json  
+  const field_of_study=data.users[0].field_of_study
+  const current_year = data.users[0].current_year 
+  const subheader = field_of_study + ", " + current_year + " year"
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -39,7 +40,7 @@ export default function RecipeReviewCard() {
           </Avatar>
         }
           title={user_name}
-          subheader= {field_of_study}      
+          subheader= {subheader}     
       />
     </Card>
     <Button color="primary" sx={{justifyContent: 'left'}}>Edit</Button>

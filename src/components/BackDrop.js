@@ -15,7 +15,6 @@ const BackDrop = ({ children, onClick}) => {
         {children}
         </motion.div>
 
-
     );
 }
 

@@ -1,17 +1,15 @@
 import * as React from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import data from '../data/db.json'
 
 export default function BasicChips() {
   return (
 <Stack direction="row" spacing={3} sx={{margin: 2}}>
   {/* SkillsData.map((item) => (<Chip label={item.skill} color="secondary" />)) */}
-  <Chip label="photographer" color="secondary" />
-  <Chip label="animator" color="success" />
-  <Chip label="Photoshop" color="warning" />
+    {data.users[0].skills.map((skill) => (<Chip label={skill} color="secondary" />))}
 </Stack>
   );
 }
 
-const SkillsData = [{skill: "photogeapher"}, {skill: "animator"}, {skill: "photoshop"}]
 
