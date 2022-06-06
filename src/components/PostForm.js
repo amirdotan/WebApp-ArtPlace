@@ -102,7 +102,7 @@ export default function PostForm({ images, setImages, imageURLs, setImageURLs,
                         variant="contained"
                         component="label"
                     >
-                        Upload File
+                        Upload Picture
                         <input
                             type="file"
                             hidden

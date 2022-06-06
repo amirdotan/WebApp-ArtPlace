@@ -8,7 +8,7 @@ import NavigationIcon from '@mui/icons-material/Navigation';
 
 export default function FloatingActionButtons() {
   return (
-    <Fab color="secondary" aria-label="edit" sx={{ position: 'absolute', bottom : 200, left: 60 }} >
+    <Fab color="secondary" aria-label="edit" sx={{position: 'absolute', bottom : 200, left: 60}} >
         <EditIcon />
     </Fab>
   );
