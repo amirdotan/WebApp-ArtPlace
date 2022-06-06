@@ -14,23 +14,16 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import DeleteIcon from '@mui/icons-material/Delete';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import data from '../data/db.json'
 
 export default function RecipeReviewCard() {
+  const user_name=data.users[0].first_name + " "+  data.users[0].last_name //this is the name of the firat object at db.json  
+  const field_of_study=data.users[0].field_of_study
+  const current_year = data.users[0].current_year 
+  const subheader = field_of_study + ", " + current_year + " year"
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -38,16 +31,19 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card sx={{ }}>
+    <>
+    <Card variant="outlined" color="primary" sx={{ }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+          <Avatar sx={{ bgcolor: 'primary' }} aria-label="recipe">
+            M
           </Avatar>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+          title={user_name}
+          subheader= {subheader}     
       />
     </Card>
+    <Button color="primary" sx={{justifyContent: 'left'}}>Edit</Button>
+    </>
   );
 }
