@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import EditIcon from '@mui/icons-material/Edit';
+import data from '../data/db.json'
+
 
 //const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 
@@ -69,10 +72,10 @@ const current_year = "second"
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: '#679E84' }}>
-                        <LockOutlinedIcon />
+                        <EditIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign up
+                        Profile Info
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
@@ -83,7 +86,8 @@ const current_year = "second"
                                     required
                                     fullWidth
                                     id="firstName"
-                                    label={first_name}
+                                    label="First Name"
+                                    defaultValue= {data.users[0].first_name}
                                     autoFocus
                                 />
                             </Grid>
@@ -92,8 +96,9 @@ const current_year = "second"
                                     required
                                     fullWidth
                                     id="lastName"
-                                    label={last_name}
+                                    label="Last Name"
                                     name="lastName"
+                                    defaultValue= {data.users[0].last_name}
                                     autoComplete="family-name"
                                 />
                             </Grid>
@@ -102,7 +107,8 @@ const current_year = "second"
                                     required
                                     fullWidth
                                     id="study"
-                                    label={field_of_study}
+                                    label= "Field of Study"
+                                    defaultValue= {data.users[0].field_of_study}
                                     name="study"
 
                                 />
@@ -112,7 +118,8 @@ const current_year = "second"
                                     required
                                     fullWidth
                                     id="current year"
-                                    label={current_year}
+                                    label="current year"
+                                    defaultValue= {data.users[0].current_year} 
                                     name="email"
                                     autoComplete="email"
                                 />
@@ -132,11 +139,11 @@ const current_year = "second"
                                     required
                                     fullWidth
                                     id="description"
-                                    label="Short description about yourself"
+                                    label = "short description"
+                                    defaultValue= {data.users[0].short_description} 
                                     name="description"
                                     autoComplete="description"
                                     multiline
-                                    fullWidth
                                     rows={4}
                                 />
                             </Grid>
