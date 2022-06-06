@@ -35,9 +35,9 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  // const handleCloseNavMenu = () => {
-  //   setAnchorElNav(null);
-  // };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   const [value, setValue] = React.useState(0);
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const ResponsiveAppBar = () => {
     setValue(newvalue)
   }
 
-  const handleCloseUserMenu = (event) => {
+  const handleCloseUserMenu1 = (event) => {
     setAnchorElUser(null);
     event.preventDefault();
     navigate('/');} 
@@ -142,10 +142,10 @@ const ResponsiveAppBar = () => {
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              // onClose={handleCloseUserMenu}
+              onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleCloseUserMenu1}>
                   <Typography textAlign="center">
                     {setting}
                     </Typography>

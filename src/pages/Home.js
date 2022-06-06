@@ -14,6 +14,8 @@ import { useState, useEffect } from 'react';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Autocomplete } from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 
 // This is the Home page where there is a view of all the cards
 
@@ -83,7 +85,7 @@ export default function Home() {
                 sx={{ position: 'absolute', bottom : 200, right: 60 }}
                 onClick={() => (modalOpen ? close() : open())}
                 >
-                <AddIcon />
+                <FavoriteBorderIcon />
             </Fab>
 
             {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
