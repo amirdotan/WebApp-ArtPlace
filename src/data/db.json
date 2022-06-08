@@ -7,6 +7,7 @@
             "current_year": "second",
             "skills": ["photograohing", "animating", "packages design"],
             "short_description": "WWAAASSSSUPPPPP",
+            "Email": ["User1@gmail.com"],
             "id" : 1
         },
         {
@@ -15,6 +16,7 @@
             "field_of_study": "Industrial Design",
             "current_year": "second",
             "skills": ["drawing", "packages design"],
+            "Email": ["User2@gmail.com"],
             "id" : 2
         },
         {
@@ -23,6 +25,7 @@
             "field_of_study": "Visual Communications",
             "current_year": "third",
             "skills": ["typogrphy", "animating", "packages design"],
+            "Email": ["User3@gmail.com"],
             "id" : 3
         },
         {
@@ -31,6 +34,7 @@
             "field_of_study": "Architecture",
             "current_year": "second",
             "skills": ["photograohing", "animating", "packages design"],
+            "Email": ["User4@gmail.com"],
             "id" : 4
         },
         {
@@ -39,6 +43,7 @@
             "field_of_study": "Industrial Design",
             "current_year": "first",
             "skills": ["photograohing", "animating", "packages design"],
+            "Email": ["User5@gmail.com"],
             "id" : 5
         },
         {
@@ -47,6 +52,7 @@
             "field_of_study": "Fashion Design",
             "current_year": "second",
             "skills": ["photograohing", "animating", "packages design"],
+            "Email": ["User6@gmail.com"],
             "id" : 6
         }
     ]

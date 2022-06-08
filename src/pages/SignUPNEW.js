@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-//const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
+const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 
 // This is the sign up page 
 // Source: https://github.com/mui/material-ui/tree/v5.6.3/docs/data/material/getting-started/templates/sign-up
@@ -111,7 +111,7 @@ export default function SignUp() {
 
                                 />
                             </Grid>
-
+{/* 
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -121,7 +121,7 @@ export default function SignUp() {
                                     name="skills"
 
                                 />
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12}>
                                 <TextField
                                     required

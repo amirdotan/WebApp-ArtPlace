@@ -4,6 +4,11 @@ import '../styles/BackDrop.css'
 import SinglePost from './SinglePost'
 import BackDrop from "./BackDrop";
 import GetInTouch from "./GetInToch"
+import Alert from '@mui/material/Alert';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import data from '../data/db.json'
+
 
 const dropIn = {
     hidden: {
@@ -37,9 +42,14 @@ const modal = ({handleClose}) => {
                 variants = {dropIn}
                 initial = "hidden"
                 animate = "visible"
+                Text = "aaaaa"
                 exit = "exit"
                 >
-                <GetInTouch/>
+                <Alert severity="success">
+                    <div>
+                    {data.users[0].Email.map((Email) => (<Chip label={Email} color="primary"/>))}
+                    </div>
+                </Alert>
             </motion.div>
         </BackDrop>
 
