@@ -7,6 +7,7 @@ import AboutPage from "../pages/AboutPage"
 import ProfilePage from "./ProfilePage"
 import SignUp2 from "./SignUPNEW"
 import EditProfile from "./EditProfile"
+import UploadImage from "./UploadImage"
 
 
 
@@ -22,6 +23,7 @@ function Pages() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/signup2" element={<SignUp2 />} />
             <Route path="/EditProfile" element={<EditProfile />} />
+            <Route path="/UploadFile" element={<UploadImage />} />
       </Routes>
     );
   }
