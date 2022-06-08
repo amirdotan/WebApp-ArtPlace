@@ -55,6 +55,7 @@ export default function SignUp() {
   const { createUser } = UserAuth();
     
   const [skillList, setSkillList] = useState([])
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -62,8 +63,10 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    createUser(data.get('email'), data.get('password'))
   };
 
+  
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
@@ -189,7 +192,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              href="/home" // TODO: is this the right way to link? sould it be onClick method?
+              // href="/home" // TODO: is this the right way to link? sould it be onClick method?
             >
               Sign Up
             </Button>
