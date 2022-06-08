@@ -46,7 +46,7 @@ export default function SignIn() {
   const {signIn} = UserAuth();
   const [error, setError] = useState('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setError('')
     const data = new FormData(event.currentTarget);
@@ -55,7 +55,7 @@ export default function SignIn() {
       password: data.get('password'),
     });
     try {
-      signIn(data.get('email'), data.get('password'))
+      await signIn(data.get('email'), data.get('password'))
       navigate('/home')
     } catch(e) {
       setError(e.message)

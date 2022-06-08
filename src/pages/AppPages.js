@@ -9,16 +9,17 @@ import SignUp2 from "./SignUPNEW"
 import EditProfile from "./EditProfile"
 import UploadImage from "./UploadImage"
 
+import ProtectedRoute from "../components/ProtectedRoute";
 
 
+// TODO: protect pages if your no logged in by wrapping components like this : <Route path="/home" element={<ProtectedRoute> <Home /> </ProtectedRoute> } />
 // whats up
 function Pages() {
     return (
       <Routes>
             <Route path="/" element={<SignIn />} />
-            
-            <Route path="/home" element={<Home />} />
-            <Route path="/addpost" element={<AddPost />} />
+            <Route path="/home" element={<ProtectedRoute> <Home /> </ProtectedRoute> } />
+            <Route path="/addpost" element={ <AddPost />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/signup2" element={<SignUp2 />} />

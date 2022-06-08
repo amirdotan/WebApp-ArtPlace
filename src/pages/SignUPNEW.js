@@ -58,15 +58,21 @@ export default function SignUp() {
   
   const [skillList, setSkillList] = useState([])
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setError('')
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
-    createUser(data.get('email'), data.get('password'))
-    navigate('/home')
+    try{
+      await createUser(data.get('email'), data.get('password'))
+      navigate('/home')
+    }catch(e){
+      console.log(e.message)
+      setError(e.message)
+    }
   };
 
   
