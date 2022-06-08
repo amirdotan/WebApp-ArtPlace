@@ -15,7 +15,7 @@ function Pages() {
     return (
       <Routes>
             <Route path="/" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
+            
             <Route path="/Home" element={<Home />} />
             <Route path="/addpost" element={<AddPost />} />
             <Route path="/about" element={<AboutPage />} />
