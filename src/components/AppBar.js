@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { createTheme, ThemeProvider } from '@mui/material/styles'; //import this in order to override default color
 import { useNavigate } from 'react-router-dom';
 import zIndex from '@mui/material/styles/zIndex';
+import { Logout } from '@mui/icons-material';
+import { UserAuth } from '../context/Authcontext';
 
 
 
@@ -24,8 +26,10 @@ const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Logout'];
 
 const ResponsiveAppBar = () => {
+  const { user, logout} = UserAuth();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
 
   // const handleOpenNavMenu = (event) => {
   //   setAnchorElNav(event.currentTarget);
@@ -45,10 +49,17 @@ const ResponsiveAppBar = () => {
     setValue(newvalue)
   }
 
-  const handleCloseUserMenu1 = (event) => {
-    setAnchorElUser(null);
+  const handleCloseUserMenu1 = async (event) => {
     event.preventDefault();
-    navigate('/');} 
+    setAnchorElUser(null);
+    try{
+        await logout();
+        console.log('You have logged out')
+    }catch(e){
+      console.log(e.message)
+    }
+    navigate('/');
+  }; 
   
 
 

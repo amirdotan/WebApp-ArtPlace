@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../context/Authcontext'
 
 // This is the sign in page
 // Source: https://github.com/mui/material-ui/tree/v5.6.3/docs/data/material/getting-started/templates/sign-in
@@ -39,13 +41,26 @@ const theme = createTheme({
   });
 
 export default function SignIn() {
+
+  const navigate = useNavigate();
+  const {signIn} = UserAuth();
+  const [error, setError] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    setError('')
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+    try {
+      signIn(data.get('email'), data.get('password'))
+      navigate('/home')
+    } catch(e) {
+      setError(e.message)
+      console.log(e.message)
+    }
   };
 
   return (
@@ -95,7 +110,6 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              href='/Home'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In

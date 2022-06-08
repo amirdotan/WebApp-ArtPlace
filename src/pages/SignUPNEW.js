@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef, Fragment, onChange, onFileChange, classes, SvgIcon, UploadIcon} from 'react';
+import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Autocomplete from '@mui/material/Autocomplete';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import {UserAuth} from "../context/Authcontext"
 
 
@@ -53,7 +54,8 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('')
   const { createUser } = UserAuth();
-    
+  const navigate = useNavigate();    
+  
   const [skillList, setSkillList] = useState([])
 
   const handleSubmit = (event) => {
@@ -64,6 +66,7 @@ export default function SignUp() {
       password: data.get('password'),
     });
     createUser(data.get('email'), data.get('password'))
+    navigate('/home')
   };
 
   
