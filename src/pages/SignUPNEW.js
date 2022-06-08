@@ -12,8 +12,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Autocomplete from '@mui/material/Autocomplete';
+import { useState, useEffect, useRef, Fragment, onChange, onFileChange, classes, SvgIcon, UploadIcon } from 'react';
+
 
 const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
+
+
 
 // This is the sign up page 
 // Source: https://github.com/mui/material-ui/tree/v5.6.3/docs/data/material/getting-started/templates/sign-up
@@ -41,6 +46,8 @@ const theme = createTheme({
   });
 
 export default function SignUp() {
+    
+  const [skillList, setSkillList] = useState([])
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -111,27 +118,40 @@ export default function SignUp() {
 
                                 />
                             </Grid>
-{/* 
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="skills"
-                                    label="Your skills"
-                                    name="skills"
 
+                            <Grid item xs={12}>
+                                <Autocomplete
+                                    multiple
+                                    id="SkillsList"
+                                    name="Short Description"
+                                    label="SkillsList"
+                                    fullWidth
+                                    variant="standard"
+                                    options={SkillList}
+                                    getOptionLabel={option => option}
+                                    defaultValue={[]}
+                                    filterSelectedOptions
+                                    onChange={(event, value) => setSkillList(value)}
+                               
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label="Necessary Skills"
+                                            placeholder="Skills"
+                                        />
+                                    )}
                                 />
-                            </Grid> */}
+
+                            </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     required
                                     fullWidth
                                     id="description"
-                                    label="Short description about yourself"
+                                    label="Short description about yourselffff"
                                     name="description"
                                     autoComplete="description"
-                                    multiline
-                                    fullWidth
+                                    multiline 
                                     rows={4}
                                 />
                             </Grid>
