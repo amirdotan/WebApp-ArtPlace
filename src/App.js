@@ -10,6 +10,8 @@ import AppBar from "./components/AppBar"
 import AppPages from "./pages/AppPages"
 import BottomNavigation from "./components/BottomNavigation"
 
+import { AuthContextProvider } from './context/Authcontext';
+
 
 const theme = createTheme({
   palette: {
@@ -24,19 +26,21 @@ const theme = createTheme({
 function App() {
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App" sx ={{width: '100%', right: '0%' }}>
-        <head>
-          {/* the meta tag here is for resizing on phones */}
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </head>
-          <BrowserRouter>
-            <AppBar />
-            <AppPages />
-            <BottomNavigation />
-          </BrowserRouter>
-      </div>
-    </ThemeProvider>
+    <AuthContextProvider> 
+      <ThemeProvider theme={theme}>
+        <div className="App" sx ={{width: '100%', right: '0%' }}>
+          <head>
+            {/* the meta tag here is for resizing on phones */}
+            <meta name="viewport" content="initial-scale=1, width=device-width" />
+          </head>
+            <BrowserRouter>
+              <AppBar />
+              <AppPages />
+              <BottomNavigation />
+            </BrowserRouter>
+        </div>
+      </ThemeProvider>
+    </AuthContextProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect, useRef, Fragment, onChange, onFileChange, classes, SvgIcon, UploadIcon} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,10 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Autocomplete from '@mui/material/Autocomplete';
-import { useState, useEffect, useRef, Fragment, onChange, onFileChange, classes, SvgIcon, UploadIcon } from 'react';
+import {UserAuth} from "../context/Authcontext"
 
 
 const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
+
 
 
 
@@ -24,6 +25,8 @@ const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 // Source: https://github.com/mui/material-ui/tree/v5.6.3/docs/data/material/getting-started/templates/sign-up
 
 function Copyright(props) {
+    
+
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -46,6 +49,10 @@ const theme = createTheme({
   });
 
 export default function SignUp() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('')
+  const { createUser } = UserAuth();
     
   const [skillList, setSkillList] = useState([])
   const handleSubmit = (event) => {
@@ -106,6 +113,9 @@ export default function SignUp() {
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
+                                    //
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    //
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -164,6 +174,7 @@ export default function SignUp() {
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </Grid>
               <Grid item xs={12}>
@@ -195,4 +206,5 @@ export default function SignUp() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
