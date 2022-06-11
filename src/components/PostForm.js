@@ -15,18 +15,17 @@ const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 
 
 
-export default function PostForm({ images, setImages, imageURLs, setImageURLs,
+export default function PostForm({ image, setImage, imageURLs, setImageURLs,
     setTitle, setShortDescription, setLongDescription, setSkillList}) {
 
     useEffect(() => {
-        if (images.length < 1) return;
-        const newImageURLs = [];
-        images.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
-        setImageURLs(newImageURLs);
-    }, [images]);
+        if (image == null) return;
+        const newImageURL = URL.createObjectURL(image);
+        setImageURLs([newImageURL]);
+    }, [image]);
 
     function handleImageChange(e) {
-        setImages([...e.target.files]);
+        setImage(e.target.files[0]);
     }
 
     return (

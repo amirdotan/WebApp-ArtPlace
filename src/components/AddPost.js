@@ -19,19 +19,20 @@ import {useNavigate} from "react-router-dom";
 import BottomNavigation from '../components/BottomNavigation'
 import { height } from '@mui/system';
 import { useState, useEffect } from 'react';
+import uploadImage from '../pages/UploadImage';
+import addPost from './AddPostToDB';
+
 
 
 const steps = ['Create Post', 'Preview Post'];
-
-
 
 const theme = createTheme();
 
 export default function AddPost() {
     const [activeStep, setActiveStep] = React.useState(0);
-
     const handleNext = () => {
         setActiveStep(activeStep + 1);
+        
     };
 
     const handleBack = () => {
@@ -44,18 +45,37 @@ export default function AddPost() {
         event.preventDefault();
         navigate("/Home");
     }
-    const [images, setImages] = useState([]);
+    const [image, setImage] = useState(null);
     const [imageURLs, setImageURLs] = useState([]);
-    const [title, setTitle] = useState();
-    const [shortDescription, setShortDescription] = useState()
-    const [longDescription, setLongDescription] = useState()
+    const [title, setTitle] = useState("");
+    const [shortDescription, setShortDescription] = useState("")
+    const [longDescription, setLongDescription] = useState("")
     const [skillList, setSkillList] = useState([])
+
+    useEffect(() => {
+        /*Checks if user pressed done by checking on which step we are stated*/
+        if (activeStep < 2) {
+            return;
+        }
+        /*Calls upload image and passes it the image and a file to save it in firebase storage*/
+        const imageref = uploadImage(image, "temp");
+        /*Create new post by the diffrent states*/
+        const newpost =
+        {
+            title: title,
+            short: shortDescription,
+            long: longDescription,
+            imageref: imageref,
+        };
+        /*addpost to firestore db post*/
+        addPost(newpost, "posts");
+    });
 
 
     function getStepContent(step) {
         switch (step) {
             case 0:
-                return <PostForm images={images} setImages={setImages} imageURLs={imageURLs} setImageURLs={setImageURLs}
+                return <PostForm image={image} setImage={setImage} imageURLs={imageURLs} setImageURLs={setImageURLs}
                     setTitle={setTitle} setShortDescription={setShortDescription} setLongDescription={setLongDescription}
                     setSkillList={setSkillList} />;
             case 1:
@@ -98,13 +118,6 @@ export default function AddPost() {
                                 <Typography variant="subtitle1">
                                     All done! 
                                 </Typography>
-                                {/* <Button
-                                    variant="contained"
-                                    onClick={useHomeButton}
-                                    sx={{ alignSelf: 'center' }}
-                                >
-                                    {activeStep === steps.length - 1 ? 'Post' : 'Adios'}
-                                </Button> */}
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
