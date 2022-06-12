@@ -5,9 +5,10 @@
             "last_name" : "Kimchi",
             "title" : "Final Project",
             "short_description": "My final project in Industrial Design",
-            "long_description": "I everyone! I really need your help! I am looking for the best animator to help me with my project",
+            "long_description": "Hi everyone! I really need your help! I am looking for the best animator to help me with my project",
             "field_of_study": "Industrial Design",
             "skills": ["photograohing", "animating", "packages design"],
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT03j1zFliQ3-uwcpPWLpY532jroIVCfmjsEiLe-nOQCMvMBNLinRErR9B9-qw3wlSbzVU&usqp=CAU",
             "id" : 1
         },
         {
@@ -15,9 +16,10 @@
             "last_name" : "Abrahami",
             "title" : "The next startup!",
             "short_description": "Creating a new product",
-            "long_description": "I, I'm looking for the best artist in Bezalel to help me with important project",
+            "long_description": "HI, I'm looking for the best artist in Bezalel to help me with important project",
             "field_of_study": "Industrial Design",
             "skills": ["drawing", "packages design"],
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTphWB6gx7idTljhorLiFFQqfcHl9Kbjw9LHw&usqp=CAU",
             "id" : 2
         },
         {
@@ -28,36 +30,40 @@
             "long_description": "Hello everyone! I'm looking for the best artist in Bezalel to help me with important project",
             "field_of_study": "Visual Communications",
             "skills": ["typogrphy", "animating", "packages design"],
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3rk2wTqmhtSo9ehfEbI4o7qXuizDA3hUntA&usqp=CAU",
             "id" : 3
         },
         {
             "first_name" : "Amir",
             "last_name" : "Dotan",
-            "title" : "title",
-            "short_description": "short decsription",
-            "long_description": "long description",
+            "title" : "This is my art",
+            "short_description": "looking for talentes students to help me with my work",
+            "long_description":  "I everyone! I really need your help! I am looking for the best animator to help me with my project",
             "field_of_study": "Architecture",
             "skills": ["photograohing", "animating", "packages design"],
+            "img": "https://image.shutterstock.com/image-illustration/colorful-abstract-neoplasticism-cubism-art-260nw-1880757220.jpg",
             "id" : 4
         },
         {
             "first_name" : "Shir",
             "last_name" : "Segev",
-            "title" : "title",
-            "short_description": "short decsription",
-            "long_description": "long description",
+            "title" : "Final Project",
+            "short_description":  "looking for talentes students to help me with my work",
+            "long_description": "HI, I'm looking for the best artist in Bezalel to help me with important project",
             "field_of_study": "Industrial Design",
             "skills": ["photograohing", "animating", "packages design"],
+            "img": "https://image.shutterstock.com/image-vector/wall-art-watercolor-minimalistic-abstract-260nw-1859304148.jpg",
             "id" : 5
         },
         {
             "first_name" : "Maya",
             "last_name" : "Rokach",
-            "title" : "title",
-            "short_description": "short decsription",
-            "long_description": "long description",
+            "title" : "How Are you?",
+            "short_description": "Im fine thank you",
+            "long_description": "Hello everyone! I'm looking for the best artist in Bezalel to help me with important project",
             "field_of_study": "Fashion Design",
             "skills": ["photograohing", "animating", "packages design"],
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKJ3yS9RdZEVR1k1B37F-1UwXx80iN7xMUEA&usqp=CAU",
             "id" : 6
         }
     ]
