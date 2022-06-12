@@ -7,14 +7,14 @@ import TextField from '@mui/material/TextField';
 import SinglePostV2 from '../components/SinglePostV2'
 import GetInTouch from '../components/GetInToch'
 import * as React from 'react';
-import Modal from '../components/Modal'
-
+import Modal from '../components/Modal' 
 import { useState, useEffect } from 'react';
-
+import { Button } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Autocomplete } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { CenterFocusStrong } from '@mui/icons-material';
 
 const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 // This is the Home page where there is a view of all the cards
@@ -47,20 +47,21 @@ export default function Home() {
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
-            {/* Amir please help here <3 */}
-        <Autocomplete
+
+        <Autocomplete sx={{width: 1/2 ,ml: 5, mt:1}}
                     multiple
                     id="SkillsList"
                     name="Short Description"
                     label="SkillsList"
-                    fullWidth
+                
                     variant="standard"
                     options={SkillList}
                     getOptionLabel={option => option}
                     defaultValue={[]}
                     filterSelectedOptions
+                    fullWidth={false}
                     onChange={(event, value) => setSkillList(value)}
-
+                
                     renderInput={(params) => (
                         <TextField
                             {...params}
@@ -69,7 +70,7 @@ export default function Home() {
                         />
                     )}
                 />
-
+            <Button variant="contained" sx={{position: 'absolute', bottom : 790,right: 50}}>Search</Button>
             <SinglePostV2 
             user_name={user_info_lst[0][0]}
             field_of_study={field_of_study}
