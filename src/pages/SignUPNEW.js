@@ -54,6 +54,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('')
   const { createUser } = UserAuth();
+  const { addToUserdb } = UserAuth();
   const navigate = useNavigate();    
   
   const [skillList, setSkillList] = useState([])
@@ -67,7 +68,16 @@ export default function SignUp() {
       password: data.get('password'),
     });
     try{
-      await createUser(data.get('email'), data.get('password'))
+      const user_details = {
+        first_name : data.get("firstName"),
+        last_name : data.get("lastName"),
+        short_description : data.get("description"),
+        skills : skillList,
+        email : data.get('email'),
+        field : data.get("study")
+      }
+      await createUser(data.get('email'), data.get('password')) 
+      await addToUserdb(user_details)
       navigate('/home')
     }catch(e){
       console.log(e.message)

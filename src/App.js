@@ -11,6 +11,7 @@ import AppPages from "./pages/AppPages"
 import BottomNavigation from "./components/BottomNavigation"
 
 import { AuthContextProvider } from './context/Authcontext';
+import BottomNavPresenter from './components/BottomNavPresenter';
 
 
 const theme = createTheme({
@@ -28,7 +29,7 @@ function App() {
   return (
     <AuthContextProvider> 
       <ThemeProvider theme={theme}>
-        <div className="App" sx ={{width: '100%', right: '0%' }}>
+        <div className="App" sx ={{width: '100%', right: '0%'}}>
           <head>
             {/* the meta tag here is for resizing on phones */}
             <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -36,7 +37,7 @@ function App() {
             <BrowserRouter>
               <AppBar />
               <AppPages />
-              <BottomNavigation />
+              <BottomNavPresenter> <BottomNavigation /> </BottomNavPresenter>
             </BrowserRouter>
         </div>
       </ThemeProvider>
