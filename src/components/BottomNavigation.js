@@ -19,7 +19,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 export default function SimpleBottomNavigation() {
 
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
   const navigate = useNavigate();
   const handleChange = (event, newvalue) =>{
     setValue(newvalue)
