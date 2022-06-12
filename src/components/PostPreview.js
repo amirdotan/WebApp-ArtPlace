@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import imageSrc from '../images/img_exmp.jpeg'
 import { useState, useEffect } from 'react';
-
+import SinglePostV2 from '../components/SinglePostV2'
 
 export default function PostPreview({ imageURLs, title, shortDescription, longDescription, skillList}) {
 

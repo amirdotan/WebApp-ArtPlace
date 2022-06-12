@@ -3,7 +3,7 @@ import BottomNavigation from '../components/BottomNavigation.js';
 import MasonryImageList from '../components/Posts.js'
 import '../styles/Home.css'
 import SwipeLeft from '../components/SwipeLeft'
-
+import TextField from '@mui/material/TextField';
 import SinglePostV2 from '../components/SinglePostV2'
 import GetInTouch from '../components/GetInToch'
 import * as React from 'react';
@@ -16,7 +16,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Autocomplete } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-
+const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 // This is the Home page where there is a view of all the cards
 
 export default function Home() {
@@ -43,12 +43,12 @@ export default function Home() {
 
     const close = () => setModalOpen(false)
     const open = () => setModalOpen(true);
-
+    const [skillList, setSkillList] = useState([])
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
             {/* Amir please help here <3 */}
-        {/* <Autocomplete
+        <Autocomplete
                     multiple
                     id="SkillsList"
                     name="Short Description"
@@ -68,7 +68,7 @@ export default function Home() {
                             placeholder="Skills"
                         />
                     )}
-                /> */}
+                />
 
             <SinglePostV2 
             user_name={user_info_lst[0][0]}
