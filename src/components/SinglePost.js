@@ -50,8 +50,8 @@ const handleHomeClick = (event) => {
 
     <CardHeader textAlign="left"
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+          <Avatar sx={{ bgcolor: red[400] }} aria-label="recipe">
+            {first_name[0]}
           </Avatar>
         }
         title= {first_name +" "+ last_name}
