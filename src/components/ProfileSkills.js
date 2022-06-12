@@ -7,7 +7,7 @@ export default function BasicChips() {
   return (
 <Stack direction="row" spacing={3} sx={{margin: 2}}>
   {/* SkillsData.map((item) => (<Chip label={item.skill} color="secondary" />)) */}
-    {data.users[0].skills.map((skill) => (<Chip label={skill} color="secondary" />))}
+    {data.users[0].skills.map((skill) => (<Chip label={skill} color="primary" />))}
 </Stack>
   );
 }

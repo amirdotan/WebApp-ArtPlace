@@ -18,6 +18,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import data from '../data/db.json'
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function RecipeReviewCard() {
   const user_name=data.users[0].first_name + " "+  data.users[0].last_name //this is the name of the firat object at db.json  
@@ -30,20 +32,22 @@ export default function RecipeReviewCard() {
     setExpanded(!expanded);
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
-    <Card variant="outlined" color="primary" sx={{ }}>
-      <CardHeader
+    <Card variant="outlined" color="primary" sx={{position:'static'}}>
+    <Button onClick={() => navigate("/EditProfile")} color="primary" sx={{display: 'flex', flexdirection: 'row', justifyContent:'right', right: '-80%'}}>Edit</Button>
+      <CardHeader sx={{}}
         avatar={
-          <Avatar sx={{ bgcolor: 'primary' }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: 'primary'}} aria-label="recipe">
             M
           </Avatar>
         }
-          title={user_name}
-          subheader= {subheader}     
+        title={user_name}
+        subheader= {subheader}
       />
     </Card>
-    <Button color="primary" sx={{justifyContent: 'left'}}>Edit</Button>
     </>
   );
 }
