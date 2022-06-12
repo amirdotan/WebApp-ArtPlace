@@ -50,7 +50,8 @@ const modal = ({handleClose}) => {
                     <div>
                     {data.users[0].Email.map((Email) => (<Chip label={Email} color="primary"/>))}
                     </div>
-                    <button sx={{position: 'absolute', bottom: '2px'}}>DONE</button>
+                    <button sx={{position: 'absolute', border: 'none', padding: '15px 32px'}}>copy</button>
+                    <button sx={{position: 'absolute', border: 'none', padding: '15px 32px'}}>DONE</button>
                 </Alert>
             </motion.div>
         </BackDrop>

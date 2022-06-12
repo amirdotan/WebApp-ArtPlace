@@ -1,6 +1,10 @@
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import portfolio1 from "../images/portfolio1.jpg" // relative path to image 
+
+var img = document.createElement("img");  
+img.src = "../images/portfolio1.jpg"; 
 
 export default function StandardImageList() {
   return (
@@ -21,23 +25,22 @@ export default function StandardImageList() {
 
 const itemData = [
   {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    title: 'Breakfast',
+    img: "https://www.artmajeur.com/medias/hd/b/u/bunner/artwork/11062765_grafitti-1.jpg"
   },
   {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+    img: 'https://static.wixstatic.com/media/029590_f913efa3afe7489794796d67143842f0~mv2.jpg/v1/fill/w_292,h_709,al_c,q_80,enc_auto/029590_f913efa3afe7489794796d67143842f0~mv2.jpg',
     title: 'Burger',
   },
   {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+    img: 'https://i.ytimg.com/vi/LXjukR09HrI/maxresdefault.jpg',
     title: 'Camera',
   },
   {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+    img: 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Selfie_art.jpg',
     title: 'Coffee',
   },
   {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXT9ilQCW7ac42tK1dgaAc_BeN1rP5pIscyQ&usqp=CAU',
     title: 'Hats',
   },
   {
