@@ -14,6 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/Authcontext'
+import { async } from '@firebase/util';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 // This is the sign in page
 // Source: https://github.com/mui/material-ui/tree/v5.6.3/docs/data/material/getting-started/templates/sign-in
@@ -133,3 +136,4 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+

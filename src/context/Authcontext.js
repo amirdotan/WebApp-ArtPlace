@@ -3,7 +3,8 @@ import { createUserWithEmailAndPassword,
          signInWithEmailAndPassword,
          signOut,
          onAuthStateChanged } from 'firebase/auth'
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 const UserContext = createContext();
 
@@ -13,6 +14,21 @@ export const AuthContextProvider = ({ children }) => {
     const createUser = (email, password) => {
       return createUserWithEmailAndPassword(auth, email, password);
     };
+// {first_name_d, last_name_d, short_description_d, skills_d, email_d, field_d}
+    const addToUserdb = (user_details) => {
+      const user_col_ref = collection(db, 'users')
+      addDoc(user_col_ref, {
+        first_name : user_details.first_name,
+        last_name : user_details.last_name,
+        short_description : user_details.short_description,
+        skills : user_details.skills,
+        email : user_details.email,
+        field : user_details.field
+      }).then(() => {
+        console.log('user added to to user collection')
+        console.log(user)
+      })
+    }
   
      const signIn = (email, password) =>  {
       return signInWithEmailAndPassword(auth, email, password)
@@ -33,7 +49,7 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
   
     return (
-      <UserContext.Provider value={{ createUser, user, logout, signIn }}>
+      <UserContext.Provider value={{ createUser, user, logout, signIn, addToUserdb }}>
         {children}
       </UserContext.Provider>
     );

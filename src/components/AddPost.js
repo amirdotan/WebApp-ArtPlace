@@ -66,6 +66,7 @@ export default function AddPost() {
             short: shortDescription,
             long: longDescription,
             imageref: imageref,
+            skilllist: skillList
         };
         /*addpost to firestore db post*/
         addPost(newpost, "posts");
