@@ -35,7 +35,8 @@ export default function Home() {
 
     
     const user_info_lst = [["ben" , "Industrial design @ Bezalell", "New chairs for campus", "this is the palce foa a short description" ]]
-    const user_name="ben" 
+    const user_name="Ben" 
+    const last_name = 'Abrahami'
     const field_of_study="Industrial design @ Bezalell"
     const project_title="New chairs for campus"
     const short_description="This is the palce foa a short description"
