@@ -8,6 +8,7 @@
             "long_description": "long descriptionhtejytjtjknvdnvsvndakvkc mvkdalvkv sbffsbfs ",
             "field_of_study": "Industrial Design",
             "skills": ["photograohing", "animating", "packages design"],
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpL8KmlgDuJFz9GhyQN4Ef5l5oQntkQtZYYA&usqp=CAU",
             "id" : 1
         },
         {
@@ -18,6 +19,7 @@
             "long_description": "long description",
             "field_of_study": "Industrial Design",
             "skills": ["drawing", "packages design"],
+            "img": "https://image.shutterstock.com/image-vector/abstract-art-background-watercolor-stain-260nw-1742115467.jpg",
             "id" : 2
         },
         {
@@ -28,6 +30,7 @@
             "long_description": "long description",
             "field_of_study": "Visual Communications",
             "skills": ["typogrphy", "animating", "packages design"],
+            "img": "https://sva-edu.mo.cloudinary.net/multimediaBlock/2c3a5492-small-1654024579.jpg?resource_type=image&tx=w_400,c_scale",
             "id" : 3
         },
         {
@@ -38,6 +41,7 @@
             "long_description": "long description",
             "field_of_study": "Architecture",
             "skills": ["photograohing", "animating", "packages design"],
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV2SIsUoVK-2iDw879vmPr5vHWJEVfdWdcBQWduH-sBCb4nNazdMuaxg_rlIYJ8Coobbg&usqp=CAU",
             "id" : 4
         },
         {
@@ -48,6 +52,7 @@
             "long_description": "long description",
             "field_of_study": "Industrial Design",
             "skills": ["photograohing", "animating", "packages design"],
+            "img": "https://i.pinimg.com/236x/22/78/d1/2278d10c8617dd6b5a981e006c93cabf--twilight-saatchi-online.jpg",
             "id" : 5
         },
         {
@@ -58,6 +63,7 @@
             "long_description": "long description",
             "field_of_study": "Fashion Design",
             "skills": ["photograohing", "animating", "packages design"],
+            "img": "https://image.shutterstock.com/image-illustration/colorful-abstract-neoplasticism-cubism-art-260nw-1880757220.jpg",
             "id" : 6
         }
     ]

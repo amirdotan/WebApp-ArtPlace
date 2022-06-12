@@ -76,6 +76,7 @@ export default function Home() {
             title={data.posts[i].title}
             short_description={data.posts[i].short_description}
             long_description={data.posts[i].long_description}
+            img = {data.posts[i].img}
             />
         
            

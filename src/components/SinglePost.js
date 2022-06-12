@@ -36,7 +36,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({first_name, last_name,field_of_study, short_description, long_description, title}) {
+export default function RecipeReviewCard({img, first_name, last_name,field_of_study, short_description, long_description, title}) {
 
 
 const navigate = useNavigate();
@@ -60,7 +60,7 @@ const handleHomeClick = (event) => {
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
+        image={img}
         alt="We're having trouble loading the image"
       />
       <CardContent>

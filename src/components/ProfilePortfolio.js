@@ -44,7 +44,7 @@ const itemData = [
     title: 'Hats',
   },
   {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    img: 'https://mymodernmet.com/wp/wp-content/uploads/2019/03/elements-of-art-6.jpg',
     title: 'Honey',
   },
 ];
