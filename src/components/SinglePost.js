@@ -21,6 +21,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import { DialogTitle } from '@mui/material';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
+import data from '../data/posts.json'
+
 
 
 const ExpandMore = styled((props) => {
@@ -34,7 +36,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({user_name, field_of_study, project_title, short_description, full_description}) {
+export default function RecipeReviewCard({first_name, last_name,field_of_study, short_description, long_description, title}) {
 
 
 const navigate = useNavigate();
@@ -52,7 +54,7 @@ const handleHomeClick = (event) => {
             R
           </Avatar>
         }
-        title= {user_name}
+        title= {first_name +" "+ last_name}
         subheader= {field_of_study}
       />
       <CardMedia
@@ -64,7 +66,7 @@ const handleHomeClick = (event) => {
       <CardContent>
         
         <Typography variant="title" >
-            {project_title}
+        {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {short_description}
@@ -72,7 +74,7 @@ const handleHomeClick = (event) => {
         </CardContent>
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {full_description}
+        {long_description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

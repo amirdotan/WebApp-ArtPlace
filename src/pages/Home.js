@@ -16,6 +16,9 @@ import { Autocomplete } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { CenterFocusStrong } from '@mui/icons-material';
 import SinglePost from '../components/SinglePost';
+import CancelIcon from '@mui/icons-material/Cancel';
+import data from '../data/posts.json'
+
 
 const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 // This is the Home page where there is a view of all the cards
@@ -33,20 +36,12 @@ export default function Home() {
     //     .then(data => setHome(data))
     // }, [])
 
-    
-    const user_info_lst = [["ben" , "Industrial design @ Bezalell", "New chairs for campus", "this is the palce foa a short description" ]]
-    const user_name="Ben" 
-    const last_name = 'Abrahami'
-    const field_of_study="Industrial design @ Bezalell"
-    const project_title="New chairs for campus"
-    const short_description="This is the palce foa a short description"
-    const full_description= "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels,if you like."
-
     const [modalOpen, setModalOpen] = useState(false);
 
     const close = () => setModalOpen(false)
     const open = () => setModalOpen(true);
     const [skillList, setSkillList] = useState([])
+    const [i, setCount] = useState(0);
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
@@ -74,15 +69,25 @@ export default function Home() {
                     )}
                 />
             <Button variant="contained" sx={{position: 'absolute', bottom : 790,right: 50}}>Search</Button>
-            <SinglePost 
-            user_name={user_info_lst[0][0]}
-            field_of_study={field_of_study}
-            project_title={project_title}
-            short_description= {short_description}
-            full_description= {full_description}
+            <SinglePost
+            first_name={data.posts[i].first_name}
+            last_name={data.posts[i].last_name}
+            field_of_study={data.posts[i].field_of_study}
+            title={data.posts[i].title}
+            short_description={data.posts[i].short_description}
+            long_description={data.posts[i].long_description}
+
             />
-            <SwipeLeft />
-            
+           
+            <Fab
+                className='swiperight' 
+                color="primary" 
+                aria-label="add" 
+                sx={{ position: 'absolute', bottom : 200, left: 60 }}
+                onClick={() => (setCount(i + 1))}
+                >
+                <CancelIcon/>
+            </Fab>
             <Fab
                 className='swiperight' 
                 color="primary" 

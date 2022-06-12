@@ -8,6 +8,7 @@ import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import data from '../data/db.json'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 
 const dropIn = {
@@ -45,10 +46,11 @@ const modal = ({handleClose}) => {
                 Text = "aaaaa"
                 exit = "exit"
                 >
-                <Alert severity="success">
+                <Alert severity="success" sx={{height: "30%"}}>
                     <div>
                     {data.users[0].Email.map((Email) => (<Chip label={Email} color="primary"/>))}
                     </div>
+                    <button sx={{position: 'absolute', bottom: '2px'}}>DONE</button>
                 </Alert>
             </motion.div>
         </BackDrop>
