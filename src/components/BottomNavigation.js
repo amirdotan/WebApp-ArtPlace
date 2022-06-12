@@ -36,7 +36,7 @@ export default function SimpleBottomNavigation() {
       event.preventDefault();
       navigate('/addpost');} 
 
-
+      
     
 
   return (

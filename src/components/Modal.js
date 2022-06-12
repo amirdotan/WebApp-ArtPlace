@@ -9,6 +9,8 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import data from '../data/db.json'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Button from '@mui/material/Button';
+
 
 
 const dropIn = {
@@ -50,12 +52,15 @@ const modal = ({handleClose}) => {
                     <div>
                     {data.users[0].Email.map((Email) => (<Chip label={Email} color="primary"/>))}
                     </div>
-                    <button sx={{position: 'absolute', border: 'none', padding: '15px 32px'}}>copy</button>
-                    <button sx={{position: 'absolute', border: 'none', padding: '15px 32px'}}>DONE</button>
+                    <Button variant="outlined" size="medium">
+                         copy
+                    </Button>
+                    <Button variant="outlined" size="medium">
+                        done
+                    </Button>
                 </Alert>
             </motion.div>
         </BackDrop>
-
     );
 }
 

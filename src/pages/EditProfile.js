@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import data from '../data/db.json'
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 
 
 //const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
@@ -45,6 +47,7 @@ const theme = createTheme({
   });
 
 export default function SignUp() {
+const [skillList, setSkillList] = useState([])
 const first_name = "Ayelet"
 const last_name = "Cohen"
 const skills = "skill 1, skill 2, skill 3"
