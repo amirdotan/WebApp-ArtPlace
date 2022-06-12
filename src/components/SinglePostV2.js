@@ -15,6 +15,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -34,17 +36,12 @@ export default function RecipeReviewCard({user_name, field_of_study, project_tit
   };
 
   return (
-    <Card className='singlepostv2' sx={{ maxWidth: 345 }}>
+    <Card className='singlepostv2'position="abslute" sx={{ maxWidth: 345 }}cols={2} rowHeight={300}>
       <CardHeader textAlign="left"
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             R
           </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
         }
         title= {user_name}
         subheader= {field_of_study}
@@ -55,7 +52,9 @@ export default function RecipeReviewCard({user_name, field_of_study, project_tit
         image="/static/images/cards/paella.jpg"
         alt="We're having trouble loading the image"
       />
+      
       <CardContent>
+        
       <Typography variant="title" >
           {project_title}
         </Typography>
@@ -70,7 +69,7 @@ export default function RecipeReviewCard({user_name, field_of_study, project_tit
         <IconButton aria-label="share">
           {/* <ShareIcon /> */}
         </IconButton>
-        <ExpandMore
+        <ExpandMore 
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
