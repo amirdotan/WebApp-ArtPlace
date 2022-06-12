@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import data from '../data/db.json'
+import { useNavigate } from 'react-router-dom';
 
 
 //const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
@@ -49,6 +50,8 @@ const last_name = "Cohen"
 const skills = "skill 1, skill 2, skill 3"
 const field_of_study="Industrial Design"
 const current_year = "second"
+
+const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -153,7 +156,7 @@ const current_year = "second"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              href="/home" // TODO: is this the right way to link? sould it be onClick method?
+              onClick = {() => navigate("/Profile")}
             >
               Update Changes
             </Button>
