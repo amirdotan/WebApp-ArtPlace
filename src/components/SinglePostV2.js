@@ -15,6 +15,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -34,17 +36,12 @@ export default function RecipeReviewCard({user_name, field_of_study, project_tit
   };
 
   return (
-    <Card className='singlepostv2' sx={{ maxWidth: 345 }}>
+    <Card className='singlepostv2'>
       <CardHeader textAlign="left"
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             R
           </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
         }
         title= {user_name}
         subheader= {field_of_study}
@@ -55,7 +52,9 @@ export default function RecipeReviewCard({user_name, field_of_study, project_tit
         image="/static/images/cards/paella.jpg"
         alt="We're having trouble loading the image"
       />
+      
       <CardContent>
+        
       <Typography variant="title" >
           {project_title}
         </Typography>
@@ -75,6 +74,7 @@ export default function RecipeReviewCard({user_name, field_of_study, project_tit
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+          
         >
           <ExpandMoreIcon />
         </ExpandMore>
@@ -94,17 +94,6 @@ export default function RecipeReviewCard({user_name, field_of_study, project_tit
             pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
             stirring often until thickened and fragrant, about 10 minutes. Add
             saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is absorbed,
-            15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and
-            mussels, tucking them down into the rice, and cook again without
-            stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
           </Typography>
         </CardContent>
       </Collapse>

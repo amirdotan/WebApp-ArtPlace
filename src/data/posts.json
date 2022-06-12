@@ -1,0 +1,64 @@
+{
+    "posts" : [
+        {
+            "first_name" : "Ayelet",
+            "last_name" : "Kimchi",
+            "title" : "title",
+            "short_description": "short decsription",
+            "long_description": "long description",
+            "field_of_study": "Industrial Design",
+            "skills": ["photograohing", "animating", "packages design"],
+            "id" : 1
+        },
+        {
+            "first_name" : "Benjamin",
+            "last_name" : "Abrahami",
+            "title" : "title",
+            "short_description": "short decsription",
+            "long_description": "long description",
+            "field_of_study": "Industrial Design",
+            "skills": ["drawing", "packages design"],
+            "id" : 2
+        },
+        {
+            "first_name" : "Or",
+            "last_name" : "Segalovich",
+            "title" : "title",
+            "short_description": "short decsription",
+            "long_description": "long description",
+            "field_of_study": "Visual Communications",
+            "skills": ["typogrphy", "animating", "packages design"],
+            "id" : 3
+        },
+        {
+            "first_name" : "Amir",
+            "last_name" : "Dotan",
+            "title" : "title",
+            "short_description": "short decsription",
+            "long_description": "long description",
+            "field_of_study": "Architecture",
+            "skills": ["photograohing", "animating", "packages design"],
+            "id" : 4
+        },
+        {
+            "first_name" : "Shir",
+            "last_name" : "Segev",
+            "title" : "title",
+            "short_description": "short decsription",
+            "long_description": "long description",
+            "field_of_study": "Industrial Design",
+            "skills": ["photograohing", "animating", "packages design"],
+            "id" : 5
+        },
+        {
+            "first_name" : "Maya",
+            "last_name" : "Rokach",
+            "title" : "title",
+            "short_description": "short decsription",
+            "long_description": "long description",
+            "field_of_study": "Fashion Design",
+            "skills": ["photograohing", "animating", "packages design"],
+            "id" : 6
+        }
+    ]
+}
