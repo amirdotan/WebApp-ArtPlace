@@ -34,18 +34,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({img, title, handleClose }) {
-  const [likeStatus, setLikeStatus] = useState('red')
-  const handleLikeClick = (event) => {
-    event.preventDefault()
-    if (likeStatus === 'gray'){
-        setLikeStatus('red');
-    }
-    else {
-        setLikeStatus('gray')
-    }
-    event.target.style.color = likeStatus
-};  
+export default function RecipeReviewCard({user_name, field_of_study, project_title, short_description, full_description}) {
+
 
 const navigate = useNavigate();
 const handleHomeClick = (event) => {
@@ -53,44 +43,39 @@ const handleHomeClick = (event) => {
     navigate('/Home');} 
 
   return (
-    <Card className= 'singlepost' sx={{ maxWidth: '50%'}}>
-         <DialogTitle id="id">
-         <Box display="flex" alignItems="center">
-                <Box flexGrow={1} >{title}</Box>
-                <Box>
-                    <IconButton onClick={handleClose}>
-                          <CloseIcon />
-                    </IconButton>
-                </Box>
-          </Box>
-    </DialogTitle>
+    <Card className= 'singlepost' sx={{ maxWidth: '80%',margin: 5}}>
+        
 
-      <CardHeader
+    <CardHeader textAlign="left"
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             R
           </Avatar>
         }
-        title={title}
-        subheader="September 14, 2016"
+        title= {user_name}
+        subheader= {field_of_study}
       />
       <CardMedia
         component="img"
-        height= '194'
-        image={img}
-        alt="Paella dish"
+        height="194"
+        image="/static/images/cards/paella.jpg"
+        alt="We're having trouble loading the image"
       />
       <CardContent>
+        
+        <Typography variant="title" >
+            {project_title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {short_description}
+          </Typography>
+        </CardContent>
+      <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+          {full_description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites"  onTouchStart={handleLikeClick}>
-          <FavoriteIcon />
-        </IconButton>
       </CardActions>
     </Card>
   );

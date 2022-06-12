@@ -15,6 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Autocomplete } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { CenterFocusStrong } from '@mui/icons-material';
+import SinglePost from '../components/SinglePost';
 
 const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 // This is the Home page where there is a view of all the cards
@@ -37,7 +38,8 @@ export default function Home() {
     const user_name="ben" 
     const field_of_study="Industrial design @ Bezalell"
     const project_title="New chairs for campus"
-    const short_description="this is the palce foa a short description"
+    const short_description="This is the palce foa a short description"
+    const full_description= "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels,if you like."
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -71,11 +73,12 @@ export default function Home() {
                     )}
                 />
             <Button variant="contained" sx={{position: 'absolute', bottom : 790,right: 50}}>Search</Button>
-            <SinglePostV2 
+            <SinglePost 
             user_name={user_info_lst[0][0]}
             field_of_study={field_of_study}
             project_title={project_title}
             short_description= {short_description}
+            full_description= {full_description}
             />
             <SwipeLeft />
             
