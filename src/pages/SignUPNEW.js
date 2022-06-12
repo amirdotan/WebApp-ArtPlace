@@ -79,6 +79,7 @@ export default function SignUp() {
       await createUser(data.get('email'), data.get('password')) 
       await addToUserdb(user_details)
       navigate('/home')
+      console.log('user added to to user collection')
     }catch(e){
       console.log(e.message)
       setError(e.message)
