@@ -169,7 +169,7 @@ export default function SignUp() {
                                     renderInput={(params) => (
                                         <TextField
                                             {...params}
-                                            label="Necessary Skills"
+                                            label="Skills"
                                             placeholder="Skills"
                                         />
                                     )}
@@ -181,7 +181,7 @@ export default function SignUp() {
                                     required
                                     fullWidth
                                     id="description"
-                                    label="Short description about yourselffff"
+                                    label="Short description about yourself"
                                     name="description"
                                     autoComplete="description"
                                     multiline 
