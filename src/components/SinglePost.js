@@ -38,8 +38,12 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard({img, first_name, last_name,field_of_study, short_description, long_description, title}) {
 
+const handleAvatarClick = (event) => {
+  event.preventDefault();
+  navigate('/profile');} 
 
 const navigate = useNavigate();
+
 const handleHomeClick = (event) => {
     event.preventDefault();
     navigate('/Home');} 
@@ -50,7 +54,7 @@ const handleHomeClick = (event) => {
 
     <CardHeader textAlign="left"
         avatar={
-          <Avatar sx={{ bgcolor: red[400] }} aria-label="recipe">
+          <Avatar onClick = {handleAvatarClick} sx={{ bgcolor: red[400] }} aria-label="recipe">
             {first_name[0]}
           </Avatar>
         }

@@ -6,7 +6,6 @@ import { useState, useEffect, useRef, Fragment, onChange, onFileChange, classes,
 import Button from '@mui/material/Button';
 import '../styles/AddPostImg.css';
 import Autocomplete from '@mui/material/Autocomplete';
-
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
