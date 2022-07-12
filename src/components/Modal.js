@@ -10,7 +10,8 @@ import Stack from '@mui/material/Stack';
 import data from '../data/db.json'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Button from '@mui/material/Button';
-
+import TextFieldd from './TextFieldd'
+import { TextField } from "@mui/material";
 
 
 const dropIn = {
@@ -38,6 +39,7 @@ const dropIn = {
 
 const modal = ({handleClose}) => {
     return(
+        
         <BackDrop onClick = {handleClose}>
             <motion.div
                 onClick= {(e) => e.stopPropagation()}
@@ -48,8 +50,8 @@ const modal = ({handleClose}) => {
                 Text = "aaaaa"
                 exit = "exit"
                 >
-                <Alert severity="success" sx={{height: "30%"}}>
-                    <div>
+                <Alert severity="success" sx={{height: "80%"}}>
+                    {/* <div>
                     {data.users[0].Email.map((Email) => (<Chip label={Email} color="primary"/>))}
                     </div>
                     <Button variant="outlined" size="medium">
@@ -57,6 +59,22 @@ const modal = ({handleClose}) => {
                     </Button>
                     <Button variant="outlined" size="medium">
                         done
+                    </Button>  */}
+                    {/* <TextFieldd/> */}
+                    <div>
+                        Add some words about yourself or just send. The project creator will be able to see your profile and will contact you by mail if you fit.
+                    </div >
+                    <TextField
+                                    
+                                    name="firstName"
+                                    fullWidth
+                                    id="firstName"
+                                    multiline
+                                    maxRows={4}
+                                />
+                                
+                    <Button variant="outlined" size="medium" color="green">
+                        Send
                     </Button>
                 </Alert>
             </motion.div>
