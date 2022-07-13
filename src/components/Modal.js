@@ -50,7 +50,7 @@ const modal = ({handleClose}) => {
                 Text = "aaaaa"
                 exit = "exit"
                 >
-                <Alert severity="success" sx={{height: "80%"}}>
+                <Alert severity="success" sx={{height: "70%"}}>
                     {/* <div>
                     {data.users[0].Email.map((Email) => (<Chip label={Email} color="primary"/>))}
                     </div>
@@ -70,7 +70,7 @@ const modal = ({handleClose}) => {
                                     fullWidth
                                     id="firstName"
                                     multiline
-                                    maxRows={4}
+                                    maxRows={2}
                                 />
                                 
                     <Button variant="outlined" size="medium">
