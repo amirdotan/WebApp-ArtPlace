@@ -73,7 +73,7 @@ const modal = ({handleClose}) => {
                                     maxRows={4}
                                 />
                                 
-                    <Button variant="outlined" size="medium" color="green">
+                    <Button variant="outlined" size="medium">
                         Send
                     </Button>
                 </Alert>

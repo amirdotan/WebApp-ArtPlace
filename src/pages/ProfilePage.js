@@ -4,8 +4,8 @@ import ProfilePortfolio from '../components/ProfilePortfolio'
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from '../firebase';
 import { AuthContextProvider } from '../context/Authcontext';
-
-
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 // const user = auth.currentUser
 // const docRef = doc(db, "users", "user_" + user.uid);
@@ -14,7 +14,7 @@ import { AuthContextProvider } from '../context/Authcontext';
 
 
 export default function Profile() {
-
+    const navigate = useNavigate();
     // if (docSnap.exists()) {
     //     console.log("Document data:", docSnap.data());
     //   } else {
@@ -27,6 +27,7 @@ export default function Profile() {
             <ProfileInfo />
             <ProfileSkills />
             <ProfilePortfolio />
+            <Button onClick={() => navigate("/Requests")} color="primary" >Requests</Button>
         </>
 
     )
