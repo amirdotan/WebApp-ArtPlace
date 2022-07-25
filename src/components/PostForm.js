@@ -33,7 +33,7 @@ export default function PostForm({ image, setImage, imageURLs, setImageURLs,
                 Your partners are right around the corner
             </Typography>
             <Grid container spacing={3}>
-
+                                
                 <Grid item xs={12}>
                     <TextField
                         required

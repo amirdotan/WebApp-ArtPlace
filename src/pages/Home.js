@@ -19,13 +19,11 @@ import SinglePost from '../components/SinglePost';
 import CancelIcon from '@mui/icons-material/Cancel';
 import data from '../data/posts.json'
 
-
 const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 // This is the Home page where there is a view of all the cards
 
 export default function Home() {
     // const [posts, setHome] = React.useState([])
-
     // React.useEffect(() => {
     //     // you can watch this vid https://www.youtube.com/watch?v=MnIEJMgvuvc&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=9
     //     // this is a request to the server for the data in db.json
@@ -35,13 +33,42 @@ export default function Home() {
     //     // data is the array outputed from response.json(), we send that array to setHome
     //     .then(data => setHome(data))
     // }, [])
-
+    
     const [modalOpen, setModalOpen] = useState(false);
 
     const close = () => setModalOpen(false)
     const open = () => setModalOpen(true);
     const [skillList, setSkillList] = useState([])
     const [i, setCount] = useState(0);
+
+    const handleUnlikeButton = () => {
+        var keep = 1
+        var amount = 1
+        while (keep == 1) {
+
+            // Get next post skills 
+            var next_post_skills = data.posts[(i+amount)].skills
+
+            // For loop on the relevant skills
+            for (var ind = 0; ind <= skillList.length && keep == 1; ind++) {
+                
+                for (var j = 0; ind <= next_post_skills.length && keep == 1; ind++) {
+
+                    // Check next post fit to filter
+                    if (next_post_skills[ind] == skillList[j]) {
+                        console.log("Amiros")
+                        keep = keep + 4
+                    }
+                }      
+          } 
+            amount = amount + 1
+        } 
+        setCount(i + amount - 1)
+    }
+
+    const handleLikeButton = () => { 
+        modalOpen ? close() : open()
+    }
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
@@ -79,13 +106,13 @@ export default function Home() {
             img = {data.posts[i].img}
             />
         
-           
+
             <Fab
                 className='swiperight' 
                 color="primary" 
                 aria-label="add" 
                 sx={{ position: 'absolute', bottom : 200, left: 60 }}
-                onClick={() => (setCount(i + 1))}
+                onClick={handleUnlikeButton}
                 >
                 <CancelIcon/>
             </Fab>
@@ -94,7 +121,7 @@ export default function Home() {
                 color="primary" 
                 aria-label="add" 
                 sx={{ position: 'absolute', bottom : 200, right: 60 }}
-                onClick={() => (modalOpen ? close() : open())}
+                onClick={handleLikeButton}
                 >
                 <FavoriteBorderIcon />
             </Fab>
