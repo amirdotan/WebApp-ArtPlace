@@ -117,7 +117,6 @@ export default function Home() {
         setCount(0);
     }
 
-
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
 
@@ -180,8 +179,7 @@ export default function Home() {
                 >
                 <FavoriteBorderIcon />
             </Fab>
-
-            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user } />}
         </div>
     )
 }

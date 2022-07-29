@@ -1,5 +1,5 @@
 import  {motion} from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/BackDrop.css'
 import SinglePost from './SinglePost'
 import BackDrop from "./BackDrop";
@@ -14,7 +14,17 @@ import TextFieldd from './TextFieldd'
 import { TextField } from "@mui/material";
 // import useCopy from "use-copy";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { db } from "../firebase";
 
+import {
+    collection,
+    getDocs,
+    getDoc,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+} from "firebase/firestore";
 
 const dropIn = {
     hidden: {
@@ -40,7 +50,30 @@ const dropIn = {
 }
 
 
-const modal = ({handleClose}) => {
+const Modal = ({modalOpen, handleClose, uid}) => {
+    const [email, setEmail] = useState("No given contact email :(");
+    useEffect(() => {
+        // Get data
+        const getEmail = async () => {
+            const usersRef = collection(db, "users");
+            const usersRaw = await getDocs(usersRef);
+            const users = usersRaw.docs.map((doc) => doc.data());
+
+            users.forEach(user => {
+                console.log(uid, user.uid);
+                // console.log(user);
+                if (user?.uid == uid){
+
+                    setEmail(user?.email);
+                    return;
+                } 
+            });
+
+
+        };
+        getEmail()
+    });
+
     return(
         
         <BackDrop onClick = {handleClose}>
@@ -54,16 +87,6 @@ const modal = ({handleClose}) => {
                 exit = "exit"
                 >
                 <Alert severity="success" sx={{height: "70%"}}>
-                    {/* <div>
-                    {data.users[0].Email.map((Email) => (<Chip label={Email} color="primary"/>))}
-                    </div>
-                    <Button variant="outlined" size="medium">
-                         copy
-                    </Button>
-                    <Button variant="outlined" size="medium">
-                        done
-                    </Button>  */}
-                    {/* <TextFieldd/> */}
                     <div>
                         <p>Congratulations!</p> 
                         <p>Here are 3 animals we at PARTAKE love,
@@ -79,7 +102,7 @@ const modal = ({handleClose}) => {
                     <br/>     
                     <div className="App">
                         <CopyToClipboard
-                        text="Amiros"
+                        text={email}
                         onCopy={() => alert("Copied")}>
                         <Button variant="outlined" size="medium">
                         copy Email
@@ -92,4 +115,4 @@ const modal = ({handleClose}) => {
     );
 }
 
-export default modal;
+export default Modal;
