@@ -21,6 +21,7 @@ import { height } from '@mui/system';
 import { useState, useEffect } from 'react';
 import uploadImage from '../pages/UploadImage';
 import addPost from './AddPostToDB';
+import { getAuth} from 'firebase/auth'
 
 
 
@@ -51,6 +52,8 @@ export default function AddPost() {
     const [shortDescription, setShortDescription] = useState("")
     const [longDescription, setLongDescription] = useState("")
     const [skillList, setSkillList] = useState([])
+    const auth = getAuth();
+    const curr_user = auth.currentUser;
 
     useEffect(() => {
         /*Checks if user pressed done by checking on which step we are stated*/
@@ -66,7 +69,8 @@ export default function AddPost() {
             short: shortDescription,
             long: longDescription,
             imageref: imageref,
-            skilllist: skillList
+            skilllist: skillList,
+            user: curr_user.uid
         };
         /*addpost to firestore db post*/
         addPost(newpost, "posts");
