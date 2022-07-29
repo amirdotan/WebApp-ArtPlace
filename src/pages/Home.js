@@ -74,23 +74,26 @@ export default function Home() {
 
     const handleUnlikeButton = () => {
         var to_skip = 1;
+
+        // User has no skills to filter then get the next post
         if (skillList.length == 0) {
             setCount(i + to_skip);
             return;
         }
+
+        // Get the next relevant post upon user's filtered list
         var flag = true;
         while(flag == true && (i+to_skip) < data.length){
-            console.log(data)
-            console.log(data[i+to_skip])
             var next_post_skills = data[(i+to_skip)]?.skilllist;
             for(var filter_ind = 0; filter_ind < skillList.length; filter_ind++){
                 for(var post_ind = 0; post_ind < next_post_skills.length; post_ind++)
                 {
                     console.log(skillList[filter_ind], next_post_skills[post_ind])
+
+                    // Find match between post's necessary skills and skills filtered by user
                     if (skillList[filter_ind] == next_post_skills[post_ind])
                     {
                         setCount(i+to_skip);
-                        console.log(i, to_skip)
                         flag = false;
                     }
                 }
@@ -113,7 +116,6 @@ export default function Home() {
         setSkillList(value);
         setCount(0);
     }
-
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
@@ -177,8 +179,7 @@ export default function Home() {
                 >
                 <FavoriteBorderIcon />
             </Fab>
-
-            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user } />}
         </div>
     )
 }

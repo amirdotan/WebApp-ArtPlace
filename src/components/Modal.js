@@ -1,5 +1,5 @@
 import  {motion} from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/BackDrop.css'
 import SinglePost from './SinglePost'
 import BackDrop from "./BackDrop";
@@ -12,7 +12,19 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Button from '@mui/material/Button';
 import TextFieldd from './TextFieldd'
 import { TextField } from "@mui/material";
+// import useCopy from "use-copy";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { db } from "../firebase";
 
+import {
+    collection,
+    getDocs,
+    getDoc,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+} from "firebase/firestore";
 
 const dropIn = {
     hidden: {
@@ -37,7 +49,31 @@ const dropIn = {
 
 }
 
-const modal = ({handleClose}) => {
+
+const Modal = ({modalOpen, handleClose, uid}) => {
+    const [email, setEmail] = useState("No given contact email :(");
+    useEffect(() => {
+        // Get data
+        const getEmail = async () => {
+            const usersRef = collection(db, "users");
+            const usersRaw = await getDocs(usersRef);
+            const users = usersRaw.docs.map((doc) => doc.data());
+
+            users.forEach(user => {
+                console.log(uid, user.uid);
+                // console.log(user);
+                if (user?.uid == uid){
+
+                    setEmail(user?.email);
+                    return;
+                } 
+            });
+
+
+        };
+        getEmail()
+    });
+
     return(
         
         <BackDrop onClick = {handleClose}>
@@ -51,35 +87,32 @@ const modal = ({handleClose}) => {
                 exit = "exit"
                 >
                 <Alert severity="success" sx={{height: "70%"}}>
-                    {/* <div>
-                    {data.users[0].Email.map((Email) => (<Chip label={Email} color="primary"/>))}
-                    </div>
-                    <Button variant="outlined" size="medium">
-                         copy
-                    </Button>
-                    <Button variant="outlined" size="medium">
-                        done
-                    </Button>  */}
-                    {/* <TextFieldd/> */}
                     <div>
-                        Add some words about yourself or just send. The project creator will be able to see your profile and will contact you by mail if you fit.
+                        <p>Congratulations!</p> 
+                        <p>Here are 3 animals we at PARTAKE love,
+                        pick one and tell the user why:
+                        <br/>
+                        </p>    
+                        <div> 
+                        🦏 - Rhino
+                        🦡 - Honey Budger
+                        🐦 - Bird
+                        </div>
                     </div >
-                    <TextField
-                                    
-                                    name="firstName"
-                                    fullWidth
-                                    id="firstName"
-                                    multiline
-                                    maxRows={2}
-                                />
-                                
-                    <Button variant="outlined" size="medium">
-                        Send
-                    </Button>
+                    <br/>     
+                    <div className="App">
+                        <CopyToClipboard
+                        text={email}
+                        onCopy={() => alert("Copied")}>
+                        <Button variant="outlined" size="medium">
+                        copy Email
+                        </Button>
+                        </CopyToClipboard>
+                    </div>
                 </Alert>
             </motion.div>
         </BackDrop>
     );
 }
 
-export default modal;
+export default Modal;
