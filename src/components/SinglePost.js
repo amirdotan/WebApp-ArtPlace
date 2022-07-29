@@ -65,7 +65,7 @@ const handleHomeClick = (event) => {
         component="img"
         height="194"
         image={img}
-        alt="We're having trouble loading the image"
+        alt="No more relevent posts for you, please try again later"
       />
       <CardContent>
         

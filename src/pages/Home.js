@@ -17,7 +17,21 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { CenterFocusStrong } from '@mui/icons-material';
 import SinglePost from '../components/SinglePost';
 import CancelIcon from '@mui/icons-material/Cancel';
-import data from '../data/posts.json'
+// import data from '../data/posts.json'
+import posts from "../firebase";
+
+import { db } from "../firebase";
+
+import {
+    collection,
+    getDocs,
+    getDoc,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+} from "firebase/firestore";
+
 
 const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 // This is the Home page where there is a view of all the cards
@@ -34,6 +48,23 @@ export default function Home() {
     //     .then(data => setHome(data))
     // }, [])
     
+    const [postsDb, setPostsDb] = useState([]);
+    useEffect(() => {
+
+        // Get data
+        const getPosts = async () => {
+            const postsRef = collection(db, "posts");
+            const postRaw = await getDocs(postsRef);
+            const posts = postRaw.docs.map((doc) => doc.data());
+            console.log(posts);
+            setPostsDb(posts);
+
+        };
+        getPosts()
+    }, []);
+
+    const data = postsDb;
+
     const [modalOpen, setModalOpen] = useState(false);
 
     const close = () => setModalOpen(false)
@@ -42,33 +73,47 @@ export default function Home() {
     const [i, setCount] = useState(0);
 
     const handleUnlikeButton = () => {
-        var keep = 1
-        var amount = 1
-        while (keep == 1) {
-
-            // Get next post skills 
-            var next_post_skills = data.posts[(i+amount)].skills
-
-            // For loop on the relevant skills
-            for (var ind = 0; ind <= skillList.length && keep == 1; ind++) {
-                
-                for (var j = 0; ind <= next_post_skills.length && keep == 1; ind++) {
-
-                    // Check next post fit to filter
-                    if (next_post_skills[ind] == skillList[j]) {
-                        console.log("Amiros")
-                        keep = keep + 4
+        var to_skip = 1;
+        if (skillList.length == 0) {
+            setCount(i + to_skip);
+            return;
+        }
+        var flag = true;
+        while(flag == true && (i+to_skip) < data.length){
+            console.log(data)
+            console.log(data[i+to_skip])
+            var next_post_skills = data[(i+to_skip)]?.skilllist;
+            for(var filter_ind = 0; filter_ind < skillList.length; filter_ind++){
+                for(var post_ind = 0; post_ind < next_post_skills.length; post_ind++)
+                {
+                    console.log(skillList[filter_ind], next_post_skills[post_ind])
+                    if (skillList[filter_ind] == next_post_skills[post_ind])
+                    {
+                        setCount(i+to_skip);
+                        console.log(i, to_skip)
+                        flag = false;
                     }
-                }      
-          } 
-            amount = amount + 1
-        } 
-        setCount(i + amount - 1)
+                }
+            }
+            if (flag == true){
+            to_skip++; 
+            }
+        }
+        if (flag == true){
+
+        setCount(i+to_skip);
+        }
     }
 
     const handleLikeButton = () => { 
         modalOpen ? close() : open()
     }
+
+    const necessarySkills = (value) => {
+        setSkillList(value);
+        setCount(0);
+    }
+
 
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
@@ -85,7 +130,7 @@ export default function Home() {
                     defaultValue={[]}
                     filterSelectedOptions
                     fullWidth={false}
-                    onChange={(event, value) => setSkillList(value)}
+                    onChange={(event, value) => necessarySkills(value)}
                 
                     renderInput={(params) => (
                         <TextField
@@ -96,7 +141,7 @@ export default function Home() {
                     )}
                 />
             <Button variant="contained" sx={{position: 'absolute', bottom : 790,right: 50}}>Search</Button>
-            <SinglePost
+            {/* <SinglePost
             first_name={data.posts[i].first_name}
             last_name={data.posts[i].last_name}
             field_of_study={data.posts[i].field_of_study}
@@ -104,9 +149,16 @@ export default function Home() {
             short_description={data.posts[i].short_description}
             long_description={data.posts[i].long_description}
             img = {data.posts[i].img}
-            />
-        
-
+            /> */}
+            {data.length > 0 && <SinglePost
+                first_name={postsDb[i]?.first_name ?? ""}
+                last_name={postsDb[i]?.last_name ?? ""}
+                field_of_study={postsDb[i]?.field_of_study ?? ""}
+                title={postsDb[i]?.title ?? ""}
+                short_description={postsDb[i]?.short_description ?? ""}
+                long_description={postsDb[i]?.long_description ?? ""}
+                img={postsDb[i]?.imageref ?? ""}
+            />}
             <Fab
                 className='swiperight' 
                 color="primary" 
