@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -20,6 +21,12 @@ import Button from '@mui/material/Button';
 import data from '../data/db.json'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { async } from '@firebase/util';
+import { collection, doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+import { getAuth } from 'firebase/auth';
+import Chip from '@mui/material/Chip';
+
 
 export default function RecipeReviewCard() {
   const user_name=data.users[0].first_name + " "+  data.users[0].last_name //this is the name of the firat object at db.json  
@@ -27,6 +34,36 @@ export default function RecipeReviewCard() {
   const current_year = data.users[0].current_year 
   const subheader = field_of_study + ", " + current_year + " year"
   const [expanded, setExpanded] = React.useState(false);
+
+
+  const [profileDb, setProfileDb] = useState([]);
+  const auth = getAuth();
+  const curr_user = auth.currentUser
+
+  const [avatar_letter, setAvatarLetter] = useState([]);
+
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const usersDocRef = doc(db, "users", "user_"+curr_user.uid);
+      const docSnap = await getDoc(usersDocRef);
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+      setProfileDb(docSnap.data())
+    };
+    getProfile()
+  }, []);
+
+
+
+  console.log(profileDb.skills)
+  console.log(avatar_letter)
+  
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -41,13 +78,17 @@ export default function RecipeReviewCard() {
       <CardHeader sx={{}}
         avatar={
           <Avatar sx={{ bgcolor: 'primary'}} aria-label="recipe">
-            M
+            B
           </Avatar>
         }
-        title={user_name}
-        subheader= {subheader}
+        title={profileDb.first_name}
+        subheader= {profileDb.field}
       />
     </Card>
+    
+    <Stack direction="row" spacing={3} sx={{margin: 2}}>
+    {profileDb.skills?.map((skill) => (<Chip label={skill} color="primary" />))}
+    </Stack>
     </>
   );
 }
