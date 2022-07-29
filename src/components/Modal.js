@@ -12,6 +12,8 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Button from '@mui/material/Button';
 import TextFieldd from './TextFieldd'
 import { TextField } from "@mui/material";
+// import useCopy from "use-copy";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 
 const dropIn = {
@@ -36,6 +38,7 @@ const dropIn = {
     }
 
 }
+
 
 const modal = ({handleClose}) => {
     return(
@@ -62,20 +65,27 @@ const modal = ({handleClose}) => {
                     </Button>  */}
                     {/* <TextFieldd/> */}
                     <div>
-                        Add some words about yourself or just send. The project creator will be able to see your profile and will contact you by mail if you fit.
+                        <p>Congratulations!</p> 
+                        <p>Here are 3 animals we at PARTAKE love,
+                        pick one and tell the user why:
+                        <br/>
+                        </p>    
+                        <div> 
+                        🦏 - Rhino
+                        🦡 - Honey Budger
+                        🐦 - Bird
+                        </div>
                     </div >
-                    <TextField
-                                    
-                                    name="firstName"
-                                    fullWidth
-                                    id="firstName"
-                                    multiline
-                                    maxRows={2}
-                                />
-                                
-                    <Button variant="outlined" size="medium">
-                        Send
-                    </Button>
+                    <br/>     
+                    <div className="App">
+                        <CopyToClipboard
+                        text="Amiros"
+                        onCopy={() => alert("Copied")}>
+                        <Button variant="outlined" size="medium">
+                        copy Email
+                        </Button>
+                        </CopyToClipboard>
+                    </div>
                 </Alert>
             </motion.div>
         </BackDrop>
