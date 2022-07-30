@@ -19,7 +19,7 @@ import SinglePost from '../components/SinglePost';
 import CancelIcon from '@mui/icons-material/Cancel';
 // import data from '../data/posts.json'
 import posts from "../firebase";
-
+import GetSkills from '../data/GetSkills';
 import { db } from "../firebase";
 
 import {
@@ -33,7 +33,7 @@ import {
 } from "firebase/firestore";
 
 
-const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
+const SkillList = GetSkills();
 // This is the Home page where there is a view of all the cards
 
 export default function Home() {

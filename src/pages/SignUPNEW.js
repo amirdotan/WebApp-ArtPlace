@@ -15,9 +15,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import {UserAuth} from "../context/Authcontext"
+import GetSkills from '../data/GetSkills';
 
 
-const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
+const SkillList = GetSkills();
 
 
 
@@ -26,7 +27,6 @@ const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
 // Source: https://github.com/mui/material-ui/tree/v5.6.3/docs/data/material/getting-started/templates/sign-up
 
 function Copyright(props) {
-    
 
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>

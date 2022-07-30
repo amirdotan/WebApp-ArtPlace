@@ -8,9 +8,10 @@ import '../styles/AddPostImg.css';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import GetSkills from '../data/GetSkills';
 
 
-const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
+const SkillList = GetSkills();
 
 
 
