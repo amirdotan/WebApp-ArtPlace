@@ -71,10 +71,10 @@ export default function Home() {
     const open = () => setModalOpen(true);
     const [skillList, setSkillList] = useState([])
     const [i, setCount] = useState(0);
-
+    const [imgUrl, setImgURL] = useState("");
     const handleUnlikeButton = () => {
         var to_skip = 1;
-
+        setImgURL("");
         // User has no skills to filter then get the next post
         if (skillList.length == 0) {
             setCount(i + to_skip);
@@ -160,6 +160,8 @@ export default function Home() {
                 short_description={postsDb[i]?.short_description ?? ""}
                 long_description={postsDb[i]?.long_description ?? ""}
                 img={postsDb[i]?.imageref ?? ""}
+                imgUrl={imgUrl}
+                setImgURL={setImgURL}
             />}
             <Fab
                 className='swiperight' 
