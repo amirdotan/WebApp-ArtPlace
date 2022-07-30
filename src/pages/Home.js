@@ -49,6 +49,9 @@ export default function Home() {
     // }, [])
     
     const [postsDb, setPostsDb] = useState([]);
+    const [firstName, setFirstName] = useState("FPlaceHolder");
+    const [lastName, setLastName] = useState("LPlaceHolder");
+
     useEffect(() => {
 
         // Get data
@@ -56,12 +59,31 @@ export default function Home() {
             const postsRef = collection(db, "posts");
             const postRaw = await getDocs(postsRef);
             const posts = postRaw.docs.map((doc) => doc.data());
-            console.log(posts);
             setPostsDb(posts);
-
         };
         getPosts()
+
     }, []);
+
+    useEffect(() => {
+        const getUserData = async () => {
+            const usersRef = collection(db, "users");
+            const usersRaw = await getDocs(usersRef);
+            const users = usersRaw.docs.map((doc) => doc.data());
+            setFirstName("FPlaceHolder");
+            setLastName("LPlaceHolder");
+
+            users.forEach((user) => {
+                if (user.uid == postsDb[i]?.user) {
+                    setFirstName(user?.first_name ?? "FPlaceHolder" );
+                    setLastName(user?.last_name ?? "LPlaceHolder");
+                }
+            })
+        };
+        getUserData();
+
+
+    })
 
     const data = postsDb;
 
@@ -116,7 +138,6 @@ export default function Home() {
         setSkillList(value);
         setCount(0);
     }
-
     return(
         <div className='HomeContainer' sx={{height:'100%'}}>
 
@@ -153,15 +174,15 @@ export default function Home() {
             img = {data.posts[i].img}
             /> */}
             {data.length > 0 && <SinglePost
-                first_name={postsDb[i]?.first_name ?? ""}
-                last_name={postsDb[i]?.last_name ?? ""}
-                field_of_study={postsDb[i]?.field_of_study ?? ""}
                 title={postsDb[i]?.title ?? ""}
+                skilllist={postsDb[i]?.skilllist ?? []}
                 short_description={postsDb[i]?.short_description ?? ""}
                 long_description={postsDb[i]?.long_description ?? ""}
                 img={postsDb[i]?.imageref ?? ""}
                 imgUrl={imgUrl}
                 setImgURL={setImgURL}
+                first_name={firstName}
+                last_name={lastName}
             />}
             <Fab
                 className='swiperight' 
