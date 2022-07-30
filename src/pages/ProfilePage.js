@@ -6,6 +6,8 @@ import { auth, db } from '../firebase';
 import { AuthContextProvider } from '../context/Authcontext';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react';
+import { getAuth } from 'firebase/auth';
 
 // const user = auth.currentUser
 // const docRef = doc(db, "users", "user_" + user.uid);
@@ -21,11 +23,32 @@ export default function Profile() {
     //     // doc.data() will be undefined in this case
     //     console.log("No such document!");
     //   }
+    
+    const [profileDb, setProfileDb] = useState([]);
+    const auth = getAuth();
+    const curr_user = auth.currentUser
+
+    useEffect(() => {
+      const getProfile = async () => {
+        const usersDocRef = doc(db, "users", "user_"+curr_user.uid);
+        const docSnap = await getDoc(usersDocRef);
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+        setProfileDb(docSnap.data())
+      };
+      getProfile()
+    }, []);
+    
+    console.log(profileDb)
 
     return(
         <>
-            <ProfileInfo />
-            <ProfileSkills />
+            <ProfileInfo data = {profileDb}/>
+            {/* <ProfileSkills skills = {profileDb}/> */}
             <ProfilePortfolio />
             <Button onClick={() => navigate("/Requests")} color="primary" >Requests</Button>
         </>
