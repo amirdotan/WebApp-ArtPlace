@@ -176,8 +176,8 @@ export default function Home() {
             {data.length > 0 && <SinglePost
                 title={postsDb[i]?.title ?? ""}
                 skilllist={postsDb[i]?.skilllist ?? []}
-                short_description={postsDb[i]?.short_description ?? ""}
-                long_description={postsDb[i]?.long_description ?? ""}
+                short_description={postsDb[i]?.short ?? ""}
+                long_description={postsDb[i]?.long ?? ""}
                 img={postsDb[i]?.imageref ?? ""}
                 imgUrl={imgUrl}
                 setImgURL={setImgURL}

@@ -35,6 +35,7 @@ export default function RecipeReviewCard({user_name, field_of_study, project_tit
     setExpanded(!expanded);
   };
 
+
   return (
     <Card className='singlepostv2'>
       <CardHeader textAlign="left"

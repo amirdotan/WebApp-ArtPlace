@@ -21,6 +21,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import { DialogTitle } from '@mui/material';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
+
+
 import data from '../data/posts.json'
 import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../firebase';
@@ -37,7 +39,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({img, first_name, last_name,field_of_study, short_description, long_description, title, imgUrl, setImgURL}) {
+export default function RecipeReviewCard({img, first_name, last_name,skilllist, short_description, long_description, title, imgUrl, setImgURL}) {
 
 const handleAvatarClick = (event) => {
   event.preventDefault();
@@ -71,7 +73,7 @@ useEffect(() => {
           </Avatar>
         }
         title= {first_name +" "+ last_name}
-        subheader= {field_of_study}
+        subheader= {skilllist}
       />
       <CardMedia
         component="img"
