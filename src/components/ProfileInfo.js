@@ -26,7 +26,9 @@ import { collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import Chip from '@mui/material/Chip';
-
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import PortfolioPresenter from './PorfolioPresenter'
 
 export default function RecipeReviewCard() {
   const user_name=data.users[0].first_name + " "+  data.users[0].last_name //this is the name of the firat object at db.json  
@@ -40,8 +42,13 @@ export default function RecipeReviewCard() {
   const auth = getAuth();
   const curr_user = auth.currentUser
 
-  const [avatar_letter, setAvatarLetter] = useState([]);
 
+
+  const [avatar_letter, setAvatarLetter] = useState([]);
+  const [portfolio_link, setPorfolioLink] = useState(false);
+  
+  var img = document.createElement("img");  
+  img.src = "../images/portfolio1.jpg"; 
 
   useEffect(() => {
     const getProfile = async () => {
@@ -49,6 +56,8 @@ export default function RecipeReviewCard() {
       const docSnap = await getDoc(usersDocRef);
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
+        setPorfolioLink(docSnap.data().portfolio)
+        
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -60,7 +69,7 @@ export default function RecipeReviewCard() {
 
 
 
-  console.log(profileDb.skills)
+  console.log(portfolio_link)
   console.log(avatar_letter)
   
 
@@ -86,9 +95,58 @@ export default function RecipeReviewCard() {
       />
     </Card>
     
+    
     <Stack direction="row" spacing={3} sx={{margin: 2}}>
     {profileDb.skills?.map((skill) => (<Chip label={skill} color="primary" />))}
     </Stack>
+    
+    <PortfolioPresenter portfolio_link={portfolio_link}>
+      <ImageList sx={{ width: '100%', height: '100%' }} cols={2} rowHeight={164}>
+        {itemData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading="lazy"
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </PortfolioPresenter>
+    {/* now create a presenter for adding portfolio images  */}
+    {/* create an object that alows uploading pics to the portfolio */}
+    {/* fuck me right? */}
+
     </>
   );
 }
+
+
+const itemData = [
+  {
+    img: "https://www.artmajeur.com/medias/hd/b/u/bunner/artwork/11062765_grafitti-1.jpg"
+  },
+  {
+    img: 'https://static.wixstatic.com/media/029590_f913efa3afe7489794796d67143842f0~mv2.jpg/v1/fill/w_292,h_709,al_c,q_80,enc_auto/029590_f913efa3afe7489794796d67143842f0~mv2.jpg',
+    title: 'Burger',
+  },
+  {
+    img: 'https://i.ytimg.com/vi/LXjukR09HrI/maxresdefault.jpg',
+    title: 'Camera',
+  },
+  {
+    img: 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Selfie_art.jpg',
+    title: 'Coffee',
+  },
+  {
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXT9ilQCW7ac42tK1dgaAc_BeN1rP5pIscyQ&usqp=CAU',
+    title: 'Hats',
+  },
+  {
+    img: 'https://mymodernmet.com/wp/wp-content/uploads/2019/03/elements-of-art-6.jpg',
+    title: 'Honey',
+  },
+];
+
+

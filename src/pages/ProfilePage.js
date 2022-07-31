@@ -49,7 +49,7 @@ export default function Profile() {
         <>
             <ProfileInfo data = {profileDb}/>
             {/* <ProfileSkills skills = {profileDb}/> */}
-            <ProfilePortfolio />
+            {/* <ProfilePortfolio /> */}
             <Button onClick={() => navigate("/Requests")} color="primary" >Requests</Button>
         </>
 
