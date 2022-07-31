@@ -5,11 +5,12 @@ import { v4 } from 'uuid'
 
 const uploadImage =   (imageUpload, url) => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `${url}/${imageUpload.name + v4()}`);
+    const imageName = `${url}/${imageUpload.name + v4()}`
+    const imageRef = ref(storage, imageName);
      uploadBytes(imageRef, imageUpload).then(() => {
         alert(`Image Uploaded`)
     })
-    return `${imageUpload.name + v4()}`
+    return `${imageName}`
 };
 
 

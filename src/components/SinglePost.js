@@ -16,13 +16,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import '../styles/SinglePost.css'
 import { maxHeight } from '@mui/system';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { DialogTitle } from '@mui/material';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import data from '../data/posts.json'
-
+import { getDownloadURL, ref } from 'firebase/storage';
+import { storage } from '../firebase';
 
 
 const ExpandMore = styled((props) => {
@@ -36,7 +37,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({img, first_name, last_name,field_of_study, short_description, long_description, title}) {
+export default function RecipeReviewCard({img, first_name, last_name,field_of_study, short_description, long_description, title, imgUrl, setImgURL}) {
 
 const handleAvatarClick = (event) => {
   event.preventDefault();
@@ -47,6 +48,17 @@ const navigate = useNavigate();
 const handleHomeClick = (event) => {
     event.preventDefault();
     navigate('/Home');} 
+
+useEffect(() => {
+  const loadImg = async() => {
+    const imgRef = ref(storage, `${img}`);
+    getDownloadURL(imgRef)
+    .then((url) => {
+      setImgURL(url)
+    }).catch((error) => console.log(error))
+  }
+  loadImg();
+})
 
   return (
     <Card className= 'singlepost' sx={{ maxWidth: '80%',margin: 5}}>
@@ -64,7 +76,7 @@ const handleHomeClick = (event) => {
       <CardMedia
         component="img"
         height="194"
-        image={img}
+        image={imgUrl}
         alt="No more relevent posts for you, please try again later"
       />
       <CardContent>

@@ -12,10 +12,9 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Button from '@mui/material/Button';
 import TextFieldd from './TextFieldd'
 import { TextField } from "@mui/material";
-// import useCopy from "use-copy";
+// import Dialog from "@material-ui/core/Dialog";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { db } from "../firebase";
-
 import {
     collection,
     getDocs,
@@ -46,7 +45,6 @@ const dropIn = {
         y: "100vh",
         opacity: 0,
     }
-
 }
 
 
@@ -60,15 +58,12 @@ const Modal = ({modalOpen, handleClose, uid}) => {
             const users = usersRaw.docs.map((doc) => doc.data());
 
             users.forEach(user => {
-                console.log(uid, user.uid);
-                // console.log(user);
                 if (user?.uid == uid){
 
                     setEmail(user?.email);
                     return;
                 } 
             });
-
 
         };
         getEmail()
@@ -104,7 +99,7 @@ const Modal = ({modalOpen, handleClose, uid}) => {
                         <CopyToClipboard
                         text={email}
                         onCopy={() => alert("Copied")}>
-                        <Button variant="outlined" size="medium">
+                        <Button variant="outlined" size="medium" onClick={handleClose}>
                         copy Email
                         </Button>
                         </CopyToClipboard>
