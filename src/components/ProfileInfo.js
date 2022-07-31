@@ -81,7 +81,7 @@ export default function RecipeReviewCard() {
             B
           </Avatar>
         }
-        title={profileDb.first_name}
+        title={profileDb.first_name + " " + profileDb.last_name}
         subheader= {profileDb.field}
       />
     </Card>
