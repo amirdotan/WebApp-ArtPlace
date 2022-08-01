@@ -21,6 +21,7 @@
     "react": "^18.1.0",
     "react-bootstrap": "^2.3.1",
     "react-copy-to-clipboard": "^5.1.0",
+    "react-copyright": "^0.0.1",
     "react-dom": "^18.1.0",
     "react-leaflet": "^4.0.0",
     "react-overlay-component": "^1.0.2",

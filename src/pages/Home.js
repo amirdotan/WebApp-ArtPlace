@@ -17,6 +17,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { CenterFocusStrong } from '@mui/icons-material';
 import SinglePost from '../components/SinglePost';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { Container, Typography, Link } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+// import Copyright from "@bit/mui-org.material-ui-icons.copyright";
 // import data from '../data/posts.json'
 import posts from "../firebase";
 import GetSkills from '../data/GetSkills';
@@ -49,8 +52,9 @@ export default function Home() {
     // }, [])
     
     const [postsDb, setPostsDb] = useState([]);
-    const [firstName, setFirstName] = useState("FPlaceHolder");
-    const [lastName, setLastName] = useState("LPlaceHolder");
+    const [firstName, setFirstName] = useState(" ");
+    const [lastName, setLastName] = useState(" ");
+    const [expanded, setExpanded] = React.useState(false);
 
     useEffect(() => {
 
@@ -70,18 +74,17 @@ export default function Home() {
             const usersRef = collection(db, "users");
             const usersRaw = await getDocs(usersRef);
             const users = usersRaw.docs.map((doc) => doc.data());
-            setFirstName("FPlaceHolder");
-            setLastName("LPlaceHolder");
+            setFirstName(" ");
+            setLastName(" ");
 
             users.forEach((user) => {
                 if (user.uid == postsDb[i]?.user) {
-                    setFirstName(user?.first_name ?? "FPlaceHolder" );
-                    setLastName(user?.last_name ?? "LPlaceHolder");
+                    setFirstName(user?.first_name ?? " " );
+                    setLastName(user?.last_name ?? " ");
                 }
             })
         };
         getUserData();
-
 
     })
 
@@ -95,6 +98,7 @@ export default function Home() {
     const [i, setCount] = useState(0);
     const [imgUrl, setImgURL] = useState("");
     const handleUnlikeButton = () => {
+        setExpanded(false);
         var to_skip = 1;
         setImgURL("");
         // User has no skills to filter then get the next post
@@ -110,8 +114,6 @@ export default function Home() {
             for(var filter_ind = 0; filter_ind < skillList.length; filter_ind++){
                 for(var post_ind = 0; post_ind < next_post_skills.length; post_ind++)
                 {
-                    console.log(skillList[filter_ind], next_post_skills[post_ind])
-
                     // Find match between post's necessary skills and skills filtered by user
                     if (skillList[filter_ind] == next_post_skills[post_ind])
                     {
@@ -137,10 +139,12 @@ export default function Home() {
     const necessarySkills = (value) => {
         setSkillList(value);
         setCount(0);
-    }
-    return(
-        <div className='HomeContainer' sx={{height:'100%'}}>
+    }    
 
+    return(
+        // sx={{height:'100%'}}
+        // disableScrollParentFix={true}
+        <div>
         <Autocomplete sx={{width: 1/2 ,ml: 5, mt:1}}
                     multiple
                     id="SkillsList"
@@ -183,12 +187,14 @@ export default function Home() {
                 setImgURL={setImgURL}
                 first_name={firstName}
                 last_name={lastName}
+                expanded = {expanded}
+                setExpanded = {setExpanded}
             />}
             <Fab
                 className='swiperight' 
                 color="primary" 
                 aria-label="add" 
-                sx={{ position: 'absolute', bottom : 200, left: 60 }}
+                sx={{ position: 'relative', bottom : 10, right: 85 }}
                 onClick={handleUnlikeButton}
                 >
                 <CancelIcon/>
@@ -197,14 +203,15 @@ export default function Home() {
                 className='swiperight' 
                 color="primary" 
                 aria-label="add" 
-                sx={{ position: 'absolute', bottom : 200, right: 60 }}
+                sx={{ position: 'relative', bottom : 10, left: 85 }}
                 onClick={handleLikeButton}
                 >
                 <FavoriteBorderIcon />
             </Fab>
             {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user } />}
+            <br></br>
+            <p style={{ color: "gray" }}>Partake ©</p>
         </div>
     )
 }
-
 
