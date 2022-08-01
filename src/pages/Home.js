@@ -167,7 +167,7 @@ export default function Home() {
                         />
                     )}
                 />
-            <Button variant="contained" sx={{position: 'absolute', bottom : 790,right: 50}}>Search</Button>
+            <Button variant="contained" sx={{position: 'absolute', top: 80, right: 40}}>Search</Button>
             {/* <SinglePost
             first_name={data.posts[i].first_name}
             last_name={data.posts[i].last_name}
