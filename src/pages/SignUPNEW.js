@@ -75,7 +75,8 @@ export default function SignUp() {
         skills : skillList,
         email : data.get('email'),
         field : data.get("study"),
-        portfolio : false
+        portfolio : false,
+        uposts: []
       }
       await createUser(data.get('email'), data.get('password')) 
       await addToUserdb(user_details)
