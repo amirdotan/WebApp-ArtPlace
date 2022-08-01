@@ -12,10 +12,13 @@ import {
 
 
 
-const addPost = (newPost, url) => {
+const addPost = async (newPost, url) => {
     const postCollectionRef = collection(db, url);
 
-    return addDoc(postCollectionRef, newPost);
+    const docRef = await addDoc(postCollectionRef, newPost)
+        .then((docRef) => updateDoc(docRef, {
+            doc_id: docRef
+        }));
 };
 
 
