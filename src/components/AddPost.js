@@ -61,7 +61,7 @@ export default function AddPost() {
             return;
         }
         /*Calls upload image and passes it the image and a file to save it in firebase storage*/
-        const imageref = uploadImage(image, "temp");
+        const imageref = uploadImage(image, "post_images");
         /*Create new post by the diffrent states*/
         const newpost =
         {
