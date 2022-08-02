@@ -30,14 +30,11 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import PortfolioPresenter from './PorfolioPresenter'
 import AddPortfolioPresenter from './AddPortfolioPresenter';
-<<<<<<< Updated upstream
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 
-=======
->>>>>>> Stashed changes
 
 export default function RecipeReviewCard() {
   const user_name=data.users[0].first_name + " "+  data.users[0].last_name //this is the name of the firat object at db.json  

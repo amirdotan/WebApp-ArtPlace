@@ -8,20 +8,10 @@ const AddPortfolioPresenter = ({portfolio_link ,children }) => {
 //   console.log(children)
   console.log(portfolio_link)
 
-<<<<<<< Updated upstream
-=======
-console.log(portfolio_link)
->>>>>>> Stashed changes
     if (!portfolio_link){
         console.log(portfolio_link)
         return children
     }
-<<<<<<< Updated upstream
-=======
-    else{
-        return 'null'
-    }
->>>>>>> Stashed changes
 };
 
 export default AddPortfolioPresenter;
