@@ -129,45 +129,17 @@ export default function RecipeReviewCard() {
     {/* create an object that alows uploading pics to the portfolio */}
     {/* fuck me right? */}
     <AddPortfolioPresenter portfolio_link={portfolio_link}>
-    
-    
-    {/* <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        '& > :not(style)': {
-          m: 0.5,
-          width: '45%',
-          height: 160,
-        },
-      }}
-    >
-      <Paper elevation={3} />
-      <Paper elevation={3} />
-      <Paper elevation={3} />
-      <Paper elevation={3} />
-      <Paper elevation={3} />
-      <Paper elevation={3} />
-    </Box> */}
-      
-      
     <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Hey There :)
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            This is the spot for you to showcase your creativity!
-            Adding a portfolio helps find better fitting partners, give it a try...
-          </Typography>
-        </CardContent>
-        <Button variant="contained" onClick={() => navigate("/")}>Get Started</Button>
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div">
+          Hey There :)
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          This is the spot for you to showcase your creativity!
+          Adding a portfolio helps find better fitting partners, give it a try...
+        </Typography>
+      </CardContent>
+      <Button variant="contained" onClick={() => navigate("/UploadPortfolio") } sx={{}} >Get Started</Button>
     </Card>
     </AddPortfolioPresenter>
     </>

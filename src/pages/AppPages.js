@@ -9,6 +9,7 @@ import EditProfile from "./EditProfile"
 import UploadImage from "./UploadImage"
 import Requests from './Requests'
 import NewProfile from "./NewProfilePage";
+import UploadPortfolio from "./UploadPortfolio"
 
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -27,6 +28,7 @@ function Pages() {
             <Route path="/EditProfile" element={<EditProfile />} />
             <Route path="/UploadFile" element={<UploadImage />} />
             <Route path="/Requests" element={<Requests />} />
+            <Route path="/UploadPortfolio" element={<UploadPortfolio />} />
             <Route path="/test" element={<NewProfile/>} />
       </Routes>
     );
