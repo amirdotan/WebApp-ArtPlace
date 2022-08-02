@@ -8,7 +8,7 @@ const deleteImg = (img) => {
     const desertRef = ref(storage, img);
     // Delete the file
     deleteObject(desertRef).then(() => {
-        console.log("Succesfully deleted a file")
+        console.log(`Succesfully deleted ${img}`)
         // File deleted successfully
     }).catch((error) => {
         console.log(error);

@@ -8,8 +8,7 @@ const uploadImage =   (imageUpload, url) => {
     const imageName = `${url}/${imageUpload.name + v4()}`
     const imageRef = ref(storage, imageName);
      uploadBytes(imageRef, imageUpload).then(() => {
-        alert(`Image Uploaded`)
-    })
+   })
     return `${imageName}`
 };
 
