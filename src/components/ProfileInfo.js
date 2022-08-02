@@ -29,6 +29,12 @@ import Chip from '@mui/material/Chip';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import PortfolioPresenter from './PorfolioPresenter'
+import AddPortfolioPresenter from './AddPortfolioPresenter';
+import { CardActionArea } from '@mui/material';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+
 
 export default function RecipeReviewCard() {
   const user_name=data.users[0].first_name + " "+  data.users[0].last_name //this is the name of the firat object at db.json  
@@ -109,6 +115,7 @@ export default function RecipeReviewCard() {
               srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
+              
             />
           </ImageListItem>
         ))}
@@ -117,10 +124,55 @@ export default function RecipeReviewCard() {
     {/* now create a presenter for adding portfolio images  */}
     {/* create an object that alows uploading pics to the portfolio */}
     {/* fuck me right? */}
-
+    <AddPortfolioPresenter portfolio_link={portfolio_link}>
+    
+    
+    {/* <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > :not(style)': {
+          m: 0.5,
+          width: '45%',
+          height: 160,
+        },
+      }}
+    >
+      <Paper elevation={3} />
+      <Paper elevation={3} />
+      <Paper elevation={3} />
+      <Paper elevation={3} />
+      <Paper elevation={3} />
+      <Paper elevation={3} />
+    </Box> */}
+      
+      
+    <Card sx={{ maxWidth: 345 }}>
+        <CardMedia
+          component="img"
+          height="140"
+          image="/static/images/cards/contemplative-reptile.jpg"
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Hey There :)
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            This is the spot for you to showcase your creativity!
+            Adding a portfolio helps find better fitting partners, give it a try...
+          </Typography>
+        </CardContent>
+        <Button variant="contained" onClick={() => navigate("/")}>Get Started</Button>
+    </Card>
+    </AddPortfolioPresenter>
     </>
   );
 }
+
+
+
+
 
 
 const itemData = [
