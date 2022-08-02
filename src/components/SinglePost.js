@@ -86,11 +86,7 @@ useEffect(() => {
       />
 
       <CardContent>
-<<<<<<< Updated upstream
         <Typography variant="First and last name">
-=======
-        <Typography variant="title" >
->>>>>>> Stashed changes
         {title}
         </Typography>
         </CardContent>
