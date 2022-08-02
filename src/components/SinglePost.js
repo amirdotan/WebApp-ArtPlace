@@ -67,29 +67,22 @@ useEffect(() => {
   return (
     <Card className= 'singlepost' sx={{ maxWidth: '80%',margin: 5}}>
   
-    <CardHeader textAlign="left"
-        avatar={
-          <Avatar onClick = {handleAvatarClick} sx={{ bgcolor: red[400] }} aria-label="recipe">
-            {first_name[0]}
-          </Avatar>
-        }
-        
-        title= {first_name +" "+ last_name} 
-        // subheader= {skilllist}
-      />
+          <CardHeader textAlign="center" sx={{  display: 'flex', 'text-align': 'left', float: 'left' }}
+              avatar={
+                  <Avatar onClick={handleAvatarClick} sx={{ bgcolor: red[400]}} aria-label="recipe">
+                      {first_name[0]}
+                  </Avatar>
+              }
 
+              title={title}
+              subheader={first_name + " " + last_name}
+      />
       <CardMedia
         component="img"
         height="194"
         image={imgUrl}
         alt="No more relevent posts for you, please try again later"
       />
-
-      <CardContent>
-        <Typography variant="First and last name">
-        {title}
-        </Typography>
-        </CardContent>
       <CardContent>
         <Typography paragraph>
           {short_description}
@@ -107,15 +100,16 @@ useEffect(() => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-        <Typography paragraph>Necessary skills for the project:</Typography>
-          <Typography paragraph>
-          {skilllist}
-          </Typography>
-          <Typography paragraph>Extensive description:</Typography>
-          <Typography paragraph>
-          {long_description}
-          </Typography>
+                  <Typography paragraph variant="h6">Project Description:</Typography>
+            <Typography paragraph>
+                {long_description}
+            </Typography>
         </CardContent>
+              <Typography paragraph variant="h6" >Skills relavnt for the project:</Typography>
+          <Typography paragraph >
+                  {skilllist.map((skill) => " " + skill )}
+          </Typography>
+
       </Collapse>
     </Card>
   );
