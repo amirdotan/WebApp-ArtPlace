@@ -11,33 +11,52 @@ import Checkbox from '@mui/material/Checkbox';
 import GetSkills from '../data/GetSkills';
 import uploadImage from '../pages/UploadImage';
 import { getAuth} from 'firebase/auth'
-
+import updatePortfolioInDB from '../components/UpdatePortfolioInDB';
 
 
 export default function UploadPorfolio(){
 
     const [image, setImage] = useState(null);
     const [imageURLs, setImageURLs] = useState([]);
-
+    const [imageList, setImageList] = useState([]);
     const auth = getAuth();
     const curr_user = auth.currentUser;
 
-    const imageref = uploadImage(image, "post_images");
 
     useEffect(() => {
         if (image == null) return;
+        if (imageURLs.length == 6) {
+            alert("Only 6 images are Allowed");
+            return;
+        }
+        // Add to imageURLs for presenting
         const newImageURL = URL.createObjectURL(image);
-        const temp = [...imageURLs];
-        temp.push(newImageURL)
-        setImageURLs(temp);
+        const tempURLs = [...imageURLs];
+        tempURLs.push(newImageURL)
+        setImageURLs(tempURLs);
+        // Add to imagesList to pass to db
+        const tempImageList = [...imageList];
+        tempImageList.push(image);
+        setImageList(tempImageList);
     }, [image]);
 
     function handleImageChange(e) {
         setImage(e.target.files[0]);
     }
 
+    function updateImagesClick(e) {
+        if (imageList.length != 6) {
+            alert("You Have to upload 6 images for your portfolio");
+            return;
+        }
+        updatePortfolioInDB(imageList);
+    }
+
 return(
     <>
+    <Button onClick={updateImagesClick}>
+            send
+    </Button>
     <Button
         variant="contained"
         component="label"
@@ -50,9 +69,6 @@ return(
             />
     </Button>
     {imageURLs.map(imageSrc => <img src={imageSrc} className="addpostimg" />)}
-    <Button>
-        send
-    </Button>
     </>
 );
 }

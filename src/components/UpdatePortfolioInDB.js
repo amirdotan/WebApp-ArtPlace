@@ -17,17 +17,17 @@ import deletePortfolio from './DeletePortfolio';
 
 const auth = getAuth();
 
-const UpdatePortfolio = async (img1, img2, img3, img4, img5, img6) => {
+const UpdatePortfolio = async (imgList) => {
     const curr_user = auth.currentUser;
 
 
     const UploadPortfolioImages = async (users) => {
-        const imageref1 = uploadImage(img1, `users/user_${curr_user.uid}`);
-        const imageref2 = uploadImage(img2, `users/user_${curr_user.uid}`);
-        const imageref3 = uploadImage(img3, `users/user_${curr_user.uid}`);
-        const imageref4 = uploadImage(img4, `users/user_${curr_user.uid}`);
-        const imageref5 = uploadImage(img5, `users/user_${curr_user.uid}`);
-        const imageref6 = uploadImage(img6, `users/user_${curr_user.uid}`);
+        const imageref1 = uploadImage(imgList[0], `users/user_${curr_user.uid}`);
+        const imageref2 = uploadImage(imgList[1], `users/user_${curr_user.uid}`);
+        const imageref3 = uploadImage(imgList[2], `users/user_${curr_user.uid}`);
+        const imageref4 = uploadImage(imgList[3], `users/user_${curr_user.uid}`);
+        const imageref5 = uploadImage(imgList[4], `users/user_${curr_user.uid}`);
+        const imageref6 = uploadImage(imgList[5], `users/user_${curr_user.uid}`);
 
         return [users, [imageref1, imageref2, imageref3, imageref4, imageref5, imageref6]];
     }
