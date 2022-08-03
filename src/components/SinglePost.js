@@ -24,7 +24,8 @@ import { useNavigate } from 'react-router-dom';
 import data from '../data/posts.json'
 import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../firebase';
-
+import getUserData from './GetUserData';
+import { getAuth } from 'firebase/auth'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -37,7 +38,17 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+const auth = getAuth();
+
 export default function RecipeReviewCard({img, first_name, last_name,skilllist, short_description, long_description, title, imgUrl, setImgURL, expanded, setExpanded}) {
+
+    const curr_user = auth.currentUser;
+    const [relevantSkills, setRelevantSkills] = useState([])
+    const [nonRelevantSkills, setNonRelevantSkills] = useState([])
+    const [relSkillsTitle, setRelSkillsTitle] = useState("Your Relevant Skills:")
+    const [nonRelSkillsTitle, setNonRelSkillsTitle] = useState("Other Relevant Skills:")
+    const [imgAlt, setImgAlt] = useState("");
+    const [projDescTitle, setProjDescTitle] = useState("Project Description:");
 
 const handleExpandClick = () => {
   setExpanded(!expanded);
@@ -63,7 +74,86 @@ useEffect(() => {
   }
   loadImg();
 })
-
+    // This Use effect updates relevant and nonRelevant List and their titles
+    useEffect(() => {
+        getUserData()
+            .then((users) => {
+                var tempRelSkills = [];
+                var tempNonRelSkills = [];
+                users.forEach((user) => {
+                    // find active user
+                    if (user.uid == curr_user.uid) {
+                        // Map skills to relevant and non relevant
+                        skilllist.forEach((skill) => {
+                            if (user.skills.includes(skill)) {
+                                tempRelSkills.push(skill);
+                            }
+                            else {
+                                tempNonRelSkills.push(skill);
+                            }
+                        })
+                        var counter = 1;
+                        var tempRelWithCommas = [];
+                        var tempNonRelWithCommas = [];
+                        // Add commas to rel list
+                        tempRelSkills.forEach((skill) => {
+                            if (counter < tempRelSkills.length)
+                            {
+                                tempRelWithCommas.push(skill + ",");
+                                counter++;
+                            }
+                            else { tempRelWithCommas.push(skill) }
+                        })
+                        // Add commas to NonRel list
+                        counter = 1;
+                        tempNonRelSkills.forEach((skill) => {
+                            if (counter < tempNonRelSkills.length) {
+                                tempNonRelWithCommas.push(skill + ",");
+                                counter++;
+                            }
+                            else { tempNonRelWithCommas.push(skill) }
+                        })
+                        // Set rel and nonRel with commas 
+                        setNonRelevantSkills(tempNonRelWithCommas);
+                        setRelevantSkills(tempRelWithCommas);
+                        return;
+}
+                })
+            })
+ 
+    }, [skilllist])
+    // Updates Relevant Skill title according to Relevant skills
+    useEffect(() => {
+        if (relevantSkills.length == 0) {
+            setRelSkillsTitle("");
+        }
+        else {
+            setRelSkillsTitle("Your Relevant Skills:");
+        }
+    }, [relevantSkills])
+        // Updates NonRelevant Skill title according to Relevant skills and Non Relevant skills
+    useEffect(() => {
+        if (nonRelevantSkills.length != 0 && relevantSkills.length == 0) {
+            setNonRelSkillsTitle("Necessary Skills:");
+        }
+        else if (nonRelevantSkills.length == 0) {
+            setNonRelSkillsTitle("");
+        }
+        else {
+            setNonRelSkillsTitle("Other Necessary Skills:");
+        }
+    }, [relevantSkills, nonRelevantSkills])
+    // Sets State when out of posts
+    useEffect(() => {
+        if (img) {
+            setImgAlt("Loading...")
+            setProjDescTitle("Project Description:")
+        }
+        else {
+            setImgAlt("Out of posts, try again later")
+            setProjDescTitle("")
+        }
+    })
   return (
     <Card className= 'singlepost' sx={{ maxWidth: '80%',margin: 5}}>
   
@@ -78,10 +168,10 @@ useEffect(() => {
               subheader={first_name + " " + last_name}
       />
       <CardMedia
-        component="img"
-        height="194"
-        image={imgUrl}
-        alt="No more relevent posts for you, please try again later"
+              component="img"
+              height="194"
+              image={imgUrl}
+              alt={ imgAlt }
       />
       <CardContent>
         <Typography paragraph>
@@ -100,16 +190,23 @@ useEffect(() => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-                  <Typography paragraph variant="h6">Project Description:</Typography>
+
+                  <Typography paragraph variant="h6">{projDescTitle }</Typography>
             <Typography paragraph>
                 {long_description}
-            </Typography>
-        </CardContent>
-              <Typography paragraph variant="h6" >Skills relavnt for the project:</Typography>
-          <Typography paragraph >
-                  {skilllist.map((skill) => " " + skill )}
-          </Typography>
+                  </Typography>
 
+                  <Typography paragraph variant="h6" >{relSkillsTitle}</Typography>
+                  <Typography paragraph >
+                      {relevantSkills.map((skill) => <b> {skill}</b>)}
+                  </Typography>
+
+                  <Typography paragraph variant="h6" >{nonRelSkillsTitle}</Typography>
+                  <Typography paragraph >
+                      {nonRelevantSkills.map((skill) => " " + skill)}
+                  </Typography>
+
+              </CardContent>
       </Collapse>
     </Card>
   );
