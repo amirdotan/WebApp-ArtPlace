@@ -16,38 +16,38 @@ import { getAuth } from 'firebase/auth';
 
 
 export default function Profile() {
-    const navigate = useNavigate();
-    // if (docSnap.exists()) {
-    //     console.log("Document data:", docSnap.data());
-    //   } else {
-    //     // doc.data() will be undefined in this case
-    //     console.log("No such document!");
-    //   }
+    // const navigate = useNavigate();
+    // // if (docSnap.exists()) {
+    // //     console.log("Document data:", docSnap.data());
+    // //   } else {
+    // //     // doc.data() will be undefined in this case
+    // //     console.log("No such document!");
+    // //   }
     
-    const [profileDb, setProfileDb] = useState([]);
-    const auth = getAuth();
-    const curr_user = auth.currentUser
+    // const [profileDb, setProfileDb] = useState([]);
+    // const auth = getAuth();
+    // const curr_user = auth.currentUser
 
-    useEffect(() => {
-      const getProfile = async () => {
-        const usersDocRef = doc(db, "users", "user_"+curr_user.uid);
-        const docSnap = await getDoc(usersDocRef);
-        if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-        setProfileDb(docSnap.data())
-      };
-      getProfile()
-    }, []);
+    // useEffect(() => {
+    //   const getProfile = async () => {
+    //     const usersDocRef = doc(db, "users", "user_"+curr_user.uid);
+    //     const docSnap = await getDoc(usersDocRef);
+    //     if (docSnap.exists()) {
+    //       console.log("Document data:", docSnap.data());
+    //     } else {
+    //       // doc.data() will be undefined in this case
+    //       console.log("No such document!");
+    //     }
+    //     setProfileDb(docSnap.data())
+    //   };
+    //   getProfile()
+    // }, []);
     
-    console.log(profileDb)
+
 
     return(
         <>
-            <ProfileInfo data = {profileDb}/>
+            <ProfileInfo/>
             {/* <ProfileSkills skills = {profileDb}/> */}
             {/* <ProfilePortfolio /> */}
         </>

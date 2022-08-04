@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { async } from '@firebase/util';
 import { collection, doc, getDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db, storage } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import Chip from '@mui/material/Chip';
 import ImageList from '@mui/material/ImageList';
@@ -34,6 +34,9 @@ import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import { getDownloadURL, ref } from 'firebase/storage';
+import '../styles/AddPortfolio.css'
+import { Grid } from '@mui/material';
 
 
 export default function RecipeReviewCard() {
@@ -52,6 +55,7 @@ export default function RecipeReviewCard() {
 
   const [avatar_letter, setAvatarLetter] = useState([]);
   const [portfolio_link, setPorfolioLink] = useState(false);
+  const [portfolioPics, setPortfolioPics] = useState([]);
   
   var img = document.createElement("img");  
   img.src = "../images/portfolio1.jpg"; 
@@ -62,24 +66,53 @@ export default function RecipeReviewCard() {
       const docSnap = await getDoc(usersDocRef);
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
+        // portfolio link is a flag representing wether the user uploaded a portfolio or not
         setPorfolioLink(docSnap.data().portfolio)
         
+        // if user uploaded a portofolio loop through it and load the relevant images
+        if (docSnap.data().portfolio == true ){ 
+          docSnap.data().uportfolio.forEach((pic_link) => {
+            var tempPortfolioPics = [...portfolioPics];
+            tempPortfolioPics.push(pic_link);
+            console.log(tempPortfolioPics)
+            setPortfolioPics(tempPortfolioPics);
+            console.log(portfolioPics)
+          })
+          console.log(portfolioPics)
+        } 
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
+      // set the profileDb variable to the user data
       setProfileDb(docSnap.data())
     };
     getProfile()
+    .then(() => {
+      console.log(portfolioPics)
+      portfolioPics.forEach((pic) => {
+        loadImg(pic)
+      })
+    })
+
+
   }, []);
 
 
 
-  console.log(portfolio_link)
-  console.log(avatar_letter)
+  // this function should load the pictures and add them to a list to later present in image list react object
+    const loadImg = async(img) => {
+      const imgRef = ref(storage, `${img}`);
+      getDownloadURL(imgRef)
+      .then((url) => {
+        const t = [...portfolioPics]
+        t.push(url)
+        console.log(t)
+        setPortfolioPics(t)
+        console.log(portfolioPics)
+      }).catch((error) => console.log(error))}
+
   
-
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -108,12 +141,12 @@ export default function RecipeReviewCard() {
     
     <PortfolioPresenter portfolio_link={portfolio_link}>
       <ImageList sx={{ width: '100%', height: '100%' }} cols={2} rowHeight={164}>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
+        {portfolioPics.map((item) => (
+          <ImageListItem key={item}>
             <img
-              src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
+              src={item}
+              srcSet={item}
+              alt={item}
               loading="lazy"
               
             />
@@ -129,26 +162,24 @@ export default function RecipeReviewCard() {
     {/* create an object that alows uploading pics to the portfolio */}
     {/* fuck me right? */}
     <AddPortfolioPresenter portfolio_link={portfolio_link}>
-    <Card sx={{ maxWidth: 345 }}>
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          Hey There :)
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          This is the spot for you to showcase your creativity!
-          Adding a portfolio helps find better fitting partners, give it a try...
-        </Typography>
-      </CardContent>
-      <Button variant="contained" onClick={() => navigate("/UploadPortfolio") } sx={{}} >Get Started</Button>
-    </Card>
+      {/* // this needs to be centerd try using css locator  */}
+      {/* const { classes } = props; */}
+      <Card sx={{ maxWidth: 345 }} class="addportfoliocard">
+        <CardContent>
+          <Typography gutterBottom variant="h6" component="div">
+            Hey There :)
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            This is the spot for you to showcase your creativity.
+            Adding a portfolio helps find better fitting partners, give it a try!
+          </Typography>
+        </CardContent>
+        <Button variant="contained" onClick={() => navigate("/UploadPortfolio") } sx={{}} >Get Started</Button>
+      </Card>
     </AddPortfolioPresenter>
     </>
   );
 }
-
-
-
-
 
 
 const itemData = [

@@ -56,7 +56,7 @@ const handleExpandClick = () => {
 
 const handleAvatarClick = (event) => {
   event.preventDefault();
-  navigate('/profile');} 
+  navigate('/NotMe');} 
 
 const navigate = useNavigate();
 

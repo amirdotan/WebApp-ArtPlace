@@ -10,6 +10,7 @@ import UploadImage from "./UploadImage"
 import Requests from './Requests'
 import NewProfile from "./NewProfilePage";
 import UploadPortfolio from "./UploadPortfolio"
+import NotMyProfile from "./NotMyProfile";
 
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -29,6 +30,7 @@ function Pages() {
             <Route path="/UploadFile" element={<UploadImage />} />
             <Route path="/Requests" element={<Requests />} />
             <Route path="/UploadPortfolio" element={<UploadPortfolio />} />
+            <Route path="/NotMe" element={<NotMyProfile/>}></Route>
             <Route path="/test" element={<NewProfile/>} />
       </Routes>
     );
