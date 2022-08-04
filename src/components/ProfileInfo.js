@@ -37,6 +37,13 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { getDownloadURL, ref } from 'firebase/storage';
 import '../styles/AddPortfolio.css'
 import { Grid } from '@mui/material';
+import { UserAuth } from '../context/Authcontext';
+import {
+    addDoc,
+    updateDoc,
+    deleteDoc,
+} from "firebase/firestore";
+import getUserData from './GetUserData';
 
 
 export default function RecipeReviewCard() {
@@ -50,7 +57,6 @@ export default function RecipeReviewCard() {
   const [profileDb, setProfileDb] = useState([]);
   const auth = getAuth();
   const curr_user = auth.currentUser
-
 
 
   const [avatar_letter, setAvatarLetter] = useState([]);
@@ -119,6 +125,22 @@ export default function RecipeReviewCard() {
 
   const navigate = useNavigate();
 
+  const [firstName, setFirstName] = useState(" ");
+
+  useEffect(() => {
+    const getUserData1 = async () => {
+      getUserData()
+      .then((users) => {
+        users.forEach((user) => {
+        if (user.uid == curr_user.uid) {
+          setFirstName(user.first_name)
+        }
+      })})
+    };
+    getUserData1();
+    })
+  
+
   return (
     <>
     <Card variant="outlined" color="primary" sx={{position:'static'}}>
@@ -126,7 +148,7 @@ export default function RecipeReviewCard() {
       <CardHeader sx={{}}
         avatar={
           <Avatar sx={{ bgcolor: 'primary'}} aria-label="recipe">
-            B
+            {firstName[0]}
           </Avatar>
         }
         title={profileDb.first_name + " " + profileDb.last_name}
