@@ -26,7 +26,7 @@ import AddPortfolioPresenter from '../components/AddPortfolioPresenter';
 import { getDownloadURL, ref } from 'firebase/storage';
 import '../styles/AddPortfolio.css'
 import getUserData from '../components/GetUserData';
-
+import DeletePost from '../components/DeletePost';
 
 export default function Profile() {
     const user_name = data.users[0].first_name + " " + data.users[0].last_name //this is the name of the firat object at db.json  
@@ -173,6 +173,10 @@ export default function Profile() {
                     </Button>
                 </Card>
             </AddPortfolioPresenter>
+
+            <Stack>
+                {profileDb.skills?.map((skill) => (DeletePost(skill)))}
+            </Stack>
         </>
     );
 }
