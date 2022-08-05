@@ -24,6 +24,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import posts from "../firebase";
 import GetSkills from '../data/GetSkills';
 import { db } from "../firebase";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 import {
     collection,
@@ -199,7 +201,7 @@ export default function Home() {
                 sx={{ position: 'relative', bottom : 10, right: 85 }}
                 onClick={handleUnlikeButton}
                 >
-                <CancelIcon/>
+                <ArrowBackIcon/>
             </Fab>
             <Fab
                 className='swiperight' 
@@ -208,7 +210,7 @@ export default function Home() {
                 sx={{ position: 'relative', bottom : 10, left: 85 }}
                 onClick={handleLikeButton}
                 >
-                <FavoriteBorderIcon />
+                <MailOutlineIcon/>
             </Fab>
             {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user } />}
             <br></br>
