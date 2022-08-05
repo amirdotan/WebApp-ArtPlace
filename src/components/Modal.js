@@ -81,9 +81,15 @@ const Modal = ({modalOpen, handleClose, uid}) => {
                 Text = "aaaaa"
                 exit = "exit"
                 >
-                <Alert severity="success" sx={{height: "70%"}}>
+                <Alert severity="success" sx={{height: "80%"}}>
                     <div>
-                        <p>Congratulations!</p> 
+                    <p><b>Congratulations!</b></p> 
+                        <p>We are happy to see that you found the right project to join!
+                        <br/>
+                        </p>    
+                        <div> 
+                        Now you can write an email to the project creator and tell him why you are the perfect match for this project
+                        {/* <p>Congratulations!</p> 
                         <p>Here are 3 animals we at PARTAKE love,
                         pick one and tell the user why:
                         <br/>
@@ -91,7 +97,7 @@ const Modal = ({modalOpen, handleClose, uid}) => {
                         <div> 
                         🦏 - Rhino
                         🦡 - Honey Budger
-                        🐦 - Bird
+                        🐦 - Bird */}
                         </div>
                     </div >
                     <br/>     

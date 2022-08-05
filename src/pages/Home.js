@@ -26,7 +26,7 @@ import GetSkills from '../data/GetSkills';
 import { db } from "../firebase";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import {
     collection,
     getDocs,
@@ -210,7 +210,7 @@ export default function Home() {
                 sx={{ position: 'relative', bottom : 10, left: 85 }}
                 onClick={handleLikeButton}
                 >
-                <MailOutlineIcon/>
+                <ThumbUpIcon/>
             </Fab>
             {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user } />}
             <br></br>
