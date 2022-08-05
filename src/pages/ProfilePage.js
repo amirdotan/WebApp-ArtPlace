@@ -137,15 +137,14 @@ export default function Profile() {
             </Stack>
 
             <PortfolioPresenter portfolio_link={portfolio_link}>
-                <ImageList sx={{ width: '100%', height: '100%' }} cols={2} rowHeight={164}>
+                <ImageList sx={{ width: '100%', height: '100%' }} cols={2} rowHeight={164} variant="quilted">
                     {portfolioPics.map((item) => (
-                        <ImageListItem key={item}>
+                        <ImageListItem key={item} >
                             <img
-                                src={item}
-                                srcSet={item}
+                                src={`${item}?w=248&fit=crop&auto=format&object-fit=cover`}
+                                srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
                                 alt={item}
                                 loading="lazy"
-
                             />
                         </ImageListItem>
                     ))}
