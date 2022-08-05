@@ -35,7 +35,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { getDownloadURL, ref } from 'firebase/storage';
-import '../styles/AddPortfolio.css'
+import '../styles/AddPortfolio.css';
 import { Grid } from '@mui/material';
 import { UserAuth } from '../context/Authcontext';
 import {
@@ -44,6 +44,7 @@ import {
     deleteDoc,
 } from "firebase/firestore";
 import getUserData from './GetUserData';
+import DeletePost from './DeletePost';
 
 
 export default function RecipeReviewCard() {
@@ -140,6 +141,7 @@ export default function RecipeReviewCard() {
     getUserData1();
     })
   
+  
 
   return (
     <>
@@ -199,6 +201,9 @@ export default function RecipeReviewCard() {
         <Button variant="contained" onClick={() => navigate("/UploadPortfolio") } sx={{}} >Get Started</Button>
       </Card>
     </AddPortfolioPresenter>
+    <Stack>
+      {profileDb.skills?.map((skill) => (DeletePost(skill)))}
+    </Stack>
     </>
   );
 }
