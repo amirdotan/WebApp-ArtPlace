@@ -14,19 +14,19 @@ export default function PostPreview({ imageURLs, title, shortDescription, longDe
     return (
         <React.Fragment>
             <Typography gutterBottom align="left">
-            <b>Project Title:</b>
+            <b>Project Title: </b>
                 {title}
             </Typography>
             <Typography gutterBottom align="left">
-                <b>Short Description:</b>
+                <b>Short Description: </b>
                 {shortDescription}
             </Typography>
             <Typography gutterBottom  style={{wordWrap: "break-word"}} align="left">
-            <b>Long Description:</b>
+            <b>Long Description: </b>
                 {longDescription}
             </Typography>
             <List  align="left" >
-            <b>Skills:</b>
+            <b>Skills: </b>
                 {skillList.map((value) => (
                     // <ListItem 
                     //     key={value}

@@ -78,6 +78,7 @@ export default function PostForm({ image, setImage, imageURLs, setImageURLs,
                         name="Short Description"
                         label="SkillsList"
                         fullWidth
+                        required
                         variant="standard"
                         options={SkillList}
                         getOptionLabel={option => option}
@@ -90,6 +91,7 @@ export default function PostForm({ image, setImage, imageURLs, setImageURLs,
                                 {...params}
                                 label="Necessary Skills"
                                 placeholder="Skills"
+                                required
                             />
                         )}
                     />

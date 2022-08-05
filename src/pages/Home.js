@@ -145,7 +145,8 @@ export default function Home() {
         // sx={{height:'100%'}}
         // disableScrollParentFix={true}
         <div>
-        <Autocomplete sx={{width: 1/2 ,ml: 5, mt:1}}
+        <Autocomplete sx={{width: 1/2 ,ml: 12, mt:2}}
+        // sx={{width: 1/2 ,ml: 5, mt:1}}
                     multiple
                     id="SkillsList"
                     name="Short Description"
@@ -167,7 +168,7 @@ export default function Home() {
                         />
                     )}
                 />
-            <Button variant="contained" sx={{position: 'absolute', top: 80, right: 40}}>Search</Button>
+            {/* <Button variant="contained" sx={{position: 'absolute', top: 80, right: 40}}>Search</Button> */}
             {/* <SinglePost
             first_name={data.posts[i].first_name}
             last_name={data.posts[i].last_name}

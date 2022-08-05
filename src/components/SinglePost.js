@@ -45,10 +45,10 @@ export default function RecipeReviewCard({img, first_name, last_name,skilllist, 
     const curr_user = auth.currentUser;
     const [relevantSkills, setRelevantSkills] = useState([])
     const [nonRelevantSkills, setNonRelevantSkills] = useState([])
-    const [relSkillsTitle, setRelSkillsTitle] = useState("Your Relevant Skills:")
-    const [nonRelSkillsTitle, setNonRelSkillsTitle] = useState("Other Relevant Skills:")
+    const [relSkillsTitle, setRelSkillsTitle] = useState("Your Relevant Skills: ")
+    const [nonRelSkillsTitle, setNonRelSkillsTitle] = useState("Other Relevant Skills: ")
     const [imgAlt, setImgAlt] = useState("");
-    const [projDescTitle, setProjDescTitle] = useState("Project Description:");
+    const [projDescTitle, setProjDescTitle] = useState("Project Description: ");
 
 const handleExpandClick = () => {
   setExpanded(!expanded);
@@ -129,26 +129,26 @@ useEffect(() => {
             setRelSkillsTitle("");
         }
         else {
-            setRelSkillsTitle("Your Relevant Skills:");
+            setRelSkillsTitle("Your Relevant Skills: ");
         }
     }, [relevantSkills])
         // Updates NonRelevant Skill title according to Relevant skills and Non Relevant skills
     useEffect(() => {
         if (nonRelevantSkills.length != 0 && relevantSkills.length == 0) {
-            setNonRelSkillsTitle("Necessary Skills:");
+            setNonRelSkillsTitle("Necessary Skills: ");
         }
         else if (nonRelevantSkills.length == 0) {
             setNonRelSkillsTitle("");
         }
         else {
-            setNonRelSkillsTitle("Other Necessary Skills:");
+            setNonRelSkillsTitle("Other Necessary Skills: ");
         }
     }, [relevantSkills, nonRelevantSkills])
     // Sets State when out of posts
     useEffect(() => {
         if (img) {
             setImgAlt("Loading...")
-            setProjDescTitle("Project Description:")
+            setProjDescTitle("Project Description: ")
         }
         else {
             setImgAlt("Out of posts, try again later")
@@ -176,7 +176,7 @@ useEffect(() => {
               alt={ imgAlt }
       />
       <CardContent>
-        <Typography paragraph>
+        <Typography paragraph variant="h6">
           {short_description}
         </Typography>
       </CardContent>
@@ -193,18 +193,18 @@ useEffect(() => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
 
-                  <Typography paragraph variant="h6">{projDescTitle }</Typography>
-            <Typography paragraph>
+                  <Typography paragraph variant="h6" align="left">{projDescTitle }</Typography>
+            <Typography paragraph align="left">
                 {long_description}
                   </Typography>
 
-                  <Typography paragraph variant="h6" >{relSkillsTitle}</Typography>
-                  <Typography paragraph >
+                  <Typography paragraph variant="h6" align="left">{relSkillsTitle}</Typography>
+                  <Typography paragraph align="left">
                       {relevantSkills.map((skill) => <b> {skill}</b>)}
                   </Typography>
 
-                  <Typography paragraph variant="h6" >{nonRelSkillsTitle}</Typography>
-                  <Typography paragraph >
+                  <Typography paragraph variant="h6" align="left">{nonRelSkillsTitle}</Typography>
+                  <Typography paragraph align="left">
                       {nonRelevantSkills.map((skill) => " " + skill)}
                   </Typography>
 
