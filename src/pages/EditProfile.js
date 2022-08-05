@@ -94,7 +94,6 @@ const navigate = useNavigate();
       const usersDocRef = doc(db, "users", "user_"+curr_user.uid);
       const docSnap = await getDoc(usersDocRef);
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
         setProfileDb(docSnap.data())   
       } else {
         // doc.data() will be undefined in this case

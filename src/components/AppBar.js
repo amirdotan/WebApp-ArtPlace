@@ -85,7 +85,7 @@ const ResponsiveAppBar = () => {
       getUserData()
       .then((users) => {
         users.forEach((user) => {
-        if (user.uid == curr_user.uid) {
+        if (user.uid == curr_user?.uid) {
           setFirstName(user.first_name)
         }
       })})
