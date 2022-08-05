@@ -89,10 +89,10 @@ const ResponsiveAppBar = () => {
         }
       })})
     };
-    getUserData1();
-    })
-
-
+    if (curr_user) {
+      getUserData1();
+    }
+    }, [])
 
   
 
