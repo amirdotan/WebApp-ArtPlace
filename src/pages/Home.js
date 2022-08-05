@@ -24,7 +24,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import posts from "../firebase";
 import GetSkills from '../data/GetSkills';
 import { db } from "../firebase";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import {
@@ -198,16 +198,16 @@ export default function Home() {
                 className='swiperight' 
                 color="primary" 
                 aria-label="add" 
-                sx={{ position: 'relative', bottom : 10, right: 85 }}
+                sx={{ position: 'relative', bottom : 10, left: 120 }}
                 onClick={handleUnlikeButton}
                 >
-                <ArrowBackIcon/>
+                <ArrowForwardIcon/>
             </Fab>
             <Fab
                 className='swiperight' 
                 color="primary" 
                 aria-label="add" 
-                sx={{ position: 'relative', bottom : 10, left: 85 }}
+                sx={{ position: 'relative', bottom : 10, right: 120 }}
                 onClick={handleLikeButton}
                 >
                 <ThumbUpIcon/>
