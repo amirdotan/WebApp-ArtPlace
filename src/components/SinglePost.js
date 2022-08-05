@@ -25,7 +25,7 @@ import data from '../data/posts.json'
 import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../firebase';
 import getUserData from './GetUserData';
-import { getAuth } from 'firebase/auth'
+import { getAuth } from 'firebase/auth';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;

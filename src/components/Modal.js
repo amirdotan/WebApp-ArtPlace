@@ -84,11 +84,11 @@ const Modal = ({modalOpen, handleClose, uid}) => {
                 <Alert severity="success" sx={{height: "80%"}}>
                     <div>
                     <p><b>Congratulations!</b></p> 
-                        <p>We are happy to see that you found the right project to join!
+                        <p>How exciting, you have found an interesting project to join!
                         <br/>
                         </p>    
                         <div> 
-                        Now you can write an email to the project creator and tell him why you are the perfect match for this project
+                        Write an email to the project creator and tell them why you are the perfect match for this project
                         {/* <p>Congratulations!</p> 
                         <p>Here are 3 animals we at PARTAKE love,
                         pick one and tell the user why:
