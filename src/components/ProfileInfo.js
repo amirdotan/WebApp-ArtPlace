@@ -145,7 +145,7 @@ export default function RecipeReviewCard() {
     <>
     <Card variant="outlined" color="primary" sx={{position:'static'}}>
     <Button onClick={() => navigate("/EditProfile")} color="primary" sx={{display: 'flex', flexdirection: 'row', justifyContent:'right', right: '-80%'}}>Edit</Button>
-      <CardHeader sx={{}}
+      <CardHeader textAlign="center" sx={{  display: 'flex', 'text-align': 'left', float: 'left' }}
         avatar={
           <Avatar sx={{ bgcolor: 'primary'}} aria-label="recipe">
             {firstName[0]}

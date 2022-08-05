@@ -189,6 +189,7 @@ export default function Home() {
                 last_name={lastName}
                 expanded = {expanded}
                 setExpanded = {setExpanded}
+                postUserId ={postsDb[i]?.user?? ''}
             />}
             <Fab
                 className='swiperight' 

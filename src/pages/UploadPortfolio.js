@@ -17,8 +17,11 @@ import ImageListItem from '@mui/material/ImageListItem';
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from '../firebase';
 import { async } from '@firebase/util';
+import { useNavigate } from 'react-router-dom';
 
 export default function UploadPorfolio(){
+
+    const navigate = useNavigate();
 
     const [image, setImage] = useState(null);
     const [imageURLs, setImageURLs] = useState([]);
@@ -61,7 +64,7 @@ export default function UploadPorfolio(){
         updateDoc(usersRef, {
             portfolio: true
           });
-
+        navigate('/profile')
     }
 
 return(
@@ -83,7 +86,7 @@ return(
         ))}
     </ImageList>
     <Button onClick={updateImagesClick}>
-            send
+            Done
     </Button>
     <Button
         variant="contained"

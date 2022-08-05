@@ -16,9 +16,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import data from '../data/db.json'
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { getAuth } from 'firebase/auth';
+import { Autocomplete } from '@mui/material';
+import GetSkills from '../data/GetSkills';
+import { uploadString } from 'firebase/storage';
+
+
+
+
 
 
 //const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
@@ -50,28 +57,37 @@ const theme = createTheme({
 
 export default function SignUp() {
 const [skillList, setSkillList] = useState([])
-const first_name = "Ayelet"
-const last_name = "Cohen"
-const skills = "skill 1, skill 2, skill 3"
-const field_of_study="Industrial Design"
-const current_year = "second"
+const SkillList = GetSkills();
+
+
+const auth = getAuth();
+const curr_user = auth.currentUser
+
+
 
 const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try{
+      const user_details = {
+        first_name : data.get("firstName"),
+        last_name : data.get("lastName"),
+        short_description : data.get("description"),
+        skills : skillList,
+        field : data.get("study"),
+      }
+      const usersDocRef = doc(db, "users", "user_"+curr_user.uid);
+      await updateDoc(usersDocRef,{ user_details })
+      navigate('/profile')
+      console.log('data updated :)')
+    }catch(e){
+      console.log(e.message)
+    }
   };
 
   const [profileDb, setProfileDb] = useState([]);
-  const [f_name, setf_name] = useState('');
-
-  const auth = getAuth();
-  const curr_user = auth.currentUser
 
   useEffect(() => {
     const getProfile = async () => {
@@ -79,21 +95,16 @@ const navigate = useNavigate();
       const docSnap = await getDoc(usersDocRef);
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
-        
+        setProfileDb(docSnap.data())   
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
-      setProfileDb(docSnap.data())
     };
     getProfile()
   }, []);
 
-  useEffect(() => {
-      setf_name(profileDb.first_name)
-  }, [profileDb]);
 
-  console.log(profileDb.first_name)
 
     return (
         <ThemeProvider theme={theme}>
@@ -111,22 +122,21 @@ const navigate = useNavigate();
                         <EditIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Profile Info
+                        Edit your profile
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }} key={profileDb}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
-                              {f_name != '' &&
-                                <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    defaultValue= 'hesssllo'
-                                    autoFocus
-                                />}
+                              <TextField
+                                  autoComplete="given-name"
+                                  name="firstName"
+                                  required
+                                  fullWidth
+                                  id="firstName"
+                                  label="First Name"
+                                  defaultValue= {profileDb.first_name}
+                                  // autoFocus
+                              />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -135,7 +145,7 @@ const navigate = useNavigate();
                                     id="lastName"
                                     label="Last Name"
                                     name="lastName"
-                                    defaultValue= {f_name}
+                                    defaultValue= {profileDb.last_name}
                                     autoComplete="family-name"
                                 />
                             </Grid>
@@ -145,7 +155,7 @@ const navigate = useNavigate();
                                     fullWidth
                                     id="study"
                                     label= "Field of Study"
-                                    defaultValue= {data.users[0].field_of_study}
+                                    defaultValue= {profileDb.field}
                                     name="study"
 
                                 />
@@ -156,18 +166,32 @@ const navigate = useNavigate();
                                     fullWidth
                                     id="current year"
                                     label="current year"
-                                    defaultValue= {data.users[0].current_year} 
+                                    defaultValue= "DATA NOT GATHERD"
                                     name="email"
                                     autoComplete="email"
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="skills"
-                                    label="Your skills"
-                                    name="skills"
+                                <Autocomplete
+                                     multiple
+                                     id="SkillsList"
+                                     name="Short Description"
+                                     label="SkillsList"
+                                     fullWidth
+                                     variant="standard"
+                                     options={SkillList}
+                                     getOptionLabel={option => option}
+                                     defaultValue={profileDb.skills}
+                                     filterSelectedOptions
+                                     onChange={(event, value) => setSkillList(value)}
+                                
+                                     renderInput={(params) => (
+                                         <TextField
+                                             {...params}
+                                             label="Skills"
+                                             placeholder="Skills"
+                                         />
+                                     )}
 
                                 />
                             </Grid>
@@ -177,7 +201,7 @@ const navigate = useNavigate();
                                     fullWidth
                                     id="description"
                                     label = "short description"
-                                    defaultValue= {data.users[0].short_description} 
+                                    defaultValue= {profileDb.short_description} 
                                     name="description"
                                     autoComplete="description"
                                     multiline
@@ -190,7 +214,7 @@ const navigate = useNavigate();
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick = {() => navigate("/Profile")}
+              // onClick = {navigate("/Profile")}
             >
               Update Changes
             </Button>

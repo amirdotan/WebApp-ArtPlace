@@ -40,7 +40,7 @@ const ExpandMore = styled((props) => {
 
 const auth = getAuth();
 
-export default function RecipeReviewCard({img, first_name, last_name,skilllist, short_description, long_description, title, imgUrl, setImgURL, expanded, setExpanded}) {
+export default function RecipeReviewCard({img, first_name, last_name,skilllist, short_description, long_description, title, imgUrl, setImgURL, expanded, setExpanded, postUserId}) {
 
     const curr_user = auth.currentUser;
     const [relevantSkills, setRelevantSkills] = useState([])
@@ -56,7 +56,8 @@ const handleExpandClick = () => {
 
 const handleAvatarClick = (event) => {
   event.preventDefault();
-  navigate('/NotMe');} 
+  console.log(postUserId)
+  navigate('/NotMe', {state: {profileId: postUserId}});} 
 
 const navigate = useNavigate();
 
@@ -154,6 +155,7 @@ useEffect(() => {
             setProjDescTitle("")
         }
     })
+
   return (
     <Card className= 'singlepost' sx={{ maxWidth: '80%',margin: 5}}>
   
