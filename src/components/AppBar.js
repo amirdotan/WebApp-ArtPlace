@@ -31,7 +31,7 @@ import getUserData from './GetUserData';
 
 
 const auth = getAuth();
-const curr_user = auth.currentUser;
+var curr_user =  auth.currentUser;
 
 
 // This is the upper navigation bar presenting our logo and offering the user the ability to enter his profile.
@@ -81,6 +81,7 @@ const ResponsiveAppBar = () => {
 
   useEffect(() => {
     const getUserData1 = async () => {
+      var curr_user = await auth.currentUser;
       getUserData()
       .then((users) => {
         users.forEach((user) => {
@@ -89,11 +90,12 @@ const ResponsiveAppBar = () => {
         }
       })})
     };
+
     if (curr_user) {
       getUserData1();
     }
-    }, [])
-
+    getUserData1()
+      })
   
 
   return (
