@@ -132,6 +132,7 @@ useEffect(() => {
     }, [relevantSkills])
         // Updates NonRelevant Skill title according to Relevant skills and Non Relevant skills
     useEffect(() => {
+        console.log("Hello")
         if (nonRelevantSkills.length != 0 && relevantSkills.length == 0) {
             setNonRelSkillsTitle("Necessary Skills: ");
         }

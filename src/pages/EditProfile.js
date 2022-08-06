@@ -56,7 +56,8 @@ const theme = createTheme({
   });
 
 export default function SignUp() {
-const [skillList, setSkillList] = useState([])
+    const [skillList, setSkillList] = useState([])
+    const [usersDocRef, setUsersDocRef] = useState("")
 const SkillList = GetSkills();
 
 
@@ -91,8 +92,9 @@ const navigate = useNavigate();
 
   useEffect(() => {
     const getProfile = async () => {
-      const usersDocRef = doc(db, "users", "user_"+curr_user.uid);
-      const docSnap = await getDoc(usersDocRef);
+        const usersDocR = doc(db, "users", "user_" + curr_user.uid);
+        setUsersDocRef(usersDocR);
+        const docSnap = await getDoc(usersDocR);
       if (docSnap.exists()) {
         setProfileDb(docSnap.data())   
       } else {
