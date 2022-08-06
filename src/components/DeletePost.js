@@ -25,9 +25,10 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 
-export default function DeletePost(postName, postObj) {
-  const handleDeleteClick = (postObj) => {
-    DeletePostDB(postObj);
+export default function DeletePost(postName, postObj, setDeletedFlag) {
+    const handleDeleteClick = async() => {
+        await DeletePostDB(postObj);
+         setDeletedFlag(true);
   };
   return (
     <Box sx={{ width: '100%' }} onClick={handleDeleteClick}>

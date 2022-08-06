@@ -50,6 +50,7 @@ export default function Profile() {
     const [postsListTitles, setPostsListTitles] = useState([]);
     const [postsListObjects, setPostsListObjects] = useState([]);
     const [users, setUsers] = useState("")
+    const [deletedFlag, setDeletedFlag] = useState("false")
 
     const navigate = useNavigate();
     // Loads Users
@@ -61,27 +62,36 @@ export default function Profile() {
         }
         loadUsers()
     }, [])
-
+    // load images
     useLayoutEffect(() => {
-        async function getData() {
-            const users = await getUserData()
-            const UsersAndCurrUser = await getUsersAndCurrUser(users)
-            const data = await getSpecificUser(UsersAndCurrUser)
+        if (users) {
+            getSpecificUser()
         }
-        getData()
     }, [users])
+    
+    const getSpecificUser = async () => {
+        users?.forEach(async (user) => {
+            if (user.uid == curr_user?.uid) {
+                setProfileDb(user)
 
+                if (user?.uportfolio && user?.uportfolio != []) {
+                    const tempList = await downloadImgRef(user)
+                    setPortfolioPics(tempList)
+
+                    return user.uportfolio
+                }
+
+            }
+        })
+    }
+    // define if portfolio exists
     useEffect(() => {
         if (profileDb?.portfolio) {
             setPorfolioLink(true)
         }
     }, [portfolioPics])
 
-    const getUsersAndCurrUser = async (users) => {
-        var curr_user = await auth.currentUser
-        return [users, curr_user]
-    }
-
+    // download all images in url format
     const downloadImgRef = async (user) => {
         var tempList = []
         for (var i = 0; i < 6; ++i) {
@@ -97,70 +107,50 @@ export default function Profile() {
         }
         return tempList
     }
-    const getSpecificUser = async (UsersAndCurrUser) => {
-        var users = UsersAndCurrUser[0]
-        var curr_user = UsersAndCurrUser[1]
-        users.forEach(async (user) => {
-            if (user.uid == curr_user?.uid) {
-                setProfileDb(user)
 
-                if (user?.uportfolio && user?.uportfolio != []) {
-                    const tempList = await downloadImgRef(user)
-                    setPortfolioPics(tempList)
-
-                    return user.uportfolio
-                }
-
-            }
-        })
-    }
-
+    // update user name and all users posts
     useEffect(() => {
         const getUserData1 = async () => {
-
-                    users.forEach((user) => {
+                    users?.forEach((user) => {
                         if (user.uid == curr_user?.uid) {
                             setFirstName(user.first_name)
                             setPostsList(user.uposts);
                         }
                     })
         };
-        getUserData1();
-    },[users])
+        if (users) {
+            getUserData1();
+        }
+    }, [users])
 
-
-    // useEffect(() => {
-    //     const getPostsTitles = async () => {
-    //         for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
-    //             const docRef = doc(db, "posts", postsList[element_ind]);
-    //             const docSnap = await getDoc(docRef);
-    //             console.log(docSnap)
-    //             setPostsListTitles(postsListTitles => [...postsListTitles, docSnap.title])
-    //     } 
-    // }
-    //     getPostsTitles()
-    // },[])
-
+    // Rerender after delete
     useEffect(() => {
-        const getPostsTitles = async () => {
-            const curr_titles = []
-            const curr_Objects = []
-            for (var element_ind = 0; element_ind < postsList.length; element_ind++) {
-                const docRef = doc(db, "posts", postsList[element_ind]);
-                console.log(docRef)
-                const docSnap = await getDoc(docRef);
-                console.log(docSnap)
-                console.log(docSnap.data())
 
-                if(docSnap.data() && docSnap.data()?.title){
-                    curr_titles.push(docSnap.data().title)
-                    curr_Objects.push(docSnap.data())
-                }
+        if (deletedFlag == false) {
+            return
+        }
+        setDeletedFlag(false)
+        getPostsTitles()
+    }, [deletedFlag])
 
+    const getPostsTitles = async () => {
+        const curr_titles = []
+        const curr_Objects = []
+        for (var element_ind = 0; element_ind < postsList.length; element_ind++) {
+            const docRef = doc(db, "posts", postsList[element_ind]);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.data() && docSnap.data()?.title) {
+                curr_titles.push(docSnap.data().title)
+                curr_Objects.push(docSnap.data())
             }
-            setPostsListTitles(curr_titles)
-            setPostsListObjects(curr_Objects)
-        };
+
+        }
+        setPostsListTitles(curr_titles)
+        setPostsListObjects(curr_Objects)
+    };
+    // Get post titles
+    useEffect(() => {
         getPostsTitles();
     },[postsList])
 
@@ -227,7 +217,7 @@ export default function Profile() {
                 height: !portfolio_link ? '85vh' : '10vh',
                 position: 'flex'
             }} >
-                {postsListTitles?.map((post,i) => (DeletePost(post, postsListObjects[i])))}
+                {postsListTitles?.map((post, i) => (DeletePost(post, postsListObjects[i], setDeletedFlag)))}
             </Stack>
         </div>
     );

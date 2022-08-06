@@ -5,21 +5,19 @@ import deleteDocument from './DeleteDoc';
 import deleteImg from './DeleteImg';
 
 const deletePost = async (document, post_collections="posts") => {
-    console.log(document)
-    deleteDocument(post_collections, document);
+
+    await deleteDocument(post_collections, document);
     const usersRef = doc(db, 'users', 'user_' + `${document.user}`)
     const docSnap = await getDoc(usersRef);
     if (docSnap.exists()) {
         const tempPosts = docSnap.data()?.uposts;
-        console.log(tempPosts)
+
         try {
             for (var i = 0; i < tempPosts.length; i++) {
-                if (("posts/" + tempPosts[i]) === document.doc_id) {
-                    const postRef = doc(db, 'posts', tempPosts[i])
-                    
+                if ((tempPosts[i]) == document.doc_id?.id) {
+
                     tempPosts.splice(i, 1);
-                    console.log(tempPosts)
-                    await updateDoc(postRef, {
+                    await updateDoc(usersRef, {
                         uposts: tempPosts
                     });
                     break;
