@@ -5,7 +5,7 @@ import { UserAuth } from '../context/Authcontext';
 
 const AddPortfolioPresenter = ({portfolio_link ,children }) => {
 
-    if (!portfolio_link){
+    if (portfolio_link ==false){
         return children
 
     }

@@ -54,14 +54,14 @@ export default function UploadPorfolio(){
         setImage(e.target.files[0]);
     }
 
-    function updateImagesClick(e) {
+    async function updateImagesClick (e)  {
         if (imageList.length != 6) {
             alert("You Have to upload 6 images to your portfolio");
             return;
         }
-        updatePortfolioInDB(imageList);
+        await updatePortfolioInDB(imageList);
         // maybe needs to ne async?
-        updateDoc(usersRef, {
+        await updateDoc(usersRef, {
             portfolio: true
           });
         navigate('/profile')
@@ -69,10 +69,10 @@ export default function UploadPorfolio(){
 
 return(
     <>
-    <Typography>
+        <Typography sx={{'padding-top': '15px' } } variant="h6">
     Add six photos to your portfolio
     </Typography>
-    <ImageList sx={{ width: '100%', height: '100%' }} cols={2} rowHeight={164}>
+        <ImageList sx={{ width: '100%', height: '100%' }} cols={2} rowHeight={164} variant="quilted">
         {imageURLs.map(item => (
           <ImageListItem key={item} >
             <img

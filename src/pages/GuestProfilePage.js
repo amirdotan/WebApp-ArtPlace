@@ -14,7 +14,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import data from '../data/db.json'
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 import { async } from '@firebase/util';
 import { db, storage } from '../firebase';
 import { getAuth } from 'firebase/auth';
@@ -27,44 +27,40 @@ import { getDownloadURL, ref } from 'firebase/storage';
 import '../styles/AddPortfolio.css'
 import getUserData from '../components/GetUserData';
 import DeletePost from '../components/DeletePost';
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
+
 
 export default function Profile() {
-    const user_name = data.users[0].first_name + " " + data.users[0].last_name //this is the name of the firat object at db.json  
-    const field_of_study = data.users[0].field_of_study
-    const current_year = data.users[0].current_year
-    const subheader = field_of_study + ", " + current_year + " year"
     const [expanded, setExpanded] = React.useState(false);
+    const { state } = useLocation();
+    const requesedUser = state.profileId;
 
     const [profileDb, setProfileDb] = useState([]);
-    const auth = getAuth();
-    const curr_user = auth.currentUser
 
-    const [avatar_letter, setAvatarLetter] = useState([]);
     const [portfolio_link, setPorfolioLink] = useState(false);
     const [portfolioPics, setPortfolioPics] = useState([]);
-    const [firstName, setFirstName] = useState(" ");
 
     const navigate = useNavigate();
+    const [firstName, setFirstName] = useState(" ");
+    const [email, setEmail] = useState("No given contact email :(");
 
     useLayoutEffect(() => {
         async function getData() {
             const users = await getUserData()
-            const UsersAndCurrUser = await getUsersAndCurrUser(users)
-            const data = await getSpecificUser(UsersAndCurrUser)
-
+            const data = await getSpecificUser(users)
         }
         getData()
     }, [])
     useEffect(() => {
+        console.log(profileDb.portfolio)
         if (profileDb?.portfolio) {
             setPorfolioLink(true)
         }
+
+
     }, [portfolioPics])
 
-    const getUsersAndCurrUser = async (users) => {
-        var curr_user = await auth.currentUser
-        return [users, curr_user]
-    }
 
     const downloadImgRef = async (user) => {
         var tempList = []
@@ -81,33 +77,29 @@ export default function Profile() {
         }
         return tempList
     }
-    const getSpecificUser = async (UsersAndCurrUser) => {
-        var users = UsersAndCurrUser[0]
-        var curr_user = UsersAndCurrUser[1]
-        users.forEach(async (user) => {
-            if (user.uid == curr_user?.uid) {
-                setProfileDb(user)
+    const getSpecificUser = async (users) => {
 
+        users.forEach(async (user) => {
+            if (user.uid == requesedUser) {
+                setProfileDb(user)
+                setEmail(user?.email ?? "No given contact email :(")
                 if (user?.uportfolio && user?.uportfolio != []) {
                     const tempList = await downloadImgRef(user)
                     setPortfolioPics(tempList)
-
                     return user.uportfolio
                 }
+
 
             }
         })
     }
-
-
-
 
     useEffect(() => {
         const getUserData1 = async () => {
             getUserData()
                 .then((users) => {
                     users.forEach((user) => {
-                        if (user.uid == curr_user?.uid) {
+                        if (user.uid == requesedUser) {
                             setFirstName(user.first_name)
                         }
                     })
@@ -120,7 +112,7 @@ export default function Profile() {
     return (
         <>
             <Card variant="outlined" color="primary" sx={{ position: 'static' }}>
-                <Button onClick={() => navigate("/EditProfile")} color="primary" sx={{ display: 'flex', flexdirection: 'row', justifyContent: 'right', right: '-80%' }}>Edit</Button>
+                <Button onClick={() => navigate(-1)} color="primary" sx={{ display: 'flex', flexdirection: 'row', justifyContent: 'right', right: '-80%' }}>Return</Button>
                 <CardHeader textAlign="center" sx={{ display: 'flex', 'text-align': 'left', float: 'left' }}
                     avatar={
                         <Avatar sx={{ bgcolor: 'primary' }} aria-label="recipe">
@@ -138,7 +130,7 @@ export default function Profile() {
             </Stack>
 
             <PortfolioPresenter portfolio_link={portfolio_link}>
-                <ImageList sx={{ width: '100%'}} cols={2} rowHeight={164} variant="quilted">
+                <ImageList sx={{ width: '100%', height: '100%' }} cols={2} rowHeight={164} variant="quilted">
                     {portfolioPics.map((item) => (
                         <ImageListItem key={item} >
                             <img
@@ -152,36 +144,29 @@ export default function Profile() {
                 </ImageList>
             </PortfolioPresenter>
 
+            <AddPortfolioPresenter portfolio_link={portfolio_link}>
 
-            <AddPortfolioPresenter portfolio_link={portfolio_link}  >
-
-                <Card sx={{ maxWidth: 345 }} className="addportfoliocard" sx={{ position: 'absolute' }} > 
+                <Card sx={{ maxWidth: 345 }} className="addportfoliocard">
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="div">
                             Hey There :)
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            This is the spot for you to showcase your creativity. Adding a
-                            portfolio helps find better fitting partners, give it a try!
+                            Unfortunately this user hasn't uploaded a portfolio yet
+                            But don't hesitate to contact them directly !
                         </Typography>
                     </CardContent>
-                    <Button
-                        variant="contained"
-                        onClick={() => navigate('/UploadPortfolio')}
-                        sx={{}}>
-                        Get Started
-                    </Button>
+                    <CopyToClipboard
+
+                        text={email}
+                        onCopy={() => alert("Copied")}>
+                        <Button variant="outlined" size="medium" >
+                            copy Email
+                        </Button>
+                    </CopyToClipboard>
                 </Card>
             </AddPortfolioPresenter>
 
-            <Stack style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: !portfolio_link ? '85vh' : 'auto',
-                position: 'flex'
-            }} >
-                {profileDb.skills?.map((skill) => (DeletePost(skill)))}
-            </Stack>
 
         </>
     );

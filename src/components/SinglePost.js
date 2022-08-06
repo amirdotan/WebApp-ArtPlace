@@ -57,7 +57,7 @@ const handleExpandClick = () => {
 const handleAvatarClick = (event) => {
   event.preventDefault();
   console.log(postUserId)
-  navigate('/NotMe', {state: {profileId: postUserId}});} 
+    navigate('/guestProfile', {state: {profileId: postUserId}});} 
 
 const navigate = useNavigate();
 
