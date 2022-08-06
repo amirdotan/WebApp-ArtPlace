@@ -11,7 +11,7 @@ import Requests from './Requests'
 import NewProfile from "./NewProfilePage";
 import UploadPortfolio from "./UploadPortfolio"
 import NotMyProfile from "./NotMyProfile";
-
+import GuestProfilePage from './GuestProfilePage';
 import ProtectedRoute from "../components/ProtectedRoute";
 
 
@@ -25,6 +25,7 @@ function Pages() {
             <Route path="/addpost" element={ <AddPost />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/guestProfile" element={<GuestProfilePage />} />
             <Route path="/signup2" element={<SignUp2 />} />
             <Route path="/EditProfile" element={<EditProfile />} />
             <Route path="/UploadFile" element={<UploadImage />} />
