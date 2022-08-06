@@ -99,9 +99,6 @@ export default function Profile() {
         })
     }
 
-
-
-
     useEffect(() => {
         const getUserData1 = async () => {
             getUserData()
@@ -115,6 +112,38 @@ export default function Profile() {
         };
         getUserData1();
     },[])
+
+
+    // useEffect(() => {
+    //     const getPostsTitles = async () => {
+    //         for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
+    //             const docRef = doc(db, "posts", postsList[element_ind]);
+    //             const docSnap = await getDoc(docRef);
+    //             console.log(docSnap)
+    //             setPostsListTitles(postsListTitles => [...postsListTitles, docSnap.title])
+    //     } 
+    // }
+    //     getPostsTitles()
+    // },[])
+
+    // useEffect(() => {
+    //     const getPostsTitles = async () => {
+    //         GetPostsData()
+    //         .then((posts) => {
+    //             posts.forEach((post) => {
+    //                 for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
+    //                     if (post.doc_id == postsList[element_ind]) {
+    //                         console.log('Match!!!')
+    //                         console.log(post.title)
+    //                         console.log('1111')
+    //                         postsListTitles.push(post.title);    
+    //                     }
+    //                 }    
+    //             })
+    //         })
+    //     };
+    //     getPostsTitles();
+    // },[])
 
 
     return (
