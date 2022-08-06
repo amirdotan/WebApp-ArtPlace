@@ -11,7 +11,9 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
-import NavigationIcon from '@mui/icons-material/Navigation';    
+import NavigationIcon from '@mui/icons-material/Navigation';  
+import DeletePostDB from '../components/DeletePostDB';
+  
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -21,11 +23,12 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const handleDeleteClick = (i) => {
-  console.log(i);
-};
 
-export default function DeletePost(postName,i) {
+
+export default function DeletePost(postName, postObj) {
+  const handleDeleteClick = (postObj) => {
+    DeletePostDB(postObj);
+  };
   return (
     <Box sx={{ width: '100%' }} onClick={handleDeleteClick}>
       <Stack spacing={2}  margin='2%' marginLeft='10%' marginRight='10%'>

@@ -48,8 +48,19 @@ export default function Profile() {
     const [firstName, setFirstName] = useState(" ");
     const [postsList, setPostsList] = useState([]);
     const [postsListTitles, setPostsListTitles] = useState([]);
+    const [postsListObjects, setPostsListObjects] = useState([]);
+    const [users, setUsers] = useState("")
 
     const navigate = useNavigate();
+    // Loads Users
+    useEffect(() => {
+        const loadUsers = async () => {
+
+            const tempUsers = await getUserData();
+            setUsers(tempUsers);
+        }
+        loadUsers()
+    }, [])
 
     useLayoutEffect(() => {
         async function getData() {
@@ -58,7 +69,8 @@ export default function Profile() {
             const data = await getSpecificUser(UsersAndCurrUser)
         }
         getData()
-    }, [])
+    }, [users])
+
     useEffect(() => {
         if (profileDb?.portfolio) {
             setPorfolioLink(true)
@@ -105,18 +117,16 @@ export default function Profile() {
 
     useEffect(() => {
         const getUserData1 = async () => {
-            getUserData()
-                .then((users) => {
+
                     users.forEach((user) => {
                         if (user.uid == curr_user?.uid) {
                             setFirstName(user.first_name)
                             setPostsList(user.uposts);
                         }
                     })
-                })
         };
         getUserData1();
-    },[])
+    },[users])
 
 
     // useEffect(() => {
@@ -134,37 +144,28 @@ export default function Profile() {
     useEffect(() => {
         const getPostsTitles = async () => {
             const curr_titles = []
+            const curr_Objects = []
             for (var element_ind = 0; element_ind < postsList.length; element_ind++) {
-                console.log(postsList[0])
                 const docRef = doc(db, "posts", postsList[element_ind]);
+                console.log(docRef)
                 const docSnap = await getDoc(docRef);
-                console.log(docSnap.data().title)
-                curr_titles.push(docSnap.data().title)
+                console.log(docSnap)
+                console.log(docSnap.data())
+
+                if(docSnap.data() && docSnap.data()?.title){
+                    curr_titles.push(docSnap.data().title)
+                    curr_Objects.push(docSnap.data())
+                }
+
             }
             setPostsListTitles(curr_titles)
-            console.log('11111')
-            console.log(postsListTitles)
-
-        //     GetPostsData()
-        //     .then((posts) => {
-        //         posts.forEach((post) => {
-        //             for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
-        //                 if (post.doc_id == postsList[element_ind]) {
-        //                     console.log('Match!!!')
-        //                     console.log(post.title)
-        //                     console.log('1111')
-        //                     postsListTitles.push(post.title);    
-        //                 }
-        //             }    
-        //         })
-        //     })
+            setPostsListObjects(curr_Objects)
         };
         getPostsTitles();
-    },[])
-
+    },[postsList])
 
     return (
-        <>
+        <div style={{height: '100vh'}}>
             <Card variant="outlined" color="primary" sx={{ position: 'static' }}>
                 <Button onClick={() => navigate("/EditProfile")} color="primary" sx={{ display: 'flex', flexdirection: 'row', justifyContent: 'right', right: '-80%' }}>Edit</Button>
                 <CardHeader textAlign="center" sx={{ display: 'flex', 'text-align': 'left', float: 'left' }}
@@ -223,13 +224,12 @@ export default function Profile() {
             <Stack style={{
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: !portfolio_link ? '85vh' : 'auto',
+                height: !portfolio_link ? '85vh' : '10vh',
                 position: 'flex'
             }} >
-                {postsListTitles?.map((post,i) => (DeletePost(post)))}
+                {postsListTitles?.map((post,i) => (DeletePost(post, postsListObjects[i])))}
             </Stack>
-
-        </>
+        </div>
     );
 }
 
