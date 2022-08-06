@@ -27,6 +27,8 @@ import { getDownloadURL, ref } from 'firebase/storage';
 import '../styles/AddPortfolio.css'
 import getUserData from '../components/GetUserData';
 import DeletePost from '../components/DeletePost';
+import { doc, getDoc } from "firebase/firestore";
+import { element } from 'prop-types';
 
 export default function Profile() {
     const user_name = data.users[0].first_name + " " + data.users[0].last_name //this is the name of the firat object at db.json  
