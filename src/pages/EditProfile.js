@@ -79,7 +79,13 @@ const navigate = useNavigate();
         field : data.get("study"),
       }
       const usersDocRef = doc(db, "users", "user_"+curr_user.uid);
-      await updateDoc(usersDocRef,{ user_details })
+      console.log(user_details)
+      await updateDoc(usersDocRef,{ 
+          first_name : data.get("firstName"),
+          last_name : data.get("lastName"),
+          short_description : data.get("description"),
+          skills : skillList,
+          field : data.get("study")});
       navigate('/profile')
       console.log('data updated :)')
     }catch(e){
@@ -159,7 +165,7 @@ const navigate = useNavigate();
 
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <TextField
                                     required
                                     fullWidth
@@ -169,7 +175,7 @@ const navigate = useNavigate();
                                     name="email"
                                     autoComplete="email"
                                 />
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12}>
                                 <Autocomplete
                                      multiple

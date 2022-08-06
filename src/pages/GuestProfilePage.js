@@ -28,6 +28,7 @@ import '../styles/AddPortfolio.css'
 import getUserData from '../components/GetUserData';
 import DeletePost from '../components/DeletePost';
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import '../styles/AddPortfolio.css'
 
 
 
@@ -44,21 +45,32 @@ export default function Profile() {
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState(" ");
     const [email, setEmail] = useState("No given contact email :(");
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        const loadUsers = async () => {
+
+            const tempUsers = await getUserData();
+            console.log(tempUsers)
+            setUsers(tempUsers);
+            console.log(users)
+        }
+
+        loadUsers()
+    }, [])
 
     useLayoutEffect(() => {
         async function getData() {
-            const users = await getUserData()
-            const data = await getSpecificUser(users)
+            const data = await updatePortfolioPics(users)
         }
         getData()
-    }, [])
+    }, [users])
+
     useEffect(() => {
         console.log(profileDb.portfolio)
         if (profileDb?.portfolio) {
             setPorfolioLink(true)
         }
-
-
     }, [portfolioPics])
 
 
@@ -77,9 +89,10 @@ export default function Profile() {
         }
         return tempList
     }
-    const getSpecificUser = async (users) => {
-
+    const updatePortfolioPics = async (users) => {
+        console.log(users)
         users.forEach(async (user) => {
+            console.log(user);
             if (user.uid == requesedUser) {
                 setProfileDb(user)
                 setEmail(user?.email ?? "No given contact email :(")
@@ -96,17 +109,14 @@ export default function Profile() {
 
     useEffect(() => {
         const getUserData1 = async () => {
-            getUserData()
-                .then((users) => {
                     users.forEach((user) => {
                         if (user.uid == requesedUser) {
                             setFirstName(user.first_name)
                         }
                     })
-                })
         };
         getUserData1();
-    }, [])
+    }, [users])
 
 
     return (
