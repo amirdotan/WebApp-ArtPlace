@@ -36,6 +36,7 @@ import {
     deleteDoc,
     doc,
 } from "firebase/firestore";
+import getUserData from '../components/GetUserData';
 
 
 const SkillList = GetSkills();
@@ -57,7 +58,14 @@ export default function Home() {
     const [firstName, setFirstName] = useState(" ");
     const [lastName, setLastName] = useState(" ");
     const [expanded, setExpanded] = React.useState(false);
+    const [users, setUsers] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
 
+    const close = () => setModalOpen(false)
+    const open = () => setModalOpen(true);
+    const [skillList, setSkillList] = useState([])
+    const [i, setCount] = useState(0);
+    const [imgUrl, setImgURL] = useState("");
     useEffect(() => {
 
         // Get data
@@ -72,33 +80,29 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
-        const getUserData = async () => {
-            const usersRef = collection(db, "users");
-            const usersRaw = await getDocs(usersRef);
-            const users = usersRaw.docs.map((doc) => doc.data());
-            setFirstName(" ");
-            setLastName(" ");
 
-            users.forEach((user) => {
-                if (user.uid == postsDb[i]?.user) {
-                    setFirstName(user?.first_name ?? " " );
-                    setLastName(user?.last_name ?? " ");
-                }
-            })
-        };
-        getUserData();
+        users.forEach((user) => {
+            if (user.uid == postsDb[i]?.user) {
+                setFirstName(user?.first_name ?? " " );
+                setLastName(user?.last_name ?? " ");
+            }
+        })
 
-    })
+        console.log(firstName, lastName)
+    }, [users,i])
+
+    useEffect(() => {
+        const loadUsers = async () =>{
+            const tempUsers = await getUserData();
+            setUsers(tempUsers)
+        }
+        loadUsers()
+
+    }, [])
 
     const data = postsDb;
 
-    const [modalOpen, setModalOpen] = useState(false);
 
-    const close = () => setModalOpen(false)
-    const open = () => setModalOpen(true);
-    const [skillList, setSkillList] = useState([])
-    const [i, setCount] = useState(0);
-    const [imgUrl, setImgURL] = useState("");
     const handleUnlikeButton = () => {
         setExpanded(false);
         var to_skip = 1;
@@ -190,9 +194,10 @@ export default function Home() {
                 setImgURL={setImgURL}
                 first_name={firstName}
                 last_name={lastName}
-                expanded = {expanded}
-                setExpanded = {setExpanded}
-                postUserId ={postsDb[i]?.user?? ''}
+                expanded={expanded}
+                setExpanded={setExpanded}
+                postUserId={postsDb[i]?.user ?? ''}
+                users={users }
             />}
             <Fab
                 className='swiperight' 

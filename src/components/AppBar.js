@@ -31,7 +31,6 @@ import getUserData from './GetUserData';
 
 
 const auth = getAuth();
-var curr_user =  auth.currentUser;
 
 
 // This is the upper navigation bar presenting our logo and offering the user the ability to enter his profile.
@@ -41,10 +40,13 @@ const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Logout'];
 
 const ResponsiveAppBar = () => {
-  const { user, logout} = UserAuth();
+
+    const { user, logout } = UserAuth();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
+  const [curr_user, setCurrUser] = React.useState("")
+    const [users, setUsers] = React.useState([])
+    const [firstName, setFirstName] = useState(" ");
 
   // const handleOpenNavMenu = (event) => {
   //   setAnchorElNav(event.currentTarget);
@@ -77,26 +79,34 @@ const ResponsiveAppBar = () => {
     navigate('/');
   }; 
 
-  const [firstName, setFirstName] = useState(" ");
+
+
 
   useEffect(() => {
     const getUserData1 = async () => {
-      var curr_user = await auth.currentUser;
-      getUserData()
-      .then((users) => {
         users.forEach((user) => {
         if (user.uid == curr_user?.uid) {
           setFirstName(user.first_name)
         }
-      })})
+      })
     };
-
     if (curr_user) {
       getUserData1();
     }
-    getUserData1()
-      })
-  
+      }, [curr_user])
+
+
+    useEffect(() => {
+
+        const loadUsers = async () => {
+            const tempUsers = await getUserData()
+            setUsers(tempUsers);
+            var curr = await auth.currentUser;
+            setCurrUser(curr)
+        }
+        loadUsers()
+
+    }, [])
 
   return (
     //By wrapping the AppBar with 'ThemeProvider' we can change the default color
@@ -171,7 +181,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp"> {firstName[0]} </Avatar>
+                <Avatar alt="Remy Sharp" > {firstName[0]} </Avatar>
               </IconButton>
             </Tooltip>
             <Menu

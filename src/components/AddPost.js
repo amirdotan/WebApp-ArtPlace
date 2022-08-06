@@ -52,6 +52,8 @@ export default function AddPost() {
     const [shortDescription, setShortDescription] = useState("")
     const [longDescription, setLongDescription] = useState("")
     const [skillList, setSkillList] = useState([])
+    const [uploadFlag, setUploadFlag] = useState(false)
+
     const auth = getAuth();
     const curr_user = auth.currentUser;
 
@@ -60,6 +62,8 @@ export default function AddPost() {
         if (activeStep < 2) {
             return;
         }
+        console.log('AddPost')
+
         /*Calls upload image and passes it the image and a file to save it in firebase storage*/
         const imageref = uploadImage(image, "post_images");
         /*Create new post by the diffrent states*/
@@ -74,8 +78,17 @@ export default function AddPost() {
         };
         /*addpost to firestore db post*/
         addPost(newpost, "posts");
-    });
+    }, [uploadFlag]);
 
+    useEffect(() => {
+        /*Checks if user pressed done by checking on which step we are stated*/
+        if (activeStep < 2) {
+            return;
+        }
+        else {
+            setUploadFlag(true);
+        }
+    }, [activeStep])
 
     function getStepContent(step) {
         switch (step) {
@@ -90,7 +103,6 @@ export default function AddPost() {
                 throw new Error('Unknown step');
         }
     }
-
 
     return (
         <ThemeProvider theme={theme}>

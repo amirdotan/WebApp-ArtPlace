@@ -34,7 +34,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 export default function Profile() {
     const [expanded, setExpanded] = React.useState(false);
     const { state } = useLocation();
-    const requesedUser = state.profileId;
+    const requesedUser = state?.profileId ?? "UCbr6vDmqpZ5YNiwFHfRdF8hzs43";
 
     const [profileDb, setProfileDb] = useState([]);
 
@@ -106,7 +106,7 @@ export default function Profile() {
                 })
         };
         getUserData1();
-    })
+    }, [])
 
 
     return (

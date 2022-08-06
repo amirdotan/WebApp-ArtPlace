@@ -114,7 +114,7 @@ export default function Profile() {
                 })
         };
         getUserData1();
-    })
+    },[])
 
 
     return (

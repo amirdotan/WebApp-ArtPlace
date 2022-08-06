@@ -40,7 +40,7 @@ const ExpandMore = styled((props) => {
 
 const auth = getAuth();
 
-export default function RecipeReviewCard({img, first_name, last_name,skilllist, short_description, long_description, title, imgUrl, setImgURL, expanded, setExpanded, postUserId}) {
+export default function RecipeReviewCard({img, first_name, last_name,skilllist, short_description, long_description, title, imgUrl, setImgURL, expanded, setExpanded, postUserId, users}) {
 
     const curr_user = auth.currentUser;
     const [relevantSkills, setRelevantSkills] = useState([])
@@ -68,59 +68,59 @@ const handleHomeClick = (event) => {
 useEffect(() => {
   const loadImg = async() => {
     const imgRef = ref(storage, `${img}`);
-    getDownloadURL(imgRef)
+    await getDownloadURL(imgRef)
     .then((url) => {
       setImgURL(url)
     }).catch((error) => console.log(error))
-  }
-  loadImg();
-})
+    }
+    if (img) {
+        loadImg();
+    }
+}, [img])
     // This Use effect updates relevant and nonRelevant List and their titles
     useEffect(() => {
-        getUserData()
-            .then((users) => {
-                var tempRelSkills = [];
-                var tempNonRelSkills = [];
-                users.forEach((user) => {
-                    // find active user
-                    if (user.uid == curr_user.uid) {
-                        // Map skills to relevant and non relevant
-                        skilllist.forEach((skill) => {
-                            if (user.skills.includes(skill)) {
-                                tempRelSkills.push(skill);
-                            }
-                            else {
-                                tempNonRelSkills.push(skill);
-                            }
-                        })
-                        var counter = 1;
-                        var tempRelWithCommas = [];
-                        var tempNonRelWithCommas = [];
-                        // Add commas to rel list
-                        tempRelSkills.forEach((skill) => {
-                            if (counter < tempRelSkills.length)
-                            {
-                                tempRelWithCommas.push(skill + ",");
-                                counter++;
-                            }
-                            else { tempRelWithCommas.push(skill) }
-                        })
-                        // Add commas to NonRel list
-                        counter = 1;
-                        tempNonRelSkills.forEach((skill) => {
-                            if (counter < tempNonRelSkills.length) {
-                                tempNonRelWithCommas.push(skill + ",");
-                                counter++;
-                            }
-                            else { tempNonRelWithCommas.push(skill) }
-                        })
-                        // Set rel and nonRel with commas 
-                        setNonRelevantSkills(tempNonRelWithCommas);
-                        setRelevantSkills(tempRelWithCommas);
-                        return;
+        
+            var tempRelSkills = [];
+            var tempNonRelSkills = [];
+            users.forEach((user) => {
+                // find active user
+                if (user.uid == curr_user.uid) {
+                    // Map skills to relevant and non relevant
+                    skilllist.forEach((skill) => {
+                        if (user.skills.includes(skill)) {
+                            tempRelSkills.push(skill);
+                        }
+                        else {
+                            tempNonRelSkills.push(skill);
+                        }
+                    })
+                    var counter = 1;
+                    var tempRelWithCommas = [];
+                    var tempNonRelWithCommas = [];
+                    // Add commas to rel list
+                    tempRelSkills.forEach((skill) => {
+                        if (counter < tempRelSkills.length)
+                        {
+                            tempRelWithCommas.push(skill + ",");
+                            counter++;
+                        }
+                        else { tempRelWithCommas.push(skill) }
+                    })
+                    // Add commas to NonRel list
+                    counter = 1;
+                    tempNonRelSkills.forEach((skill) => {
+                        if (counter < tempNonRelSkills.length) {
+                            tempNonRelWithCommas.push(skill + ",");
+                            counter++;
+                        }
+                        else { tempNonRelWithCommas.push(skill) }
+                    })
+                    // Set rel and nonRel with commas 
+                    setNonRelevantSkills(tempNonRelWithCommas);
+                    setRelevantSkills(tempRelWithCommas);
+                    return;
 }
                 })
-            })
  
     }, [skilllist])
     // Updates Relevant Skill title according to Relevant skills
@@ -154,7 +154,7 @@ useEffect(() => {
             setImgAlt("Out of posts, try again later")
             setProjDescTitle("")
         }
-    })
+    }, [])
 
   return (
     <Card className= 'singlepost' sx={{ maxWidth: '80%',margin: 5}}>
