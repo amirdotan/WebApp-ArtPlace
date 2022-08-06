@@ -26,7 +26,11 @@ import AddPortfolioPresenter from '../components/AddPortfolioPresenter';
 import { getDownloadURL, ref } from 'firebase/storage';
 import '../styles/AddPortfolio.css'
 import getUserData from '../components/GetUserData';
+import GetPostsData from '../components/GetPostsData';
 import DeletePost from '../components/DeletePost';
+import { doc, getDoc } from "firebase/firestore";
+import { element } from 'prop-types';
+
 
 export default function Profile() {
     const user_name = data.users[0].first_name + " " + data.users[0].last_name //this is the name of the firat object at db.json  
@@ -99,6 +103,9 @@ export default function Profile() {
 
     const navigate = useNavigate();
 
+    const [postsList, setPostsList] = useState([]);
+    const [postsListTitles, setPostsListTitles] = useState([]);
+
     const [firstName, setFirstName] = useState(" ");
 
     useEffect(() => {
@@ -108,12 +115,45 @@ export default function Profile() {
                     users.forEach((user) => {
                         if (user.uid == curr_user?.uid) {
                             setFirstName(user.first_name)
+                            setPostsList(user.uposts);
                         }
                     })
                 })
         };
         getUserData1();
-    })
+    }, [])
+
+
+    // useEffect(() => {
+    //     const getPostsTitles = async () => {
+    //         for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
+    //             const docRef = doc(db, "posts", postsList[element_ind]);
+    //             const docSnap = await getDoc(docRef);
+    //             console.log(docSnap)
+    //             setPostsListTitles(postsListTitles => [...postsListTitles, docSnap.title])
+    //     } 
+    // }
+    //     getPostsTitles()
+    // },[])
+
+    // useEffect(() => {
+    //     const getPostsTitles = async () => {
+    //         GetPostsData()
+    //         .then((posts) => {
+    //             posts.forEach((post) => {
+    //                 for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
+    //                     if (post.doc_id == postsList[element_ind]) {
+    //                         console.log('Match!!!')
+    //                         console.log(post.title)
+    //                         console.log('1111')
+    //                         postsListTitles.push(post.title);    
+    //                     }
+    //                 }    
+    //             })
+    //         })
+    //     };
+    //     getPostsTitles();
+    // },[])
 
 
     return (
