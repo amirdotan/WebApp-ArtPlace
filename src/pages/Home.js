@@ -37,9 +37,12 @@ import {
     doc,
 } from "firebase/firestore";
 import getUserData from '../components/GetUserData';
+import { getAuth } from 'firebase/auth';
 
 
 const SkillList = GetSkills();
+const auth = getAuth();
+
 // This is the Home page where there is a view of all the cards
 
 export default function Home() {
@@ -60,6 +63,7 @@ export default function Home() {
     const [expanded, setExpanded] = React.useState(false);
     const [users, setUsers] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
+    const [curr_user, setCurrUser] = useState("");
 
     const close = () => setModalOpen(false)
     const open = () => setModalOpen(true);
@@ -94,7 +98,9 @@ export default function Home() {
     useEffect(() => {
         const loadUsers = async () =>{
             const tempUsers = await getUserData();
+            const curr = await auth.currentUser;
             setUsers(tempUsers)
+            setCurrUser(curr);
         }
         loadUsers()
 
@@ -197,7 +203,8 @@ export default function Home() {
                 expanded={expanded}
                 setExpanded={setExpanded}
                 postUserId={postsDb[i]?.user ?? ''}
-                users={users }
+                users={users}
+                curr_user={curr_user}
             />}
             <Fab
                 className='swiperight' 
@@ -217,7 +224,7 @@ export default function Home() {
                 >
                 <ThumbUpIcon/>
             </Fab>
-            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user } />}
+            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user} users = {users} />}
             <br></br>
             <p style={{ color: "gray" }}>Partake ©</p>
         </div>

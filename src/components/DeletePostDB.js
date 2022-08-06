@@ -9,7 +9,7 @@ const deletePost = async (post_collections, document) => {
     deleteDocument(post_collections, document);
 
     const imgRef = ref(storage, `${document.imageref}`);
-    getDownloadURL(imgRef)
+    await getDownloadURL(imgRef)
         .then((url) => {
             deleteImg(url)
         }).catch((error) => console.log(error))

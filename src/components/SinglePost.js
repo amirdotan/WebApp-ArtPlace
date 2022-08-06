@@ -25,7 +25,6 @@ import data from '../data/posts.json'
 import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../firebase';
 import getUserData from './GetUserData';
-import { getAuth } from 'firebase/auth';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,11 +37,10 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const auth = getAuth();
 
-export default function RecipeReviewCard({img, first_name, last_name,skilllist, short_description, long_description, title, imgUrl, setImgURL, expanded, setExpanded, postUserId, users}) {
+export default function RecipeReviewCard({ img, first_name, last_name, skilllist, short_description, long_description,
+    title, imgUrl, setImgURL, expanded, setExpanded, postUserId, users, curr_user }) {
 
-    const curr_user = auth.currentUser;
     const [relevantSkills, setRelevantSkills] = useState([])
     const [nonRelevantSkills, setNonRelevantSkills] = useState([])
     const [relSkillsTitle, setRelSkillsTitle] = useState("Your Relevant Skills: ")

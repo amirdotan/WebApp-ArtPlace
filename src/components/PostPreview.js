@@ -28,16 +28,12 @@ export default function PostPreview({ imageURLs, title, shortDescription, longDe
             <List  align="left" >
             <b>Skills: </b>
                 {skillList.map((value) => (
-                    // <ListItem 
-                    //     key={value}
-                    // >
+
                         <ListItemText primary={`${value}`}  />
-                    // </ListItem>
+
                 ))}
             </List>
-{/*            <Typography gutterBottom>
-                Tags: {skillList.map(skill => <Typography gutterBottom> {skill} </Typography>)}
-            </Typography>*/}
+
             {imageURLs.map(imageSrc => <img src={imageSrc} className="addpostimg" />)}
 
 

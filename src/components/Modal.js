@@ -48,15 +48,15 @@ const dropIn = {
 }
 
 
-const Modal = ({modalOpen, handleClose, uid}) => {
+const Modal = ({modalOpen, handleClose, uid, users}) => {
     const [email, setEmail] = useState("No given contact email :(");
     useEffect(() => {
         // Get data
         const getEmail = async () => {
-            const usersRef = collection(db, "users");
+            /*const usersRef = collection(db, "users");
             const usersRaw = await getDocs(usersRef);
-            const users = usersRaw.docs.map((doc) => doc.data());
-
+            const users = usersRaw.docs.map((doc) => doc.data());*/
+            console.log("Modal")
             users.forEach(user => {
                 if (user?.uid == uid){
 
@@ -67,7 +67,7 @@ const Modal = ({modalOpen, handleClose, uid}) => {
 
         };
         getEmail()
-    });
+    }, [modalOpen]);
 
     return(
         

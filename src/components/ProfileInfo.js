@@ -1,4 +1,4 @@
-import * as React from 'react';
+/*import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -178,16 +178,16 @@ export default function RecipeReviewCard() {
         ))}
       </ImageList>
     </PortfolioPresenter>
-    {/* <AddPortfolioPresenter>
+    {*//* <AddPortfolioPresenter>
       <Button onClick={() => navigate("/Requests")} color="primary" >Requests</Button>
-    </AddPortfolioPresenter> */}
+    </AddPortfolioPresenter> *//*}
 
-    {/* now create a presenter for adding portfolio images  */}
-    {/* create an object that alows uploading pics to the portfolio */}
-    {/* fuck me right? */}
+    {*//* now create a presenter for adding portfolio images  *//*}
+    {*//* create an object that alows uploading pics to the portfolio *//*}
+    {*//* fuck me right? *//*}
     <AddPortfolioPresenter portfolio_link={portfolio_link}>
-      {/* // this needs to be centerd try using css locator  */}
-      {/* const { classes } = props; */}
+      {*//* // this needs to be centerd try using css locator  *//*}
+      {*//* const { classes } = props; *//*}
       <Card sx={{ maxWidth: 345 }} class="addportfoliocard">
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
@@ -236,3 +236,4 @@ const itemData = [
 ];
 
 
+*/
