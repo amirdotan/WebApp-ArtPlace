@@ -45,8 +45,20 @@ export default function Profile() {
     const [portfolio_link, setPorfolioLink] = useState(false);
     const [portfolioPics, setPortfolioPics] = useState([]);
     const [firstName, setFirstName] = useState(" ");
+    const [users, setUsers] = useState([]);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const loadUsers = async () => {
+
+            const tempUsers = await getUserData();
+            console.log(tempUsers)
+            setUsers(tempUsers);
+            console.log(users)
+        }
+        loadUsers()
+    }, [])
 
     useLayoutEffect(() => {
         async function getData() {
@@ -56,7 +68,8 @@ export default function Profile() {
 
         }
         getData()
-    }, [])
+    }, [users])
+
     useEffect(() => {
         if (profileDb?.portfolio) {
             setPorfolioLink(true)
@@ -83,6 +96,7 @@ export default function Profile() {
         }
         return tempList
     }
+
     const getSpecificUser = async (UsersAndCurrUser) => {
         var users = UsersAndCurrUser[0]
         var curr_user = UsersAndCurrUser[1]
@@ -96,56 +110,20 @@ export default function Profile() {
 
                     return user.uportfolio
                 }
-
             }
         })
     }
 
     useEffect(() => {
         const getUserData1 = async () => {
-            getUserData()
-                .then((users) => {
                     users.forEach((user) => {
                         if (user.uid == curr_user?.uid) {
                             setFirstName(user.first_name)
                         }
                     })
-                })
         };
         getUserData1();
-    },[])
-
-
-    // useEffect(() => {
-    //     const getPostsTitles = async () => {
-    //         for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
-    //             const docRef = doc(db, "posts", postsList[element_ind]);
-    //             const docSnap = await getDoc(docRef);
-    //             console.log(docSnap)
-    //             setPostsListTitles(postsListTitles => [...postsListTitles, docSnap.title])
-    //     } 
-    // }
-    //     getPostsTitles()
-    // },[])
-
-    // useEffect(() => {
-    //     const getPostsTitles = async () => {
-    //         GetPostsData()
-    //         .then((posts) => {
-    //             posts.forEach((post) => {
-    //                 for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
-    //                     if (post.doc_id == postsList[element_ind]) {
-    //                         console.log('Match!!!')
-    //                         console.log(post.title)
-    //                         console.log('1111')
-    //                         postsListTitles.push(post.title);    
-    //                     }
-    //                 }    
-    //             })
-    //         })
-    //     };
-    //     getPostsTitles();
-    // },[])
+    },[users])
 
 
     return (
