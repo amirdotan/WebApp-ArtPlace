@@ -31,7 +31,6 @@ function Pages() {
             <Route path="/UploadFile" element={<UploadImage />} />
             <Route path="/Requests" element={<Requests />} />
             <Route path="/UploadPortfolio" element={<UploadPortfolio />} />
-            <Route path="/NotMe" element={<NotMyProfile/>}></Route>
             <Route path="/test" element={<NewProfile/>} />
       </Routes>
     );

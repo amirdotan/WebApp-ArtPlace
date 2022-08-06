@@ -28,6 +28,7 @@ import '../styles/AddPortfolio.css'
 import getUserData from '../components/GetUserData';
 import DeletePost from '../components/DeletePost';
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import '../styles/AddPortfolio.css'
 
 
 
