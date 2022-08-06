@@ -26,6 +26,7 @@ import AddPortfolioPresenter from '../components/AddPortfolioPresenter';
 import { getDownloadURL, ref } from 'firebase/storage';
 import '../styles/AddPortfolio.css'
 import getUserData from '../components/GetUserData';
+import GetPostsData from '../components/GetPostsData';
 import DeletePost from '../components/DeletePost';
 import { doc, getDoc } from "firebase/firestore";
 import { element } from 'prop-types';
@@ -45,6 +46,8 @@ export default function Profile() {
     const [portfolio_link, setPorfolioLink] = useState(false);
     const [portfolioPics, setPortfolioPics] = useState([]);
     const [firstName, setFirstName] = useState(" ");
+    const [postsList, setPostsList] = useState([]);
+    const [postsListTitles, setPostsListTitles] = useState([]);
 
     const navigate = useNavigate();
 
@@ -53,7 +56,6 @@ export default function Profile() {
             const users = await getUserData()
             const UsersAndCurrUser = await getUsersAndCurrUser(users)
             const data = await getSpecificUser(UsersAndCurrUser)
-
         }
         getData()
     }, [])
@@ -108,6 +110,7 @@ export default function Profile() {
                     users.forEach((user) => {
                         if (user.uid == curr_user?.uid) {
                             setFirstName(user.first_name)
+                            setPostsList(user.uposts);
                         }
                     })
                 })
@@ -128,24 +131,36 @@ export default function Profile() {
     //     getPostsTitles()
     // },[])
 
-    // useEffect(() => {
-    //     const getPostsTitles = async () => {
-    //         GetPostsData()
-    //         .then((posts) => {
-    //             posts.forEach((post) => {
-    //                 for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
-    //                     if (post.doc_id == postsList[element_ind]) {
-    //                         console.log('Match!!!')
-    //                         console.log(post.title)
-    //                         console.log('1111')
-    //                         postsListTitles.push(post.title);    
-    //                     }
-    //                 }    
-    //             })
-    //         })
-    //     };
-    //     getPostsTitles();
-    // },[])
+    useEffect(() => {
+        const getPostsTitles = async () => {
+            const curr_titles = []
+            for (var element_ind = 0; element_ind < postsList.length; element_ind++) {
+                console.log(postsList[0])
+                const docRef = doc(db, "posts", postsList[element_ind]);
+                const docSnap = await getDoc(docRef);
+                console.log(docSnap.data().title)
+                curr_titles.push(docSnap.data().title)
+            }
+            setPostsListTitles(curr_titles)
+            console.log('11111')
+            console.log(postsListTitles)
+
+        //     GetPostsData()
+        //     .then((posts) => {
+        //         posts.forEach((post) => {
+        //             for (var element_ind = 0; element_ind <  postsList.length; element_ind++) {
+        //                 if (post.doc_id == postsList[element_ind]) {
+        //                     console.log('Match!!!')
+        //                     console.log(post.title)
+        //                     console.log('1111')
+        //                     postsListTitles.push(post.title);    
+        //                 }
+        //             }    
+        //         })
+        //     })
+        };
+        getPostsTitles();
+    },[])
 
 
     return (
@@ -211,7 +226,7 @@ export default function Profile() {
                 height: !portfolio_link ? '85vh' : 'auto',
                 position: 'flex'
             }} >
-                {profileDb.skills?.map((skill) => (DeletePost(skill)))}
+                {postsListTitles?.map((post,i) => (DeletePost(post)))}
             </Stack>
 
         </>

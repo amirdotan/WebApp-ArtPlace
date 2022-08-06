@@ -21,10 +21,13 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const handleDeleteClick = (i) => {
+  console.log(i);
+};
 
-export default function DeletePost(postName) {
+export default function DeletePost(postName,i) {
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }} onClick={handleDeleteClick}>
       <Stack spacing={2}  margin='2%' marginLeft='10%' marginRight='10%'>
             <Fab variant="extended" size="small" color="primary">
             <DeleteIcon sx={{ mr: 1 }} />
