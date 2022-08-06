@@ -186,7 +186,7 @@ export default function Profile() {
 
             <AddPortfolioPresenter portfolio_link={portfolio_link}  >
 
-                <Card sx={{ maxWidth: 345 }} className="addportfoliocard" sx={{ position: 'absolute' }} > 
+                <Card sx={{ maxWidth: 345 }} className="addportfoliocard" > 
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="div">
                             Hey There :)
