@@ -238,7 +238,9 @@ export default function Home() {
             {/* <Copyright sx={{ mt: 5 , color: 'gray'}} /> */}
             <br></br>
             <p style={{ color: "gray" }}>Partake © {new Date().getFullYear()}</p>
-            <br></br>
+            <br/>
+            <br/>
+            <br/>
         </div>
     )
 }

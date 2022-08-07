@@ -30,6 +30,8 @@ import GetPostsData from '../components/GetPostsData';
 import DeletePost from '../components/DeletePost';
 import { doc, getDoc } from "firebase/firestore";
 import { element } from 'prop-types';
+import Paper from '@mui/material/Paper';
+
 
 export default function Profile() {
     const user_name = data.users[0].first_name + " " + data.users[0].last_name //this is the name of the firat object at db.json  
@@ -219,8 +221,12 @@ export default function Profile() {
             }} >
                 {postsListTitles?.map((post, i) => (DeletePost(post, postsListObjects[i], setDeletedFlag)))}
             </Stack>
+            <br/>
             <p style={{ color: "gray" }}>Partake © {new Date().getFullYear()}</p>
-        </div>
+            <br/>
+            <br/>
+            <br/>
+        </div>        
     );
 }
 
