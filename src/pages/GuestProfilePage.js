@@ -51,9 +51,7 @@ export default function Profile() {
         const loadUsers = async () => {
 
             const tempUsers = await getUserData();
-            console.log(tempUsers)
             setUsers(tempUsers);
-            console.log(users)
         }
 
         loadUsers()
@@ -67,7 +65,6 @@ export default function Profile() {
     }, [users])
 
     useEffect(() => {
-        console.log(profileDb.portfolio)
         if (profileDb?.portfolio) {
             setPorfolioLink(true)
         }
@@ -90,9 +87,7 @@ export default function Profile() {
         return tempList
     }
     const updatePortfolioPics = async (users) => {
-        console.log(users)
         users.forEach(async (user) => {
-            console.log(user);
             if (user.uid == requesedUser) {
                 setProfileDb(user)
                 setEmail(user?.email ?? "No given contact email :(")
