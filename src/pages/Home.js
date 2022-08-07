@@ -92,7 +92,6 @@ export default function Home() {
             }
         })
 
-        console.log(firstName, lastName)
     }, [users,i])
 
     useEffect(() => {
@@ -208,8 +207,8 @@ export default function Home() {
                 img={postsDb[i]?.imageref ?? ""}
                 imgUrl={imgUrl}
                 setImgURL={setImgURL}
-                first_name={firstName}
-                last_name={lastName}
+                first_name_var={firstName}
+                last_name_var={lastName}
                 expanded={expanded}
                 setExpanded={setExpanded}
                 postUserId={postsDb[i]?.user ?? ''}

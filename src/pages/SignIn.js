@@ -42,7 +42,7 @@ const theme = createTheme({
     }
   });
 
-export default function SignIn() {
+export default function SignIn({ setSignedIn }) {
 
   const navigate = useNavigate();
   const {signIn} = UserAuth();
@@ -52,12 +52,10 @@ export default function SignIn() {
     event.preventDefault();
     setError('')
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
     try {
-      await signIn(data.get('email'), data.get('password'))
+        await signIn(data.get('email'), data.get('password'))
+        setSignedIn(true)
       navigate('/home')
     } catch(e) {
       setError(e.message)

@@ -38,7 +38,7 @@ const ExpandMore = styled((props) => {
 }));
 
 
-export default function RecipeReviewCard({ img, first_name, last_name, skilllist, short_description, long_description,
+export default function RecipeReviewCard({ img, first_name_var, last_name_var, skilllist, short_description, long_description,
     title, imgUrl, setImgURL, expanded, setExpanded, postUserId, users, curr_user }) {
 
     const [relevantSkills, setRelevantSkills] = useState([])
@@ -47,6 +47,8 @@ export default function RecipeReviewCard({ img, first_name, last_name, skilllist
     const [nonRelSkillsTitle, setNonRelSkillsTitle] = useState("Other Relevant Skills: ")
     const [imgAlt, setImgAlt] = useState("");
     const [projDescTitle, setProjDescTitle] = useState("Project Description: ");
+    const [firstName, setFirstName] = useState(first_name_var ?? "")
+    const [lastName, setLastName] = useState(last_name_var ?? "")
 
 const handleExpandClick = () => {
   setExpanded(!expanded);
@@ -54,7 +56,6 @@ const handleExpandClick = () => {
 
 const handleAvatarClick = (event) => {
   event.preventDefault();
-  console.log(postUserId)
     navigate('/guestProfile', {state: {profileId: postUserId}});} 
 
 const navigate = useNavigate();
@@ -132,7 +133,6 @@ useEffect(() => {
     }, [relevantSkills])
         // Updates NonRelevant Skill title according to Relevant skills and Non Relevant skills
     useEffect(() => {
-        console.log("Hello")
         if (nonRelevantSkills.length != 0 && relevantSkills.length == 0) {
             setNonRelSkillsTitle("Necessary Skills: ");
         }
@@ -152,21 +152,29 @@ useEffect(() => {
         else {
             setImgAlt("Out of posts, try again later")
             setProjDescTitle("")
+            setFirstName("")
+            setLastName("")
         }
-    }, [])
+
+    }, [img])
+
+    useEffect(() => {
+        setFirstName(first_name_var)
+        setLastName(last_name_var)
+    }, [first_name_var, last_name_var])
 
   return (
     <Card className= 'singlepost' sx={{ maxWidth: '80%',margin: 5}}>
   
           <CardHeader textAlign="center" sx={{  display: 'flex', 'text-align': 'left', float: 'left' }}
               avatar={
-                  <Avatar onClick={handleAvatarClick} sx={{ bgcolor: red[400]}} aria-label="recipe">
-                      {first_name[0]}
+                  <Avatar onClick={handleAvatarClick} sx={{ bgcolor: red[400] }} aria-label="recipe">
+                      {firstName[0] ?? ""}
                   </Avatar>
               }
 
               title={title}
-              subheader={first_name + " " + last_name}
+              subheader={firstName + " " + lastName}
       />
       <CardMedia
               component="img"

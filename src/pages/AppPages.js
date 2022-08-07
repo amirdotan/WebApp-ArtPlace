@@ -17,10 +17,10 @@ import ProtectedRoute from "../components/ProtectedRoute";
 
 // TODO: protect pages if your no logged in by wrapping components like this : <Route path="/home" element={<ProtectedRoute> <Home /> </ProtectedRoute> } />
 // whats up
-function Pages() {
+function Pages({ setSignedIn }) {
     return (
       <Routes>
-            <Route path="/" element={<SignIn />} />
+            <Route path="/" element={<SignIn setSignedIn={setSignedIn }/>} />
             <Route path="/home" element={<ProtectedRoute> <Home /> </ProtectedRoute> } />
             <Route path="/addpost" element={ <AddPost />} />
             <Route path="/about" element={<AboutPage />} />

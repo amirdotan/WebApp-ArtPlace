@@ -12,7 +12,7 @@ import BottomNavigation from "./components/BottomNavigation"
 
 import { AuthContextProvider } from './context/Authcontext';
 import BottomNavPresenter from './components/BottomNavPresenter';
-
+import { useState, useEffect } from 'react';
 
 const theme = createTheme({
   palette: {
@@ -26,6 +26,7 @@ const theme = createTheme({
 
 function App() {
 
+    const [signedIn, setSignedIn] = useState(true)
 
   return (
     <AuthContextProvider> 
@@ -35,9 +36,9 @@ function App() {
             {/* the meta tag here is for resizing on phones */}
             <meta name="viewport" content="initial-scale=1, width=device-width" />
           </head>
-            <BrowserRouter>
-              <AppBar />
-              <AppPages />
+                  <BrowserRouter>
+                      <AppBar signedIn={signedIn} setSignedIn={setSignedIn} />
+                      <AppPages setSignedIn={setSignedIn }/>
               <BottomNavPresenter> <BottomNavigation /> </BottomNavPresenter>
             </BrowserRouter>
         </div>

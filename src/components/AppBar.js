@@ -39,7 +39,7 @@ const auth = getAuth();
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Logout'];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ signedIn, setSignedIn }) => {
 
     const { user, logout } = UserAuth();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -72,6 +72,7 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
     try{
         await logout();
+        setSignedIn(false);
         console.log('You have logged out')
     }catch(e){
       console.log(e.message)
@@ -79,21 +80,23 @@ const ResponsiveAppBar = () => {
     navigate('/');
   }; 
 
+    useEffect(() => {
+        if (signedIn == false) {
+            setFirstName(" ")
+        }
+        else {
+            getUserData1();
+        }
+    }, [signedIn, curr_user])
 
-
-
-  useEffect(() => {
     const getUserData1 = async () => {
         users.forEach((user) => {
-        if (user.uid == curr_user?.uid) {
-          setFirstName(user.first_name)
-        }
-      })
+            if (user.uid == curr_user?.uid) {
+                setFirstName(user.first_name)
+            }
+        })
     };
-    if (curr_user) {
-      getUserData1();
-    }
-      }, [curr_user])
+
 
 
     useEffect(() => {
