@@ -178,6 +178,13 @@ export default function Profile() {
                     copy Email
                 </Button>
             </CopyToClipboard>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </>
     );
 }
