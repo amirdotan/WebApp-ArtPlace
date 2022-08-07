@@ -39,7 +39,7 @@ const auth = getAuth();
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Logout'];
 
-const ResponsiveAppBar = ({ signedIn, setSignedIn }) => {
+const ResponsiveAppBar = ({ signedIn, signedUp }) => {
 
     const { user, logout } = UserAuth();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -48,9 +48,6 @@ const ResponsiveAppBar = ({ signedIn, setSignedIn }) => {
     const [users, setUsers] = React.useState([])
     const [firstName, setFirstName] = useState(" ");
 
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
 
   
   const handleOpenUserMenu = (event) => {
@@ -72,7 +69,6 @@ const ResponsiveAppBar = ({ signedIn, setSignedIn }) => {
     setAnchorElUser(null);
     try{
         await logout();
-        setSignedIn(false);
         console.log('You have logged out')
     }catch(e){
       console.log(e.message)
@@ -80,23 +76,26 @@ const ResponsiveAppBar = ({ signedIn, setSignedIn }) => {
     navigate('/');
   }; 
 
+  const getUserData1 = async () => {
+    var curr_user = await auth.currentUser;
+    users.forEach((user) => {
+        if (user.uid == curr_user?.uid) {
+            setFirstName(user.first_name)
+        }
+    })
+};
+
     useEffect(() => {
-        if (signedIn == false) {
+
+        if (signedIn == false || signedUp == false) {
             setFirstName(" ")
         }
         else {
             getUserData1();
         }
-    }, [signedIn, curr_user])
+    }, [signedUp, signedIn, curr_user])
 
-    const getUserData1 = async () => {
-        users.forEach((user) => {
-            if (user.uid == curr_user?.uid) {
-                setFirstName(user.first_name)
-            }
-        })
-    };
-
+  
 
 
     useEffect(() => {
@@ -109,7 +108,7 @@ const ResponsiveAppBar = ({ signedIn, setSignedIn }) => {
         }
         loadUsers()
 
-    }, [])
+    }, [signedUp])
 
   return (
     //By wrapping the AppBar with 'ThemeProvider' we can change the default color

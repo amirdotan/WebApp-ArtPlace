@@ -17,16 +17,17 @@ import ProtectedRoute from "../components/ProtectedRoute";
 
 // TODO: protect pages if your no logged in by wrapping components like this : <Route path="/home" element={<ProtectedRoute> <Home /> </ProtectedRoute> } />
 // whats up
-function Pages({ setSignedIn }) {
+function Pages({ signedIn, setSignedIn, signedUp, setSignedUp}) {
     return (
       <Routes>
-            <Route path="/" element={<SignIn setSignedIn={setSignedIn }/>} />
-            <Route path="/home" element={<ProtectedRoute> <Home /> </ProtectedRoute> } />
+            <Route path="/" element={<SignIn setSignedIn={setSignedIn } signedIn={signedIn}/>} />
+            <Route path="/home" element={<ProtectedRoute> <Home  setSignedIn={setSignedIn } signedIn={signedIn} 
+            setSignedUp={setSignedUp } signedUp={signedUp}/> </ProtectedRoute> } />
             <Route path="/addpost" element={ <AddPost />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/guestProfile" element={<GuestProfilePage />} />
-            <Route path="/signup2" element={<SignUp2 />} />
+            <Route path="/signup2" element={<SignUp2  setSignedUp={setSignedUp } signedUp={signedUp} />} />
             <Route path="/EditProfile" element={<EditProfile />} />
             <Route path="/UploadFile" element={<UploadImage />} />
             <Route path="/Requests" element={<Requests />} />

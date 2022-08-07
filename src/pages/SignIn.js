@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -42,24 +42,27 @@ const theme = createTheme({
     }
   });
 
-export default function SignIn({ setSignedIn }) {
+export default function SignIn({ setSignedIn, signedIn, setSignedUp, signedUp}) {
 
   const navigate = useNavigate();
   const {signIn} = UserAuth();
   const [error, setError] = useState('')
+  useEffect(() => {setSignedIn(false)}, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('')
+
     const data = new FormData(event.currentTarget);
 
     try {
+
         await signIn(data.get('email'), data.get('password'))
-        setSignedIn(true)
+
       navigate('/home')
+
     } catch(e) {
       setError(e.message)
-      console.log(e.message)
     }
   };
 

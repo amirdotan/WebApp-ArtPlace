@@ -27,6 +27,7 @@ const theme = createTheme({
 function App() {
 
     const [signedIn, setSignedIn] = useState(true)
+    const [signedUp, setSignedUp] = useState(true)
 
   return (
     <AuthContextProvider> 
@@ -37,8 +38,8 @@ function App() {
             <meta name="viewport" content="initial-scale=1, width=device-width" />
           </head>
                   <BrowserRouter>
-                      <AppBar signedIn={signedIn} setSignedIn={setSignedIn} />
-                      <AppPages setSignedIn={setSignedIn }/>
+                      <AppBar signedIn={signedIn} signedUp={signedUp}  />
+                      <AppPages signedIn={signedIn} setSignedIn={setSignedIn } signedUp={signedUp} setSignedUp={setSignedUp } />
               <BottomNavPresenter> <BottomNavigation /> </BottomNavPresenter>
             </BrowserRouter>
         </div>

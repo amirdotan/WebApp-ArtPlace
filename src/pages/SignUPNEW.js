@@ -48,7 +48,7 @@ const theme = createTheme({
     }
   });
 
-export default function SignUp() {
+export default function SignUp({setSignedUp }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('')
@@ -57,6 +57,8 @@ export default function SignUp() {
   const navigate = useNavigate();    
   
   const [skillList, setSkillList] = useState([])
+
+  useEffect(() => {setSignedUp(false)}, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,7 +82,6 @@ export default function SignUp() {
       await createUser(data.get('email'), data.get('password')) 
       await addToUserdb(user_details)
       navigate('/home')
-      console.log('user added to to user collection')
     }catch(e){
       console.log(e.message)
       setError(e.message)

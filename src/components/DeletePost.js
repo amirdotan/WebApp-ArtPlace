@@ -31,7 +31,7 @@ export default function DeletePost(postName, postObj, setDeletedFlag) {
          setDeletedFlag(true);
   };
   return (
-    <Box sx={{ width: '100%' }} onClick={handleDeleteClick}>
+    <Box sx={{ width: '100%', margin: '2%' }} onClick={handleDeleteClick}>
       <Stack spacing={2}  margin='2%' marginLeft='7%' marginRight='7%'>
             <Fab variant="extended" size="small" color="primary">
             <DeleteIcon sx={{ mr: 1 }} />

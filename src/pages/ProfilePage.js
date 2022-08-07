@@ -31,6 +31,7 @@ import DeletePost from '../components/DeletePost';
 import { doc, getDoc } from "firebase/firestore";
 import { element } from 'prop-types';
 import Paper from '@mui/material/Paper';
+import { Margin } from '@mui/icons-material';
 
 
 export default function Profile() {
@@ -171,11 +172,9 @@ export default function Profile() {
                 />
             </Card>
 
-
             <Stack direction="row" spacing={3} sx={{ margin: 2 }}>
                 {profileDb.skills?.map((skill) => (<Chip label={skill} color="primary" />))}
             </Stack>
-
             <PortfolioPresenter portfolio_link={portfolio_link}>
                 <ImageList sx={{ width: '100%'}} cols={2} rowHeight={164} variant="quilted">
                     {portfolioPics.map((item) => (
@@ -213,15 +212,15 @@ export default function Profile() {
                 </Card>
             </AddPortfolioPresenter>
 
-            <Stack style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: !portfolio_link ? '85vh' : '10vh',
-                position: 'flex'
-            }} >
+            <div style={{marginTop: 16}}>  
+            <Stack sx={{flexWrap: "wrap"}} direction="row" >
                 {postsListTitles?.map((post, i) => (DeletePost(post, postsListObjects[i], setDeletedFlag)))}
             </Stack>
+
+            </div>
+
             <br/>
+
             <p style={{ color: "gray" }}>Partake © {new Date().getFullYear()}</p>
             <br/>
             <br/>
@@ -230,4 +229,9 @@ export default function Profile() {
     );
 }
 
-
+// style={{
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     height: !portfolio_link ? '85vh' : '10vh',
+//     position: 'flex'
+// }}

@@ -24,7 +24,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import posts from "../firebase";
 import GetSkills from '../data/GetSkills';
 import { db } from "../firebase";
-// import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
@@ -46,18 +46,8 @@ const auth = getAuth();
 
 // This is the Home page where there is a view of all the cards
 
-export default function Home() {
-    // const [posts, setHome] = React.useState([])
-    // React.useEffect(() => {
-    //     // you can watch this vid https://www.youtube.com/watch?v=MnIEJMgvuvc&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=9
-    //     // this is a request to the server for the data in db.json
-    //     fetch( 'http://localhost:8000/posts')
-    //     // then take the response object and parse it to js arrat
-    //     .then(response => response.json())
-    //     // data is the array outputed from response.json(), we send that array to setHome
-    //     .then(data => setHome(data))
-    // }, [])
-    
+export default function Home({setSignedIn, signedIn, setSignedUp, signedUp}) {
+
     const [postsDb, setPostsDb] = useState([]);
     const [firstName, setFirstName] = useState(" ");
     const [lastName, setLastName] = useState(" ");
@@ -71,6 +61,11 @@ export default function Home() {
     const [skillList, setSkillList] = useState([])
     const [i, setCount] = useState(0);
     const [imgUrl, setImgURL] = useState("");
+    useEffect(() => {
+        setSignedIn(true)
+        setSignedUp(true)
+
+    }, [curr_user])
     useEffect(() => {
 
         // Get data
@@ -220,16 +215,16 @@ export default function Home() {
                 className='swiperight' 
                 color="primary" 
                 aria-label="add" 
-                sx={{ position: 'relative', bottom : 10, right: 75 }}
+                sx={{ position: 'relative', bottom : 10, left: 125 }}
                 onClick={handleUnlikeButton}
                 >
-                <ArrowBackIcon/>
+                <ArrowForwardIcon/>
             </Fab>
             <Fab
                 className='swiperight' 
                 color="primary" 
                 aria-label="add" 
-                sx={{ position: 'relative', bottom : 10, left: 75 }}
+                sx={{ position: 'relative', bottom : 10, right: 125 }}
                 onClick={handleLikeButton}
                 >
                 <ThumbUpIcon/>
