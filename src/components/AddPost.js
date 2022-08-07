@@ -33,7 +33,6 @@ export default function AddPost() {
     const [activeStep, setActiveStep] = React.useState(0);
     const handleNext = () => {
         setActiveStep(activeStep + 1);
-        
     };
 
     const handleBack = () => {

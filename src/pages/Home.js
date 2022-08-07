@@ -153,17 +153,27 @@ export default function Home() {
         setCount(0);
     }    
 
+    function Copyright() {
+
+        return (
+          <Typography variant="body2" color="gray" align="center">
+            <Link color="gray">
+            </Link>{' '}
+            {'.'}
+          </Typography>
+        );
+      }
+
     return(
         // sx={{height:'100%'}}
         // disableScrollParentFix={true}
-        <div>
+        <div style={{height: '100vh'}}>
         <Autocomplete sx={{width: 1/2 ,ml: 12, mt:2}}
         // sx={{width: 1/2 ,ml: 5, mt:1}}
                     multiple
                     id="SkillsList"
                     name="Short Description"
                     label="SkillsList"
-                
                     variant="standard"
                     options={SkillList}
                     getOptionLabel={option => option}
@@ -226,7 +236,10 @@ export default function Home() {
             </Fab>
             {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user} users = {users} />}
             <br></br>
-            <p style={{ color: "gray" }}>Partake ©</p>
+            {/* <Copyright sx={{ mt: 5 , color: 'gray'}} /> */}
+            <br></br>
+            <p style={{ color: "gray" }}>Partake © {new Date().getFullYear()}</p>
+            <br></br>
         </div>
     )
 }

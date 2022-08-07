@@ -219,6 +219,7 @@ export default function Profile() {
             }} >
                 {postsListTitles?.map((post, i) => (DeletePost(post, postsListObjects[i], setDeletedFlag)))}
             </Stack>
+            <p style={{ color: "gray" }}>Partake © {new Date().getFullYear()}</p>
         </div>
     );
 }
