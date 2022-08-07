@@ -167,7 +167,7 @@ export default function Home() {
         // sx={{height:'100%'}}
         // disableScrollParentFix={true}
         <div style={{height: '100vh'}}>
-        <Autocomplete sx={{width: 1/2 ,ml: 12, mt:2}}
+        <Autocomplete sx={{width: 1/1.5 ,ml: 20, mt:3, position: 'relative', marginLeft: '18%', marginRight: '%'}}
         // sx={{width: 1/2 ,ml: 5, mt:1}}
                     multiple
                     id="SkillsList"
