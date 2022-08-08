@@ -20,12 +20,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Temp config
 const firebaseConfig = {
-    apiKey: "AIzaSyB_OmJDo1eEttvgQTCHS_rD7yj6ATPg5Po",
-    authDomain: "art-place-demo.firebaseapp.com",
-    projectId: "art-place-demo",
-    storageBucket: "art-place-demo.appspot.com",
-    messagingSenderId: "1005356225851",
-    appId: "1:1005356225851:web:7861fefa6f43566102931e"
+  apiKey: "AIzaSyCBGDxANdv0JYj0AQmbBBU-zvmDzue_RWM",
+  authDomain: "art-place-2.firebaseapp.com",
+  projectId: "art-place-2",
+  storageBucket: "art-place-2.appspot.com",
+  messagingSenderId: "949914312431",
+  appId: "1:949914312431:web:24a5f25418c664caf2851a"
 };
 
 // Initialize Firebase
@@ -40,3 +40,10 @@ export default app
 // authentication tutorial on youtube https://www.youtube.com/watch?v=x62aBvnRCKw&t=2206s
 
 // get and upload tutorial on youtube https://www.youtube.com/watch?v=cXWDQhzC3do
+
+// apiKey: "AIzaSyB_OmJDo1eEttvgQTCHS_rD7yj6ATPg5Po",
+// authDomain: "art-place-demo.firebaseapp.com",
+// projectId: "art-place-demo",
+// storageBucket: "art-place-demo.appspot.com",
+// messagingSenderId: "1005356225851",
+// appId: "1:1005356225851:web:7861fefa6f43566102931e"
