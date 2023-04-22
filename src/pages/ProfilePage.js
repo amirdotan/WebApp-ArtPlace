@@ -228,10 +228,3 @@ export default function Profile() {
         </div>        
     );
 }
-
-// style={{
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     height: !portfolio_link ? '85vh' : '10vh',
-//     position: 'flex'
-// }}

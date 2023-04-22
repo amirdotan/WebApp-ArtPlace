@@ -161,14 +161,7 @@ export default function Profile() {
                             But don't hesitate to contact them directly !
                         </Typography>
                     </CardContent>
-                    {/* <CopyToClipboard
-
-                        text={email}
-                        onCopy={() => alert("Copied")}>
-                        <Button variant="outlined" size="medium" >
-                            copy Email
-                        </Button>
-                    </CopyToClipboard> */}
+                    {}
                 </Card>
             </AddPortfolioPresenter>
             <CopyToClipboard

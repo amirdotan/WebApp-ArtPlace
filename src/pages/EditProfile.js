@@ -23,13 +23,6 @@ import { Autocomplete } from '@mui/material';
 import GetSkills from '../data/GetSkills';
 import { uploadString } from 'firebase/storage';
 
-
-
-
-
-
-//const SkillList = ["Video Editing", "Photography", "Animation", "Programming"];
-
 // This is the sign up page 
 // Source: https://github.com/mui/material-ui/tree/v5.6.3/docs/data/material/getting-started/templates/sign-up
 
@@ -164,17 +157,7 @@ const navigate = useNavigate();
 
                                 />
                             </Grid>
-                            {/* <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="current year"
-                                    label="current year"
-                                    defaultValue= "DATA NOT GATHERD"
-                                    name="email"
-                                    autoComplete="email"
-                                />
-                            </Grid> */}
+                            {}
                             <Grid item xs={12}>
                                 <Autocomplete
                                      multiple

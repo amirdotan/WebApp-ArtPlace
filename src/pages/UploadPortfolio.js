@@ -99,7 +99,6 @@ return(
             onChange={handleImageChange}
             />
     </Button>
-    {/* {imageURLs.map(imageSrc => <img src={imageSrc} className="addpostimg" />)} */}
     </>
 );
 }

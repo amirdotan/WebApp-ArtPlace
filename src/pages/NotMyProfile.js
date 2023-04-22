@@ -174,16 +174,7 @@ export default function RecipeReviewCard() {
         ))}
       </ImageList>
     </PortfolioPresenter>
-    {/* <AddPortfolioPresenter>
-      <Button onClick={() => navigate("/Requests")} color="primary" >Requests</Button>
-    </AddPortfolioPresenter> */}
-
-    {/* now create a presenter for adding portfolio images  */}
-    {/* create an object that alows uploading pics to the portfolio */}
-    {/* fuck me right? */}
     <AddPortfolioPresenter portfolio_link={portfolio_link}>
-      {/* // this needs to be centerd try using css locator  */}
-      {/* const { classes } = props; */}
       <Card sx={{ maxWidth: 345 }} class="addportfoliocard">
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">

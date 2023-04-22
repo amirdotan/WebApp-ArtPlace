@@ -10,8 +10,6 @@ import Stack from '@mui/material/Stack';
 import data from '../data/db.json'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Button from '@mui/material/Button';
-import TextFieldd from './TextFieldd'
-import { TextField } from "@mui/material";
 // import Dialog from "@material-ui/core/Dialog";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { db } from "../firebase";

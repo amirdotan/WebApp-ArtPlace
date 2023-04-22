@@ -1,6 +1,5 @@
 import AppBar from '../components/AppBar'
 import BottomNavigation from '../components/BottomNavigation.js';
-import MasonryImageList from '../components/Posts.js'
 import '../styles/Home.css'
 import SwipeLeft from '../components/SwipeLeft'
 import TextField from '@mui/material/TextField';
@@ -19,8 +18,6 @@ import SinglePost from '../components/SinglePost';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Container, Typography, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-// import Copyright from "@bit/mui-org.material-ui-icons.copyright";
-// import data from '../data/posts.json'
 import posts from "../firebase";
 import GetSkills from '../data/GetSkills';
 import { db } from "../firebase";
@@ -160,11 +157,8 @@ export default function Home({setSignedIn, signedIn, setSignedUp, signedUp}) {
       }
 
     return(
-        // sx={{height:'100%'}}
-        // disableScrollParentFix={true}
         <div style={{height: '100vh'}}>
         <Autocomplete sx={{width: 1/1.5 ,ml: 20, mt:3, position: 'relative', marginLeft: '18%', marginRight: '%'}}
-        // sx={{width: 1/2 ,ml: 5, mt:1}}
                     multiple
                     id="SkillsList"
                     name="Short Description"
@@ -185,16 +179,8 @@ export default function Home({setSignedIn, signedIn, setSignedUp, signedUp}) {
                         />
                     )}
                 />
-            {/* <Button variant="contained" sx={{position: 'absolute', top: 80, right: 40}}>Search</Button> */}
-            {/* <SinglePost
-            first_name={data.posts[i].first_name}
-            last_name={data.posts[i].last_name}
-            field_of_study={data.posts[i].field_of_study}
-            title={data.posts[i].title}
-            short_description={data.posts[i].short_description}
-            long_description={data.posts[i].long_description}
-            img = {data.posts[i].img}
-            /> */}
+            {}
+            {}
             {data.length > 0 && <SinglePost
                 title={postsDb[i]?.title ?? ""}
                 skilllist={postsDb[i]?.skilllist ?? []}
@@ -231,7 +217,7 @@ export default function Home({setSignedIn, signedIn, setSignedUp, signedUp}) {
             </Fab>
             {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} uid={postsDb[i]?.user} users = {users} />}
             <br></br>
-            {/* <Copyright sx={{ mt: 5 , color: 'gray'}} /> */}
+            {}
             <br></br>
             <p style={{ color: "gray" }}>Partake © {new Date().getFullYear()}</p>
             <br/>
