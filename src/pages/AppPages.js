@@ -15,8 +15,6 @@ import GuestProfilePage from './GuestProfilePage';
 import ProtectedRoute from "../components/ProtectedRoute";
 
 
-// TODO: protect pages if your no logged in by wrapping components like this : <Route path="/home" element={<ProtectedRoute> <Home /> </ProtectedRoute> } />
-// whats up
 function Pages({ signedIn, setSignedIn, signedUp, setSignedUp}) {
     return (
       <Routes>

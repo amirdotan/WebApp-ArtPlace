@@ -214,7 +214,6 @@ export default function SignUp({setSignedUp }) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              // href="/home" // TODO: is this the right way to link? sould it be onClick method?
             >
               Sign Up
             </Button>

@@ -31,22 +31,6 @@ export const AuthContextProvider = ({ children }) => {
         uid : user.uid
       });
     }
-
-      // this also works but the function above sets the documents name
-      // addDoc(user_col_ref, {
-      //       first_name : user_details.first_name,
-      //       last_name : user_details.last_name,
-      //       short_description : user_details.short_description,
-      //       skills : user_details.skills,
-      //       email : user_details.email,
-      //       field : user_details.field,
-      //       uid : user.uid
-      //     }).then(() => {
-      //       console.log('user added to to user collection')
-      //       // console.log(user)
-      //     });
-      //   }
-
  
      const signIn = (email, password) =>  {
       return signInWithEmailAndPassword(auth, email, password)
